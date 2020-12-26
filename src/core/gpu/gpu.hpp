@@ -77,10 +77,10 @@ private:
     Color *screen_buffer;
     bool refresh_screen;
 
-	byte scan_line_row[160];
-	bool scan_line_row_priority[160];
+    byte scan_line_row[160];
+    bool scan_line_row_priority[160];
 
-	Sprite *obj_scanline[10];
+    Sprite *obj_scanline[10];
 
     Mode gpu_mode;
 

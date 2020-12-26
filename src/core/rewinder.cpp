@@ -106,11 +106,11 @@ void RewindSeries::compress(State_Memory &state_in) {
                 count++;
             }
 
-			compressed_states[pos].push_back(last);
+            compressed_states[pos].push_back(last);
             write_count(count);
 
             if (data == end)
-            	break;
+                break;
         }
 
         compressed_states[pos].push_back(current);

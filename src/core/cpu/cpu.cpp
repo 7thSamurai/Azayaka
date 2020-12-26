@@ -786,31 +786,31 @@ void Cpu::stop() {
 
 void Cpu::run_instr(byte instr) {
     switch (instr) {
-		case 0x00:
+        case 0x00:
             break;
-		case 0x01:
+        case 0x01:
             ld_rr_nn(b, c);
             break;
-		case 0x02:
+        case 0x02:
             write_byte(bc(), a);
             break;
-		case 0x03:
+        case 0x03:
             inc_rr(b, c);
             break;
-		case 0x04:
+        case 0x04:
             inc_r(b);
             break;
-		case 0x05:
+        case 0x05:
             dec_r(b);
             break;
-		case 0x06:
+        case 0x06:
             b = read_operand();
             break;
-		case 0x07:
+        case 0x07:
             rlc_r(a);
             clear_flag(ZF);
             break;
-		case 0x08:
+        case 0x08:
             {
                 byte low  = read_operand();
                 byte high = read_operand();
@@ -822,86 +822,86 @@ void Cpu::run_instr(byte instr) {
             }
             break;
 
-		case 0x09:
+        case 0x09:
             add_hl_rr(b, c);
             break;
-		case 0x0a:
+        case 0x0a:
             a = read_byte(bc());
             break;
-		case 0x0b:
+        case 0x0b:
             dec_rr(b, c);
             break;
-		case 0x0c:
+        case 0x0c:
             inc_r(c);
             break;
-		case 0x0d:
+        case 0x0d:
             dec_r(c);
             break;
-		case 0x0e:
+        case 0x0e:
             c = read_operand();
             break;
-		case 0x0f:
+        case 0x0f:
             rrc_r(a);
             clear_flag(ZF);
             break;
-		case 0x10: stop(); break;
-		case 0x11:
+        case 0x10: stop(); break;
+        case 0x11:
             ld_rr_nn(d, e);
             break;
-		case 0x12:
+        case 0x12:
             write_byte(de(), a);
             break;
-		case 0x13:
+        case 0x13:
             inc_rr(d, e);
             break;
-		case 0x14:
+        case 0x14:
             inc_r(d);
             break;
-		case 0x15:
+        case 0x15:
             dec_r(d);
             break;
-		case 0x16:
+        case 0x16:
             d = read_operand();
             break;
-		case 0x17:
+        case 0x17:
             rl_r(a);
             clear_flag(ZF);
             break;
-		case 0x18:
+        case 0x18:
             jr_n();
             break;
-		case 0x19:
+        case 0x19:
             add_hl_rr(d, e);
             break;
-		case 0x1a:
+        case 0x1a:
             a = read_byte(de());
             break;
-		case 0x1b:
+        case 0x1b:
             dec_rr(d, e);
             break;
-		case 0x1c:
+        case 0x1c:
             inc_r(e);
             break;
-		case 0x1d:
+        case 0x1d:
             dec_r(e);
             break;
-		case 0x1e:
+        case 0x1e:
             e = read_operand();
             break;
-		case 0x1f:
+        case 0x1f:
             rr_r(a);
             clear_flag(ZF);
             break;
-		case 0x20:
+        case 0x20:
             if (f & ZF)
                 skip_operand();
             else
                 jr_n();
             break;
-		case 0x21:
+        case 0x21:
             ld_rr_nn(h, l);
             break;
-		case 0x22:
+        case 0x22:
             {
                 word addr = hl();
                 write_byte(addr, a);
@@ -909,19 +909,19 @@ void Cpu::run_instr(byte instr) {
                 write_hl(addr+1);
             }
             break;
-		case 0x23:
+        case 0x23:
             inc_rr(h, l);
             break;
-		case 0x24:
+        case 0x24:
             inc_r(h);
             break;
-		case 0x25:
+        case 0x25:
             dec_r(h);
             break;
-		case 0x26:
+        case 0x26:
             h = read_operand();
             break;
-		case 0x27:
+        case 0x27:
             {
                 byte cf = f & CF;
                 byte hf = f & HF;
@@ -946,16 +946,16 @@ void Cpu::run_instr(byte instr) {
                 update_flag(ZF, a == 0);
             }
             break;
-		case 0x28:
+        case 0x28:
             if (f & ZF)
                 jr_n();
             else
                 skip_operand();
             break;
-		case 0x29:
+        case 0x29:
             add_hl_rr(h, l);
             break;
-		case 0x2a:
+        case 0x2a:
             {
                 word addr = hl();
                 a = read_byte(addr);
@@ -963,29 +963,29 @@ void Cpu::run_instr(byte instr) {
                 write_hl(addr+1);
             }
             break;
-		case 0x2b:
+        case 0x2b:
             dec_rr(h, l);
             break;
-		case 0x2c:
+        case 0x2c:
             inc_r(l);
             break;
-		case 0x2d:
+        case 0x2d:
             dec_r(l);
             break;
-		case 0x2e:
+        case 0x2e:
             l = read_operand();
             break;
-		case 0x2f:
+        case 0x2f:
             set_flag(NF | HF);
             a ^= 0xFF;
             break;
-		case 0x30:
+        case 0x30:
             if (f & CF)
                 skip_operand();
             else
                 jr_n();
             break;
-		case 0x31:
+        case 0x31:
             {
                 byte low  = read_operand();
                 byte high = read_operand();
@@ -993,7 +993,7 @@ void Cpu::run_instr(byte instr) {
                 sp = high << 8 | low;
             }
             break;
-		case 0x32:
+        case 0x32:
             {
                 word addr = hl();
                 write_byte(addr, a);
@@ -1001,11 +1001,11 @@ void Cpu::run_instr(byte instr) {
                 write_hl(addr-1);
             }
             break;
-		case 0x33:
+        case 0x33:
             sp++;
             tick4();
             break;
-		case 0x34:
+        case 0x34:
             {
                 word addr  = hl();
                 byte value = read_byte(addr);
@@ -1014,7 +1014,7 @@ void Cpu::run_instr(byte instr) {
                 write_byte(addr, value);
             }
             break;
-		case 0x35:
+        case 0x35:
             {
                 word addr  = hl();
                 byte value = read_byte(addr);
@@ -1023,23 +1023,23 @@ void Cpu::run_instr(byte instr) {
                 write_byte(addr, value);
             }
             break;
-		case 0x36:
+        case 0x36:
             write_byte(hl(), read_operand());
             break;
-		case 0x37:
-		    clear_flag(NF | HF);
+        case 0x37:
+            clear_flag(NF | HF);
             set_flag(CF);
             break;
-		case 0x38:
+        case 0x38:
             if (f & CF)
                 jr_n();
             else
                 skip_operand();
             break;
-		case 0x39:
+        case 0x39:
             add_hl_rr(sp >> 8, sp & 0xFF);
             break;
-		case 0x3a:
+        case 0x3a:
             {
                 word addr = hl();
                 a = read_byte(addr);
@@ -1047,88 +1047,88 @@ void Cpu::run_instr(byte instr) {
                 write_hl(addr-1);
             }
             break;
-		case 0x3b:
+        case 0x3b:
             sp--;
             tick4();
             break;
-		case 0x3c:
+        case 0x3c:
             inc_r(a);
             break;
-		case 0x3d:
+        case 0x3d:
             dec_r(a);
             break;
-		case 0x3e:
+        case 0x3e:
             a = read_operand();
             break;
-		case 0x3f:
+        case 0x3f:
             clear_flag(NF | HF);
 
             if (f & CF) clear_flag(CF);
             else set_flag(CF);
             break;
 
-		case 0x40: break; // LD B, B
-		case 0x41: b = c; break;
-		case 0x42: b = d; break;
-		case 0x43: b = e; break;
-		case 0x44: b = h; break;
-		case 0x45: b = l; break;
-		case 0x46: b = read_byte(hl()); break;
-		case 0x47: b = a; break;
+        case 0x40: break; // LD B, B
+        case 0x41: b = c; break;
+        case 0x42: b = d; break;
+        case 0x43: b = e; break;
+        case 0x44: b = h; break;
+        case 0x45: b = l; break;
+        case 0x46: b = read_byte(hl()); break;
+        case 0x47: b = a; break;
 
-		case 0x48: c = b; break;
-		case 0x49: break; // LD C, C
-		case 0x4a: c = d; break;
-		case 0x4b: c = e; break;
-		case 0x4c: c = h; break;
-		case 0x4d: c = l; break;
-		case 0x4e: c = read_byte(hl()); break;
-		case 0x4f: c = a; break;
+        case 0x48: c = b; break;
+        case 0x49: break; // LD C, C
+        case 0x4a: c = d; break;
+        case 0x4b: c = e; break;
+        case 0x4c: c = h; break;
+        case 0x4d: c = l; break;
+        case 0x4e: c = read_byte(hl()); break;
+        case 0x4f: c = a; break;
 
-		case 0x50: d = b; break;
-		case 0x51: d = c; break;
-		case 0x52: break; // LD D, D
-		case 0x53: d = e; break;
-		case 0x54: d = h; break;
-		case 0x55: d = l; break;
-		case 0x56: d = read_byte(hl()); break;
-		case 0x57: d = a; break;
+        case 0x50: d = b; break;
+        case 0x51: d = c; break;
+        case 0x52: break; // LD D, D
+        case 0x53: d = e; break;
+        case 0x54: d = h; break;
+        case 0x55: d = l; break;
+        case 0x56: d = read_byte(hl()); break;
+        case 0x57: d = a; break;
 
-		case 0x58: e = b; break;
-		case 0x59: e = c; break;
-		case 0x5a: e = d; break;
-		case 0x5b: break; // LD E, E
-		case 0x5c: e = h; break;
-		case 0x5d: e = l; break;
-		case 0x5e: e = read_byte(hl()); break;
-		case 0x5f: e = a; break;
+        case 0x58: e = b; break;
+        case 0x59: e = c; break;
+        case 0x5a: e = d; break;
+        case 0x5b: break; // LD E, E
+        case 0x5c: e = h; break;
+        case 0x5d: e = l; break;
+        case 0x5e: e = read_byte(hl()); break;
+        case 0x5f: e = a; break;
 
-		case 0x60: h = b; break;
-		case 0x61: h = c; break;
-		case 0x62: h = d; break;
-		case 0x63: h = e; break;
-		case 0x64: break; // LD H, H
-		case 0x65: h = l; break;
-		case 0x66: h = read_byte(hl()); break;
-		case 0x67: h = a; break;
+        case 0x60: h = b; break;
+        case 0x61: h = c; break;
+        case 0x62: h = d; break;
+        case 0x63: h = e; break;
+        case 0x64: break; // LD H, H
+        case 0x65: h = l; break;
+        case 0x66: h = read_byte(hl()); break;
+        case 0x67: h = a; break;
 
-		case 0x68: l = b; break;
-		case 0x69: l = c; break;
-		case 0x6a: l = d; break;
-		case 0x6b: l = e; break;
-		case 0x6c: l = h; break;
-		case 0x6d: break; // LD L, L
-		case 0x6e: l = read_byte(hl()); break;
-		case 0x6f: l = a; break;
+        case 0x68: l = b; break;
+        case 0x69: l = c; break;
+        case 0x6a: l = d; break;
+        case 0x6b: l = e; break;
+        case 0x6c: l = h; break;
+        case 0x6d: break; // LD L, L
+        case 0x6e: l = read_byte(hl()); break;
+        case 0x6f: l = a; break;
 
-		case 0x70: write_byte(hl(), b); break;
-		case 0x71: write_byte(hl(), c); break;
-		case 0x72: write_byte(hl(), d); break;
-		case 0x73: write_byte(hl(), e); break;
-		case 0x74: write_byte(hl(), h); break;
-		case 0x75: write_byte(hl(), l); break;
+        case 0x70: write_byte(hl(), b); break;
+        case 0x71: write_byte(hl(), c); break;
+        case 0x72: write_byte(hl(), d); break;
+        case 0x73: write_byte(hl(), e); break;
+        case 0x74: write_byte(hl(), h); break;
+        case 0x75: write_byte(hl(), l); break;
 
-		case 0x76:
+        case 0x76:
             if (IME)
                 mode = Mode_Halt;
             else {
@@ -1139,97 +1139,97 @@ void Cpu::run_instr(byte instr) {
             }
             break;
 
-		case 0x77: write_byte(hl(), a); break;
-		case 0x78: a = b; break;
-		case 0x79: a = c; break;
-		case 0x7a: a = d; break;
-		case 0x7b: a = e; break;
-		case 0x7c: a = h; break;
-		case 0x7d: a = l; break;
-		case 0x7e: a = read_byte(hl()); break;
-		case 0x7f: break; // LD A, A
+        case 0x77: write_byte(hl(), a); break;
+        case 0x78: a = b; break;
+        case 0x79: a = c; break;
+        case 0x7a: a = d; break;
+        case 0x7b: a = e; break;
+        case 0x7c: a = h; break;
+        case 0x7d: a = l; break;
+        case 0x7e: a = read_byte(hl()); break;
+        case 0x7f: break; // LD A, A
 
-		case 0x80: add_a_n(b); break;
-		case 0x81: add_a_n(c); break;
-		case 0x82: add_a_n(d); break;
-		case 0x83: add_a_n(e); break;
-		case 0x84: add_a_n(h); break;
-		case 0x85: add_a_n(l); break;
-		case 0x86: add_a_n(read_byte(hl())); break;
-		case 0x87: add_a_n(a); break;
+        case 0x80: add_a_n(b); break;
+        case 0x81: add_a_n(c); break;
+        case 0x82: add_a_n(d); break;
+        case 0x83: add_a_n(e); break;
+        case 0x84: add_a_n(h); break;
+        case 0x85: add_a_n(l); break;
+        case 0x86: add_a_n(read_byte(hl())); break;
+        case 0x87: add_a_n(a); break;
 
-		case 0x88: adc_a_n(b); break;
-		case 0x89: adc_a_n(c); break;
-		case 0x8a: adc_a_n(d); break;
-		case 0x8b: adc_a_n(e); break;
-		case 0x8c: adc_a_n(h); break;
-		case 0x8d: adc_a_n(l); break;
-		case 0x8e: adc_a_n(read_byte(hl())); break;
-		case 0x8f: adc_a_n(a); break;
+        case 0x88: adc_a_n(b); break;
+        case 0x89: adc_a_n(c); break;
+        case 0x8a: adc_a_n(d); break;
+        case 0x8b: adc_a_n(e); break;
+        case 0x8c: adc_a_n(h); break;
+        case 0x8d: adc_a_n(l); break;
+        case 0x8e: adc_a_n(read_byte(hl())); break;
+        case 0x8f: adc_a_n(a); break;
 
-		case 0x90: sub_a_n(b); break;
-		case 0x91: sub_a_n(c); break;
-		case 0x92: sub_a_n(d); break;
-		case 0x93: sub_a_n(e); break;
-		case 0x94: sub_a_n(h); break;
-		case 0x95: sub_a_n(l); break;
-		case 0x96: sub_a_n(read_byte(hl())); break;
-		case 0x97: sub_a_n(a); break;
+        case 0x90: sub_a_n(b); break;
+        case 0x91: sub_a_n(c); break;
+        case 0x92: sub_a_n(d); break;
+        case 0x93: sub_a_n(e); break;
+        case 0x94: sub_a_n(h); break;
+        case 0x95: sub_a_n(l); break;
+        case 0x96: sub_a_n(read_byte(hl())); break;
+        case 0x97: sub_a_n(a); break;
 
-		case 0x98: sbc_a_n(b); break;
-		case 0x99: sbc_a_n(c); break;
-		case 0x9a: sbc_a_n(d); break;
-		case 0x9b: sbc_a_n(e); break;
-		case 0x9c: sbc_a_n(h); break;
-		case 0x9d: sbc_a_n(l); break;
-		case 0x9e: sbc_a_n(read_byte(hl())); break;
-		case 0x9f: sbc_a_n(a); break;
+        case 0x98: sbc_a_n(b); break;
+        case 0x99: sbc_a_n(c); break;
+        case 0x9a: sbc_a_n(d); break;
+        case 0x9b: sbc_a_n(e); break;
+        case 0x9c: sbc_a_n(h); break;
+        case 0x9d: sbc_a_n(l); break;
+        case 0x9e: sbc_a_n(read_byte(hl())); break;
+        case 0x9f: sbc_a_n(a); break;
 
-		case 0xa0: and_a_n(b); break;
-		case 0xa1: and_a_n(c); break;
-		case 0xa2: and_a_n(d); break;
-		case 0xa3: and_a_n(e); break;
-		case 0xa4: and_a_n(h); break;
-		case 0xa5: and_a_n(l); break;
-		case 0xa6: and_a_n(read_byte(hl())); break;
-		case 0xa7: and_a_n(a); break;
+        case 0xa0: and_a_n(b); break;
+        case 0xa1: and_a_n(c); break;
+        case 0xa2: and_a_n(d); break;
+        case 0xa3: and_a_n(e); break;
+        case 0xa4: and_a_n(h); break;
+        case 0xa5: and_a_n(l); break;
+        case 0xa6: and_a_n(read_byte(hl())); break;
+        case 0xa7: and_a_n(a); break;
 
-		case 0xa8: xor_a_n(b); break;
-		case 0xa9: xor_a_n(c); break;
-		case 0xaa: xor_a_n(d); break;
-		case 0xab: xor_a_n(e); break;
-		case 0xac: xor_a_n(h); break;
-		case 0xad: xor_a_n(l); break;
-		case 0xae: xor_a_n(read_byte(hl())); break;
-		case 0xaf: xor_a_n(a); break;
+        case 0xa8: xor_a_n(b); break;
+        case 0xa9: xor_a_n(c); break;
+        case 0xaa: xor_a_n(d); break;
+        case 0xab: xor_a_n(e); break;
+        case 0xac: xor_a_n(h); break;
+        case 0xad: xor_a_n(l); break;
+        case 0xae: xor_a_n(read_byte(hl())); break;
+        case 0xaf: xor_a_n(a); break;
 
-		case 0xb0: or_a_n(b); break;
-		case 0xb1: or_a_n(c); break;
-		case 0xb2: or_a_n(d); break;
-		case 0xb3: or_a_n(e); break;
-		case 0xb4: or_a_n(h); break;
-		case 0xb5: or_a_n(l); break;
-		case 0xb6: or_a_n(read_byte(hl())); break;
-		case 0xb7: or_a_n(a); break;
+        case 0xb0: or_a_n(b); break;
+        case 0xb1: or_a_n(c); break;
+        case 0xb2: or_a_n(d); break;
+        case 0xb3: or_a_n(e); break;
+        case 0xb4: or_a_n(h); break;
+        case 0xb5: or_a_n(l); break;
+        case 0xb6: or_a_n(read_byte(hl())); break;
+        case 0xb7: or_a_n(a); break;
 
-		case 0xb8: cp_a_n(b); break;
-		case 0xb9: cp_a_n(c); break;
-		case 0xba: cp_a_n(d); break;
-		case 0xbb: cp_a_n(e); break;
-		case 0xbc: cp_a_n(h); break;
-		case 0xbd: cp_a_n(l); break;
-		case 0xbe: cp_a_n(read_byte(hl())); break;
-		case 0xbf: cp_a_n(a); break;
+        case 0xb8: cp_a_n(b); break;
+        case 0xb9: cp_a_n(c); break;
+        case 0xba: cp_a_n(d); break;
+        case 0xbb: cp_a_n(e); break;
+        case 0xbc: cp_a_n(h); break;
+        case 0xbd: cp_a_n(l); break;
+        case 0xbe: cp_a_n(read_byte(hl())); break;
+        case 0xbf: cp_a_n(a); break;
 
-		case 0xc0:
-		    tick4();
+        case 0xc0:
+            tick4();
             if (!(f & ZF))
                 ret();
             break;
-		case 0xc1:
+        case 0xc1:
             pop_rr(b, c);
             break;
-		case 0xc2:
+        case 0xc2:
             if (f & ZF) {
                 skip_operand();
                 skip_operand();
@@ -1237,10 +1237,10 @@ void Cpu::run_instr(byte instr) {
             else
                 jp_nn();
             break;
-		case 0xc3:
+        case 0xc3:
             jp_nn();
             break;
-		case 0xc4:
+        case 0xc4:
             if (f & ZF) {
                 skip_operand();
                 skip_operand();
@@ -1248,25 +1248,25 @@ void Cpu::run_instr(byte instr) {
             else
                 call_nn();
             break;
-		case 0xc5:
+        case 0xc5:
             push_rr(b, c);
             break;
-		case 0xc6:
+        case 0xc6:
             add_a_n(read_operand());
             break;
-		case 0xc7:
+        case 0xc7:
             rst_n(0x00);
             break;
-		case 0xc8:
-		    tick4();
+        case 0xc8:
+            tick4();
 
             if (f & ZF)
                 ret();
             break;
-		case 0xc9:
+        case 0xc9:
             ret();
             break;
-		case 0xca:
+        case 0xca:
             if (f & ZF)
                 jp_nn();
             else {
@@ -1274,7 +1274,7 @@ void Cpu::run_instr(byte instr) {
                 skip_operand();
             }
             break;
-		case 0xcb:
+        case 0xcb:
             instr = read_operand();
 
             switch (instr) {
@@ -1615,7 +1615,7 @@ void Cpu::run_instr(byte instr) {
             case 0xff: set_r(a, 7); break;
             }
             break;
-		case 0xcc:
+        case 0xcc:
             if (f & ZF)
                 call_nn();
             else {
@@ -1623,25 +1623,25 @@ void Cpu::run_instr(byte instr) {
                 skip_operand();
             }
             break;
-		case 0xcd:
+        case 0xcd:
             call_nn();
             break;
-		case 0xce:
+        case 0xce:
             adc_a_n(read_operand());
             break;
-		case 0xcf:
+        case 0xcf:
             rst_n(0x08);
             break;
-		case 0xd0:
-		    tick4();
+        case 0xd0:
+            tick4();
 
             if (!(f & CF))
                 ret();
             break;
-		case 0xd1:
+        case 0xd1:
             pop_rr(d, e);
             break;
-		case 0xd2:
+        case 0xd2:
             if (f & CF) {
                 skip_operand();
                 skip_operand();
@@ -1649,8 +1649,8 @@ void Cpu::run_instr(byte instr) {
             else
                 jp_nn();
             break;
-		case 0xd3: invalid_op(); break;
-		case 0xd4:
+        case 0xd3: invalid_op(); break;
+        case 0xd4:
             if (f & CF) {
                 skip_operand();
                 skip_operand();
@@ -1658,26 +1658,26 @@ void Cpu::run_instr(byte instr) {
             else
                 call_nn();
             break;
-		case 0xd5:
+        case 0xd5:
             push_rr(d, e);
             break;
-		case 0xd6:
+        case 0xd6:
             sub_a_n(read_operand());
             break;
-		case 0xd7:
+        case 0xd7:
             rst_n(0x10);
             break;
-		case 0xd8:
-		    tick4();
+        case 0xd8:
+            tick4();
 
             if (f & CF)
                 ret();
             break;
-		case 0xd9:
+        case 0xd9:
             IME = 1;
             ret();
             break;
-		case 0xda:
+        case 0xda:
             if (f & CF)
                 jp_nn();
             else {
@@ -1685,8 +1685,8 @@ void Cpu::run_instr(byte instr) {
                 skip_operand();
             }
             break;
-		case 0xdb: invalid_op(); break;
-		case 0xdc:
+        case 0xdb: invalid_op(); break;
+        case 0xdc:
             if (f & CF)
                 call_nn();
             else {
@@ -1694,41 +1694,41 @@ void Cpu::run_instr(byte instr) {
                 skip_operand();
             }
             break;
-		case 0xdd: invalid_op(); break;
-		case 0xde:
+        case 0xdd: invalid_op(); break;
+        case 0xde:
             sbc_a_n(read_operand());
             break;
-		case 0xdf:
+        case 0xdf:
             rst_n(0x18);
             break;
-		case 0xe0:
+        case 0xe0:
             write_byte(0xFF00 + read_operand(), a);
             break;
-		case 0xe1:
+        case 0xe1:
             pop_rr(h, l);
             break;
-		case 0xe2:
+        case 0xe2:
             write_byte(0xFF00+c, a);
             break;
-		case 0xe3: invalid_op(); break;
-		case 0xe4: invalid_op(); break;
-		case 0xe5:
+        case 0xe3: invalid_op(); break;
+        case 0xe4: invalid_op(); break;
+        case 0xe5:
             push_rr(h, l);
             break;
-		case 0xe6:
+        case 0xe6:
             and_a_n(read_operand());
             break;
-		case 0xe7:
+        case 0xe7:
             rst_n(0x20);
             break;
-		case 0xe8:
+        case 0xe8:
             sp = add_sp_n();
             tick4();
             break;
-		case 0xe9:
+        case 0xe9:
             pc = hl();
             break;
-		case 0xea:
+        case 0xea:
             {
                 byte low  = read_operand();
                 byte high = read_operand();
@@ -1736,46 +1736,46 @@ void Cpu::run_instr(byte instr) {
                 write_byte(high << 8 | low, a);
             }
             break;
-		case 0xeb: invalid_op(); break;
-		case 0xec: invalid_op(); break;
-		case 0xed: invalid_op(); break;
-		case 0xee:
+        case 0xeb: invalid_op(); break;
+        case 0xec: invalid_op(); break;
+        case 0xed: invalid_op(); break;
+        case 0xee:
             xor_a_n(read_operand());
             break;
-		case 0xef:
+        case 0xef:
             rst_n(0x28);
             break;
-		case 0xf0: // FF_READ
+        case 0xf0: // FF_READ
             a = read_byte(0xFF00 + read_operand());
             break;
-		case 0xf1:
+        case 0xf1:
             pop_rr(a, f);
             f &= 0xF0;
             break;
-		case 0xf2: // FF_READ
+        case 0xf2: // FF_READ
             a = read_byte(0xFF00 + c);
             break;
-		case 0xf3:
+        case 0xf3:
             IME = 0;
             break;
-		case 0xf4: invalid_op(); break;
-		case 0xf5:
+        case 0xf4: invalid_op(); break;
+        case 0xf5:
             push_rr(a, f);
             break;
-		case 0xf6:
+        case 0xf6:
             or_a_n(read_operand());
             break;
-		case 0xf7:
+        case 0xf7:
             rst_n(0x30);
             break;
-		case 0xf8:
+        case 0xf8:
             write_hl(add_sp_n());
             break;
-		case 0xf9:
+        case 0xf9:
             sp = hl();
             tick4();
             break;
-		case 0xfa:
+        case 0xfa:
             {
                 byte low  = read_operand();
                 byte high = read_operand();
@@ -1783,15 +1783,15 @@ void Cpu::run_instr(byte instr) {
                 a = read_byte(high << 8 | low);
             }
             break;
-		case 0xfb:
+        case 0xfb:
             mode = Mode_EnableIME;
             break;
-		case 0xfc: invalid_op(); break;
-		case 0xfd: invalid_op(); break;
-		case 0xfe:
+        case 0xfc: invalid_op(); break;
+        case 0xfd: invalid_op(); break;
+        case 0xfe:
             cp_a_n(read_operand());
             break;
-		case 0xff:
+        case 0xff:
             rst_n(0x38);
             break;
     }

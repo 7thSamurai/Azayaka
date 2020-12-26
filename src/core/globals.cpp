@@ -15,7 +15,5 @@
 
 #include "globals.hpp"
 #include "common/logger.hpp"
-#include "settings.hpp"
 
 Logger logger;
-Settings settings;

@@ -38,7 +38,7 @@ public:
     virtual ~Input() { }
 
     virtual std::string get_key_name(ButtonType button) const = 0;
-   	virtual void map_key(ButtonType button, const std::string &name) = 0;
+    virtual void map_key(ButtonType button, const std::string &name) = 0;
 
     virtual void update() = 0;
 

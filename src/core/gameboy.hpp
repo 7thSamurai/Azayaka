@@ -44,23 +44,23 @@ public:
     GameBoy();
     ~GameBoy();
 
-	int load_rom(const std::string &path, std::string &error, bool dump_usage = false);
-	int load_rom_force_mode(const std::string &path, std::string &error, bool gbc_mode, bool dump_usage = false);
+    int load_rom(const std::string &path, std::string &error, bool dump_usage = false);
+    int load_rom_force_mode(const std::string &path, std::string &error, bool gbc_mode, bool dump_usage = false);
 
-	void init();
+    void init();
 
-	void reset();
+    void reset();
 
-	void run_frame();
+    void run_frame();
 
-	void run_until_blargg_done();
+    void run_until_blargg_done();
     void run_until_mooneye_done();
 
     bool is_frame_done();
 
-	void bind_audio_driver(AudioDriver *audio_driver);
+    void bind_audio_driver(AudioDriver *audio_driver);
 
-	const Color *get_screen_buffer() const;
+    const Color *get_screen_buffer() const;
 
     std::string get_rom_name();
     std::string get_rom_type();
@@ -83,16 +83,16 @@ public:
 
     void load_settings(Settings &settings);
 
-	Cpu *cpu;
-	Mmu *mmu;
+    Cpu *cpu;
+    Mmu *mmu;
     Dma *dma;
-	Hdma *hdma;
-	BootRom *boot_rom;
-	Rom *rom;
-	Gpu *gpu;
-	Apu *apu;
-	Timer *timer;
-	Joypad *joypad;
+    Hdma *hdma;
+    BootRom *boot_rom;
+    Rom *rom;
+    Gpu *gpu;
+    Apu *apu;
+    Timer *timer;
+    Joypad *joypad;
     Serial *serial;
 
     bool gbc_mode;

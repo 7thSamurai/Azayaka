@@ -42,23 +42,23 @@ int AudioSDL::start(unsigned int sample_rate, unsigned int buffer_size) {
 
     mutex = SDL_CreateMutex();
 
-	SDL_AudioSpec desired;
-	desired.freq     = sample_rate;
-	desired.format   = AUDIO_S16SYS;
-	desired.channels = 2;
-	desired.samples  = buffer_size;
-	desired.callback = audio_callback;
-	desired.userdata = this;
+    SDL_AudioSpec desired;
+    desired.freq     = sample_rate;
+    desired.format   = AUDIO_S16SYS;
+    desired.channels = 2;
+    desired.samples  = buffer_size;
+    desired.callback = audio_callback;
+    desired.userdata = this;
 
-	SDL_AudioSpec obtained;
+    SDL_AudioSpec obtained;
 
-	device_id = SDL_OpenAudioDevice(NULL, 0, &desired, &obtained, SDL_AUDIO_ALLOW_FREQUENCY_CHANGE);
+    device_id = SDL_OpenAudioDevice(NULL, 0, &desired, &obtained, SDL_AUDIO_ALLOW_FREQUENCY_CHANGE);
 
-	if (device_id == 0) {
+    if (device_id == 0) {
         logger.log("Unable to open audio-device: " + std::string(SDL_GetError()), Logger::Error);
         return -1;
-	}
-	else
+    }
+    else
         logger.log("Opened audio-device", Logger::Info, Logger::Verbose);
 
     started = 1;

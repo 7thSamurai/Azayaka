@@ -80,19 +80,19 @@ Note: You can map different keys to the buttons by editing Azayaka's INI file.
 
 | Function | Key |
 | --- | --- |
-| Turbo | <kdb>Shift</kbd> |
-| Slow-Motion | <kdb>Alt</kbd> |
-| Rewind | <kdb>Backspace</kbd> |
-| Toggle Fullscreen | <kdb>Ctrl+F</kbd> |
-| Pause/Unpause | <kdb>Ctrl+P</kbd> |
-| Reset | <kdb>Ctrl+R</kbd> |
-| Trigger Debugger | <kdb>Ctrl+C</kbd> |
-| Increase Volume | <kdb>Plus</kbd> |
-| Decrease Volume | <kdb>Minus</kbd> |
-| Load Savestate | <kdb>F1-F10</kbd> |
-| Save Savestate | <kdb>Ctrl + F1-F10</kbd> |
-| Take Screenshot | <kdb>F11</kbd> |
-| Start/Stop recording Audio | <kdb>F12</kbd> |
+| Turbo | <kbd>Shift</kbd> |
+| Slow-Motion | <kbd>Alt</kbd> |
+| Rewind | <kbd>Backspace</kbd> |
+| Toggle Fullscreen | <kbd>Ctrl+F</kbd> |
+| Pause/Unpause | <kbd>Ctrl+P</kbd> |
+| Reset | <kbd>Ctrl+R</kbd> |
+| Trigger Debugger | <kbd>Ctrl+C</kbd> |
+| Increase Volume | <kbd>Plus</kbd> |
+| Decrease Volume | <kbd>Minus</kbd> |
+| Load Savestate | <kbd>F1-F10</kbd> |
+| Save Savestate | <kbd>Ctrl + F1-F10</kbd> |
+| Take Screenshot | <kbd>F11</kbd> |
+| Start/Stop recording Audio | <kbd>F12</kbd> |
 
 ## Building
 

@@ -17,9 +17,7 @@
 #define _GLOBALS_HPP_
 
 class Logger;
-class Settings;
 
 extern Logger logger;
-extern Settings settings;
 
 #endif // _GLOBALS_HPP_

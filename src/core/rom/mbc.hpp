@@ -32,8 +32,8 @@ public:
     int get_usage(word address) override;
 
 protected:
-	u32 rom_offset;
-	u32 ram_offset;
+    u32 rom_offset;
+    u32 ram_offset;
 
     bool ram_on;
     word rom_bank; // Mbc5 needs 16-bit
