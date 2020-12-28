@@ -14,6 +14,8 @@ There needs to be a folder which contains directories called "blargg" and "moone
 
 There also need to be a .csv file which contains the correct results for each rom.
 
+Note: Be sure to remove the "utils" folder in the Mooneye tests. Otherwise the tester will freeze. 
+
 ## Test Results CSV
 
 The first row must contain columns called "type", "name" and "crc32". These can be in any order you desire.
