@@ -145,6 +145,7 @@ Sorry, but I don't currently have a Windows Dev machine, but I should have a set
 - Shay Green for blargg's tests.
 - Joonas Javanainen for Mooneye GB tests.
 - Antonio Niño Díaz for TCAGBD.
+- Ben Smith(binji) for his article on implementing rewind.
 - To all of the authors of the emulators that I used for inspiration.
 - To you, for looking at my emulator!
 
