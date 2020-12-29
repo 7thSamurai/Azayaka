@@ -124,13 +124,13 @@ Sorry, but I don't currently have a Windows Dev machine, but I should have a set
 ```
 ./Azayaka-SDL [ROM or Directory Path] [Options...]
 
-  -d, --debug           Run the emulator in debug mode
-  -s, --scale           Scales the screen by the factor given
-  -g, --force-gb	Force the emulator into GameBoy mode
-  -c, --force-gbc	Force the emulator into GameBoy-Color mode
-      --force-sdl	Force the emulator to use SDL as the Video-Driver
-  -D, --dump-usage	Saves the ROM usage(CDL) to a file
-      --verbose         Enable verbose debugging information
+  -d, --debug        Run the emulator in debug mode
+  -s, --scale        Scales the screen by the factor given
+  -g, --force-gb     Force the emulator into GameBoy mode
+  -c, --force-gbc    Force the emulator into GameBoy-Color mode
+      --force-sdl    Force the emulator to use SDL as the Video-Driver
+  -D, --dump-usage   Saves the ROM usage(CDL) to a file
+      --verbose      Enable verbose debugging information
 ```
 
 ### Running Azayaka-tester

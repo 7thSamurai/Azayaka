@@ -17,7 +17,7 @@
 
 ## Mooneye GB Tests
 
-**85/112 passed**
+**87/112 passed**
 
 | Test | Result |
 | --- | --- |
@@ -94,8 +94,8 @@
 | acceptance/timer/tim11.gb | :+1: |
 | acceptance/timer/tim11_div_trigger.gb | :+1: |
 | acceptance/timer/tima_reload.gb | :+1: |
-| acceptance/timer/tima_write_reloading.gb | :x: |
-| acceptance/timer/tma_write_reloading.gb | :x: |
+| acceptance/timer/tima_write_reloading.gb | :+1: |
+| acceptance/timer/tma_write_reloading.gb | :+1: |
 | emulator-only/mbc1/bits_bank1.gb | :+1: |
 | emulator-only/mbc1/bits_bank2.gb | :+1: |
 | emulator-only/mbc1/bits_mode.gb | :+1: |

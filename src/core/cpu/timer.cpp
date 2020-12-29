@@ -66,7 +66,8 @@ void Timer::write(word address, byte value) {
             return;
 
         case 0xFF05:
-            if (ticks_since_overflow < 5) {
+            // Writes to TIMA are ignored if written the same tick it is reloading
+            if (ticks_since_overflow != 5) {
                 tima = value;
 
                 overflow = 0;
@@ -76,6 +77,10 @@ void Timer::write(word address, byte value) {
 
         case 0xFF06:
             tma = value;
+
+            // If you write to TMA the same tick that TIMA is reloading, TIMA is also set with the new value
+            if (ticks_since_overflow == 5)
+                tima = value;
             return;
 
         case 0xFF07:
@@ -120,8 +125,10 @@ void Timer::tick() {
         if (ticks_since_overflow == 4)
             gb->cpu->trigger_interrupt(INT50);
 
-        else if (ticks_since_overflow == 5) {
+        else if (ticks_since_overflow == 5)
             tima = tma;
+
+        else if (ticks_since_overflow == 6) {
             overflow = 0;
             ticks_since_overflow = 0;
         }

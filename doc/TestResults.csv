@@ -81,8 +81,8 @@ mooneye,acceptance/timer/tim10.gb,f75e632e
 mooneye,acceptance/timer/tim11_div_trigger.gb,f75e632e
 mooneye,acceptance/timer/tim11.gb,f75e632e
 mooneye,acceptance/timer/tima_reload.gb,17b97c09
-mooneye,acceptance/timer/tima_write_reloading.gb,0
-mooneye,acceptance/timer/tma_write_reloading.gb,0
+mooneye,acceptance/timer/tima_write_reloading.gb,124cecfd
+mooneye,acceptance/timer/tma_write_reloading.gb,b3e63c69
 mooneye,emulator-only/mbc1/bits_bank1.gb,5790edc0
 mooneye,emulator-only/mbc1/bits_bank2.gb,5790edc0
 mooneye,emulator-only/mbc1/bits_mode.gb,5790edc0
