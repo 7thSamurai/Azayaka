@@ -128,9 +128,9 @@ Sorry, but I don't currently have a Windows Dev machine, but I should have a set
   -s, --scale        Scales the screen by the factor given
   -g, --force-gb     Force the emulator into GameBoy mode
   -c, --force-gbc    Force the emulator into GameBoy-Color mode
-      --force-sdl    Force the emulator to use SDL as the Video-Driver
   -D, --dump-usage   Saves the ROM usage(CDL) to a file
       --verbose      Enable verbose debugging information
+      --force-sdl    Force the emulator to use SDL as the Video-Driver
 ```
 
 ### Running Azayaka-tester
@@ -152,6 +152,6 @@ Sorry, but I don't currently have a Windows Dev machine, but I should have a set
 ## Copyright
 
 Azayaka is licensed under GPL3.
-Copyright © 2020 Zach C.
+Copyright © 2020-2021 Zach Collins
 
 "Game Boy" and "Game Boy Color" are trademarks of Nintendo. Azayaka is not affiliated with Nintendo in any way.
