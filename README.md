@@ -129,7 +129,6 @@ Sorry, but I don't currently have a Windows Dev machine, but I should have a set
   -s, --scale        Scales the screen by the factor given
   -g, --force-gb     Force the emulator into GameBoy mode
   -c, --force-gbc    Force the emulator into GameBoy-Color mode
-  -p, --printer      Enable GameBoy printer
   -D, --dump-usage   Saves the ROM usage(CDL) to a file
       --verbose      Enable verbose debugging information
       --force-sdl    Force the emulator to use SDL as the Video-Driver
