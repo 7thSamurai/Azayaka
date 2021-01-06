@@ -1,4 +1,4 @@
-// Copyright (C) 2020 Zach Collins
+// Copyright (C) 2020-2021 Zach Collins <the_7thSamurai@protonmail.com>
 //
 // Azayaka is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 #define _SERIAL_HPP_
 
 #include "component.hpp"
+#include "serial_device.hpp"
 
 class State;
 
@@ -34,6 +35,8 @@ public:
     void save_state(State &state);
     void load_state(State &state);
 
+    void set_serial_device(SerialDevice *serial_device);
+
 private:
     void start_transfer();
 
@@ -41,7 +44,10 @@ private:
     byte control;
 
     bool transfering;
+    int length, count;
     int timer;
+
+    SerialDevice *serial_device;
 };
 
 #endif // _SERIAL_HPP_

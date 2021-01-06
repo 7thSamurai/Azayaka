@@ -1,4 +1,4 @@
-// Copyright (C) 2020 Zach Collins
+// Copyright (C) 2020-2021 Zach Collins <the_7thSamurai@protonmail.com>
 //
 // Azayaka is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -148,4 +148,21 @@ std::string VerboseOption::get_description() const {
 
 void VerboseOption::set(char **argv, int index) {
     verbose = true;
+}
+
+
+PrinterOption::PrinterOption() : Option("printer", 'p', 0) {
+    printer = false;
+}
+
+bool PrinterOption::get_printer() const {
+    return printer;
+}
+
+std::string PrinterOption::get_description() const {
+    return "\tEnable GameBoy printer";
+}
+
+void PrinterOption::set(char **argv, int index) {
+    printer = true;
 }

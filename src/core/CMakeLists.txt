@@ -6,6 +6,7 @@ add_library(core STATIC
 	rom_list.cpp
 	settings.cpp
 	state.cpp
+	accessory/printer.cpp
 	audio/apu.cpp
 	audio/audio_driver.cpp
 	audio/channel1.cpp

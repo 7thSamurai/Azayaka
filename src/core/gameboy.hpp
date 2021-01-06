@@ -1,4 +1,4 @@
-// Copyright (C) 2020 Zach Collins
+// Copyright (C) 2020-2021 Zach Collins <the_7thSamurai@protonmail.com>
 //
 // Azayaka is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,6 +35,7 @@ class GbcReg;
 
 class Display;
 class AudioDriver;
+class SerialDevice;
 class State;
 class Settings;
 
@@ -80,6 +81,7 @@ public:
     int load_state(const std::string &path);
 
     void bind_input(Input &input);
+    void bind_serial_device(SerialDevice *serial_device);
 
     void load_settings(Settings &settings);
 

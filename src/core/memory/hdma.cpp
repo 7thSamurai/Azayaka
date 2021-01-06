@@ -1,4 +1,4 @@
-// Copyright (C) 2020 Zach Collins
+// Copyright (C) 2020-2021 Zach Collins <the_7thSamurai@protonmail.com>
 //
 // Azayaka is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ Hdma::Hdma(GameBoy *gb) : Component(gb) {
 void Hdma::tick() {
     gb->gpu->write_vram(dest++ & 0x1FFF, gb->mmu->read_byte(source++));
 
-    // If a block has finnished
+    // If a block has finished
     if ((dest & 0xF) == 0) {
         if (--blocks == 0) {
             transfering = 0;

@@ -1,4 +1,4 @@
-// Copyright (C) 2020 Zach Collins
+// Copyright (C) 2020-2021 Zach Collins <the_7thSamurai@protonmail.com>
 //
 // Azayaka is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -22,7 +22,8 @@
 namespace Common {
 
 // Saves a PNG or a BMP depending what you have when you compile
-int save_image(const std::string &rom_path, const Color *image, unsigned int width, unsigned int height);
+int save_image(const std::string &file_path, const Color *image, unsigned int width, unsigned int height);
+int save_next_image(const std::string &file_path, const Color *image, unsigned int width, unsigned int height);
 
 int save_bmp(const std::string &file_path, const Color *image, unsigned int width, unsigned int height);
 

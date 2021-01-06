@@ -1,4 +1,4 @@
-// Copyright (C) 2020 Zach Collins
+// Copyright (C) 2020-2021 Zach Collins <the_7thSamurai@protonmail.com>
 //
 // Azayaka is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -34,6 +34,8 @@
 #include "common/file_utils.hpp"
 #include "settings.hpp"
 
+#include "accessory/printer.hpp"
+
 #ifdef __APPLE__
 #define MODIFIER KMOD_GUI
 #else
@@ -48,9 +50,10 @@ int main(int argc, char **argv) {
     //RateOption rate_option; // TODO: Add this in
     ForceGbOption force_gb_option;
     ForceGbcOption force_gbc_option;
-    ForceSDLOption force_sdl_option;
+    PrinterOption printer_option;
     DumpUsageOption dump_usage_option;
     VerboseOption verbose_option;
+    ForceSDLOption force_sdl_option;
 
     std::vector <Option*> options;
     options.push_back(&debug_option);
@@ -58,9 +61,10 @@ int main(int argc, char **argv) {
     //options.push_back(&rate_option);
     options.push_back(&force_gb_option);
     options.push_back(&force_gbc_option);
-    options.push_back(&force_sdl_option);
+    options.push_back(&printer_option);
     options.push_back(&dump_usage_option);
     options.push_back(&verbose_option);
+    options.push_back(&force_sdl_option);
 
     Parser parser;
 
@@ -136,6 +140,12 @@ int main(int argc, char **argv) {
             logger.log(error, Logger::Error);
             return -1;
         }
+    }
+
+    Printer printer;
+    if (printer_option.get_printer()) {
+        printer.set_rom_path(rom_path);
+        gb.bind_serial_device(&printer);
     }
 
     logger.enable_verbose(verbose_option.get_verbose());
@@ -355,7 +365,7 @@ int main(int argc, char **argv) {
                         break;
 
                     case SDLK_F11: // Screenshot
-                        if (Common::save_image(rom_path, gb.get_screen_buffer(), 160, 144) < 0)
+                        if (Common::save_next_image(rom_path, gb.get_screen_buffer(), 160, 144) < 0)
                             window.set_status_text("Cant save Screenshot", 2);
                         else
                             window.set_status_text("Saved Screenshot", 2);

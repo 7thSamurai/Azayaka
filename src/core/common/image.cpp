@@ -1,4 +1,4 @@
-// Copyright (C) 2020 Zach Collins
+// Copyright (C) 2020-2021 Zach Collins <the_7thSamurai@protonmail.com>
 //
 // Azayaka is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -18,12 +18,20 @@
 
 namespace Common {
 
-int save_image(const std::string &rom_path, const Color *image, unsigned int width, unsigned int height) {
+int save_image(const std::string &file_path, const Color *image, unsigned int width, unsigned int height) {
 #ifdef USE_PNG
-    std::string path = File::get_next_path(File::remove_extension(rom_path) + ".png");
+    return save_png(file_path + ".png", image, width, height);
+#else
+    return save_bmp(file_path + ".bmp", image, width, height);
+#endif
+}
+
+int save_next_image(const std::string &file_path, const Color *image, unsigned int width, unsigned int height) {
+#ifdef USE_PNG
+    std::string path = File::get_next_path(File::remove_extension(file_path) + ".png");
     return save_png(path, image, width, height);
 #else
-    std::string path = File::get_next_path(File::remove_extension(rom_path) + ".bmp");
+    std::string path = File::get_next_path(File::remove_extension(file_path) + ".bmp");
     return save_bmp(path, image, width, height);
 #endif
 }

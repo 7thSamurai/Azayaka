@@ -6,7 +6,7 @@ You can view the test results [here](TestResults.md)
 
 ## Description
 
-The tester scans a directory for test roms. It then runs those roms until an infinite loop is detected, signaling that the test has finished. It then saves a screenshot as a BMP image, that way you can reference the result later. It generates a checksum of the old screenshot and the new screenshot. If those differ it alerts you that the result of that test has changed. It also compares the new checksum to the corresponding checksum in the test results CSV file to determine if the test passed or not. It then automatically generates a markdown file containing a table of every test and result.
+The tester scans a directory for test roms. It then runs each one of those roms until an infinite loop is detected, signaling that the test has finished. It then saves a screenshot as a BMP image, that way you can reference the result later. It generates a checksum of the old screenshot and the new screenshot. If those differ it alerts you that the result of that test has changed. It also compares the new checksum to the corresponding checksum in the test results CSV file to determine if the test passed or not. It then automatically generates a markdown file containing a table of every test and result.
 
 ## Setup
 

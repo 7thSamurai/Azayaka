@@ -1,4 +1,4 @@
-// Copyright (C) 2020 Zach Collins
+// Copyright (C) 2020-2021 Zach Collins <the_7thSamurai@protonmail.com>
 //
 // Azayaka is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -252,6 +252,10 @@ int GameBoy::load_state(const std::string &path) {
 
 void GameBoy::bind_input(Input &input) {
     input.bind_joypad(joypad);
+}
+
+void GameBoy::bind_serial_device(SerialDevice *serial_device) {
+    serial->set_serial_device(serial_device);
 }
 
 void GameBoy::load_settings(Settings &settings) {
