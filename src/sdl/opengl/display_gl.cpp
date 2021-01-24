@@ -18,7 +18,7 @@
 #include "texture.hpp"
 #include "gl.hpp"
 
-#include "SDL2/SDL.h"
+#include <SDL.h>
 #include <iostream>
 
 static const GLfloat vertices[] = {
@@ -73,13 +73,10 @@ DisplayGL::~DisplayGL() {
     glDeleteBuffers(1, &vbo);
 }
 
-void DisplayGL::display() {
+void DisplayGL::display(int index) {
     texture->update((const void*)video_buffer, display_width, display_height);
 
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    glViewport(offset_x, offset_y, correct_width, correct_height);
+    glViewport(offset_x + (index*correct_width), offset_y, correct_width, correct_height);
 
     shader ->use();
     texture->use();
@@ -98,6 +95,13 @@ void DisplayGL::display() {
 
     glDisableVertexAttribArray(0);
     glDisableVertexAttribArray(1);
+}
 
+void DisplayGL::clear() {
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
+void DisplayGL::show() {
     SDL_GL_SwapWindow(window);
 }

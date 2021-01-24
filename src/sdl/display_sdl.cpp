@@ -17,7 +17,7 @@
 #include "globals.hpp"
 #include "common/logger.hpp"
 
-#include "SDL2/SDL.h"
+#include <SDL.h>
 
 DisplaySDL::DisplaySDL(SDL_Window *window) {
     this->window = window;
@@ -41,15 +41,20 @@ DisplaySDL::~DisplaySDL() {
     SDL_DestroyRenderer(renderer);
 }
 
-void DisplaySDL::display() {
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    SDL_RenderClear(renderer);
-
-    SDL_Rect rect = {offset_x, offset_y, correct_width, correct_height};
+void DisplaySDL::display(int index) {
+    SDL_Rect rect = {offset_x + (index*correct_width), offset_y, correct_width, correct_height};
     SDL_RenderSetViewport(renderer, &rect);
 
     SDL_UpdateTexture(texture, NULL, video_buffer, display_width*4);
 
     SDL_RenderCopy(renderer, texture, NULL, NULL);
+}
+
+void DisplaySDL::clear() {
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_RenderClear(renderer);
+}
+
+void DisplaySDL::show() {
     SDL_RenderPresent(renderer);
 }

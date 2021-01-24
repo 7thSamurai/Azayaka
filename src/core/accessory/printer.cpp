@@ -10,14 +10,11 @@ Printer::Printer() {
     byte_to_send = 0;
     byte_being_received = 0;
 
-    bit_to_send   = 0;
     bits_received = 0;
 }
 
 bool Printer::send() {
-    bool bit = bit_to_send;
-
-    bit_to_send = byte_to_send & BIT7;
+    bool bit = byte_to_send & BIT7;
     byte_to_send <<= 1;
 
     return bit;

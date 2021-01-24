@@ -29,7 +29,9 @@ public:
     DisplayGL(SDL_Window *window);
     ~DisplayGL();
 
-    void display() override;
+    void display(int index = 0) override;
+    void clear() override;
+    void show () override;
 
 private:
     Texture *texture;

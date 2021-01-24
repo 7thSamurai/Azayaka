@@ -17,8 +17,8 @@
 #include "globals.hpp"
 #include "common/logger.hpp"
 
-#include "SDL2/SDL.h"
-#include "SDL2/SDL_mutex.h"
+#include <SDL.h>
+#include <SDL_mutex.h>
 
 static void audio_callback(void *userdata, Uint8 *stream, int len) {
     ((AudioSDL*)userdata)->callback(stream, len);

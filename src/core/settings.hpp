@@ -34,7 +34,7 @@ public:
     int load(const std::string &file_path);
     int save(const std::string &file_path);
 
-    void configure(GameBoy &gameboy, Display &display, AudioDriver &audio_driver, Input &input, Rewinder &rewinder);
+    void configure(GameBoy &gameboy, Display &display, AudioDriver &audio_driver, Input &input1, Input &input2, Rewinder &rewinder);
 
     // Audio
     unsigned int audio_sample_rate;     // Sample-rate for audio playback
@@ -50,14 +50,23 @@ public:
     std::string bios_cgb_path; // GameBoy Color BIOS
 
     // Input
-    std::string input_a;
-    std::string input_b;
-    std::string input_start;
-    std::string input_select;
-    std::string input_up;
-    std::string input_down;
-    std::string input_left;
-    std::string input_right;
+    std::string input1_a;
+    std::string input1_b;
+    std::string input1_start;
+    std::string input1_select;
+    std::string input1_up;
+    std::string input1_down;
+    std::string input1_left;
+    std::string input1_right;
+
+    std::string input2_a;
+    std::string input2_b;
+    std::string input2_start;
+    std::string input2_select;
+    std::string input2_up;
+    std::string input2_down;
+    std::string input2_left;
+    std::string input2_right;
 
     // Video
     bool video_lock_aspect_ratio; // Lock the aspect-ratio of the display

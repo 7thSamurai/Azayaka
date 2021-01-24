@@ -62,7 +62,8 @@ int Cart::load_ecart(const std::string &file_path) {
     if (rom_type == 0x03 ||
         rom_type == 0x06 ||
         rom_type == 0x0F || rom_type == 0x10 || rom_type == 0x13 ||
-        rom_type == 0x1B || rom_type == 0x1E)
+        rom_type == 0x1B || rom_type == 0x1E ||
+        rom_type == 0xFC)
     {
         if (!File::exists(file_path + ".sav"))
             return 0;
@@ -94,7 +95,8 @@ void Cart::save_ecart(const std::string &file_path) {
     if (rom_type == 0x03 ||
         rom_type == 0x06 ||
         rom_type == 0x0F || rom_type == 0x10 || rom_type == 0x13 ||
-        rom_type == 0x1B || rom_type == 0x1E)
+        rom_type == 0x1B || rom_type == 0x1E ||
+        rom_type == 0xFC)
     {
         BinaryFile file(file_path + ".sav", BinaryFile::Mode_Write);
 

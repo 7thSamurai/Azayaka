@@ -47,7 +47,6 @@ private:
     byte byte_to_send;
     byte byte_being_received;
 
-    bool bit_to_send;
     int bits_received;
 
     int command_length;

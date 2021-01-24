@@ -31,7 +31,9 @@ public:
     DisplaySDL(SDL_Window *window);
     ~DisplaySDL();
 
-    void display() override;
+    void display(int index = 0) override;
+    void clear() override;
+    void show () override;
 
 private:
     SDL_Window   *window;

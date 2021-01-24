@@ -36,6 +36,7 @@ Azayaka is a free and open-source *Game Boy* and *Game Boy Color* emulator writt
 - [Automated testing system](doc/Tester.md).
 - Emulates both the Game Boy(DMG) and Game Boy Color(CGB).
 - Game Boy Printer.
+- Link Cable(Experimental)
 
 ## Accuracy
 - Passes all of blargg's tests except oam_bug.
@@ -129,7 +130,8 @@ Sorry, but I don't currently have a Windows Dev machine, but I should have a set
   -s, --scale        Scales the screen by the factor given
   -g, --force-gb     Force the emulator into GameBoy mode
   -c, --force-gbc    Force the emulator into GameBoy-Color mode
-  -p, --printer      Enable Game Boy printer
+  -l, --link         Enable GameBoy Link-Cable
+  -p, --printer      Enable GameBoy Printer
   -D, --dump-usage   Saves the ROM usage(CDL) to a file
       --verbose      Enable verbose debugging information
       --force-sdl    Force the emulator to use SDL as the Video-Driver

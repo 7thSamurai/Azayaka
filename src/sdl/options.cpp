@@ -160,9 +160,26 @@ bool PrinterOption::get_printer() const {
 }
 
 std::string PrinterOption::get_description() const {
-    return "\tEnable GameBoy printer";
+    return "\tEnable GameBoy Printer";
 }
 
 void PrinterOption::set(char **argv, int index) {
     printer = true;
+}
+
+
+LinkOption::LinkOption() : Option("link", 'l', 0) {
+    link = false;
+}
+
+bool LinkOption::get_link() const {
+    return link;
+}
+
+std::string LinkOption::get_description() const {
+    return "\tEnable GameBoy Link-Cable";
+}
+
+void LinkOption::set(char **argv, int index) {
+    link = true;
 }

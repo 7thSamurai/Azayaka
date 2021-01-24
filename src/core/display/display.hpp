@@ -27,10 +27,13 @@ public:
     Display();
     virtual ~Display();
 
-    void update(const Color *video_buffer);
-    virtual void display() = 0;
+    void update(const Color *video_buffer, bool draw_text = 1);
 
-    void resize(int w, int h);
+    virtual void display(int index = 0) = 0;
+    virtual void clear() = 0;
+    virtual void show () = 0;
+
+    void resize(int w, int h, int num = 0);
 
     // If seconds is -1 then show until you call "clear_status_text"
     void set_status_text(const std::string &status_text, int seconds);

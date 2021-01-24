@@ -44,7 +44,7 @@ public:
 
     void bind_joypad(Joypad *joypad);
 
-    void load_settings(Settings &settings);
+    void load_settings(Settings &settings, bool num);
 
 protected:
     const static int num_of_buttons = 8;

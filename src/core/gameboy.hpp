@@ -54,12 +54,16 @@ public:
 
     void run_frame();
 
+    void run_link_frame(GameBoy &gb2);
+    void run_link_frame2(GameBoy &gb2);
+
     void run_until_blargg_done();
     void run_until_mooneye_done();
 
     bool is_frame_done();
 
     void bind_audio_driver(AudioDriver *audio_driver);
+    void connect_gameboy_link(GameBoy &gb);
 
     const Color *get_screen_buffer() const;
 

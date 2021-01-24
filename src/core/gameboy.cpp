@@ -86,6 +86,23 @@ void GameBoy::run_frame() {
         cpu->step();
 }
 
+void GameBoy::run_link_frame(GameBoy &gb2) {
+    gpu->clear_refresh();
+    gb2.gpu->clear_refresh();
+
+    while (!gpu->needs_refresh()) {
+        cpu->step();
+        gb2.cpu->step();
+    }
+}
+
+void GameBoy::run_link_frame2(GameBoy &gb2) {
+    while (!gb2.gpu->needs_refresh()) {
+        cpu->step();
+        gb2.cpu->step();
+    }
+}
+
 void GameBoy::run_until_blargg_done() {
     while (!cpu->is_blargg_done())
         cpu->step();
@@ -111,6 +128,10 @@ void GameBoy::bind_audio_driver(AudioDriver *audio_driver) {
     apu->bind_audio_driver(audio_driver);
 }
 
+void GameBoy::connect_gameboy_link(GameBoy &gb) {
+    serial->set_serial_device(gb.serial);
+    gb.serial->set_serial_device(serial);
+}
 
 const Color *GameBoy::get_screen_buffer() const {
     return gpu->get_screen_buffer();

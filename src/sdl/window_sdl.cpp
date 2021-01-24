@@ -20,8 +20,8 @@
 #include "globals.hpp"
 #include "common/logger.hpp"
 
-#include "SDL2/SDL.h"
-#include "SDL2/SDL_opengl.h"
+#include <SDL.h>
+#include <SDL_opengl.h>
 
 WindowSDL::WindowSDL() {
     if (SDL_InitSubSystem(SDL_INIT_VIDEO) < 0)
@@ -46,12 +46,15 @@ WindowSDL::~WindowSDL() {
         delete display;
 }
 
-int WindowSDL::create(const std::string &title, float scale, bool force_sdl) {
+int WindowSDL::create(const std::string &title, float scale, bool multiplayer, bool force_sdl) {
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
-    window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 160*scale, 144*scale, SDL_WINDOW_OPENGL);
+    if (multiplayer)
+        window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 320*scale, 144*scale, SDL_WINDOW_OPENGL);
+    else
+        window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 160*scale, 144*scale, SDL_WINDOW_OPENGL);
 
     if (window == NULL) {
         logger.log("Unable to create window: " + std::string(SDL_GetError()), Logger::Error);
@@ -98,25 +101,52 @@ int WindowSDL::create(const std::string &title, float scale, bool force_sdl) {
 #endif
 
     SDL_SetWindowResizable(window, SDL_TRUE);
-    SDL_SetWindowMinimumSize(window, 160, 144);
+    SDL_SetWindowMinimumSize(window, multiplayer ? 320 : 160, 144);
     SDL_ShowCursor(0);
 
-    display->resize(160*scale, 144*scale);
+    if (multiplayer)
+        display->resize(320*scale, 144*scale, 1);
+    else
+        display->resize(160*scale, 144*scale, 0);
 
     return 0;
 }
 
-void WindowSDL::update(const Color *screen_buffer) {
-    display->update(screen_buffer);
-    display->display();
+void WindowSDL::update(const Color *buffer) {
+    display->clear();
+
+    display->update(buffer);
+    display->display(0);
+
+    display->show();
+}
+
+void WindowSDL::update(const Color *screen_buffer, int index) {
+    if (index) {
+        display->update(screen_buffer, false);
+        display->display(1);
+    }
+
+    else {
+        display->update(screen_buffer, true);
+        display->display(0);
+    }
+}
+
+void WindowSDL::clear() {
+    display->clear();
+}
+
+void WindowSDL::show() {
+    display->show();
 }
 
 void WindowSDL::set_title(const std::string &title) {
     SDL_SetWindowTitle(window, title.c_str());
 }
 
-void WindowSDL::resize(int w, int h) {
-    display->resize(w, h);
+void WindowSDL::resize(int w, int h, int num) {
+    display->resize(w, h, num);
 }
 
 void WindowSDL::set_fullscreen(bool fullscreen) {

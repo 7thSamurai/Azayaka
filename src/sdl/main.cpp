@@ -15,7 +15,7 @@
 
 #include <iostream>
 #include <vector>
-#include "SDL2/SDL.h"
+#include <SDL.h>
 
 #include "window_sdl.hpp"
 #include "input_sdl.hpp"
@@ -44,12 +44,16 @@
 
 void print_usage(char *arg0, const std::vector <Option*> &options);
 
+int load_rom_from_path(GameBoy &gb, const std::string &path, bool force_gb, bool force_gbc, bool dump_usage);
+int load_rom_from_dir(GameBoy &gb, std::string &path, RomList &rom_list, bool force_gb, bool force_gbc, bool dump_usage);
+
 int main(int argc, char **argv) {
     DebugOption debug_option;
     ScaleOption scale_option;
     //RateOption rate_option; // TODO: Add this in
     ForceGbOption force_gb_option;
     ForceGbcOption force_gbc_option;
+    LinkOption link_option;
     PrinterOption printer_option;
     DumpUsageOption dump_usage_option;
     VerboseOption verbose_option;
@@ -61,6 +65,7 @@ int main(int argc, char **argv) {
     //options.push_back(&rate_option);
     options.push_back(&force_gb_option);
     options.push_back(&force_gbc_option);
+    options.push_back(&link_option);
     options.push_back(&printer_option);
     options.push_back(&dump_usage_option);
     options.push_back(&verbose_option);
@@ -89,56 +94,35 @@ int main(int argc, char **argv) {
         return -1;
     }
 
+    bool force_gb   = force_gb_option.get_force_gb();
+    bool force_gbc  = force_gbc_option.get_force_gbc();
+    bool dump_usage = dump_usage_option.get_dump_usage();
+    bool link       = link_option.get_link();
+
     RomList rom_list(rom_path);
+
+    GameBoy gb, gb2; // Second GameBoy is for link cable
+    Debugger_SDL debugger(&gb);
 
     if (rom_list.is_valid()) {
         rom_list.update();
 
-        std::vector <std::string> files;
-        rom_list.get_files_names(files);
-
-        if (!files.size()) {
-            logger.log("No ROMs in given directory!", Logger::Error);
+        if (load_rom_from_dir(gb, rom_path, rom_list, force_gb, force_gbc, dump_usage) < 0)
             return -1;
-        }
 
-        for (unsigned int i = 0; i < files.size(); i++)
-            std::cout << i+1 << ":\t" << files.at(i) << std::endl;
-
-        unsigned int i;
-
-        std::cout << "\nWhich ROM would you like(1-" << files.size() << "): ";
-        std::cin >> i;
-
-        if (i <= files.size())
-            rom_path = rom_list.get_file_path(files.at(i-1));
-        else {
-            logger.log("Index out of range!", Logger::Error);
-            return -1;
-        }
-    }
-
-    GameBoy gb;
-    Debugger_SDL debugger(&gb);
-
-    if (force_gb_option.get_force_gb()) {
-        if (gb.load_rom_force_mode(rom_path, error, 0, dump_usage_option.get_dump_usage()) < 0) {
-            logger.log(error, Logger::Error);
-            return -1;
-        }
-    }
-
-    else if (force_gbc_option.get_force_gbc()) {
-        if (gb.load_rom_force_mode(rom_path, error, 1, dump_usage_option.get_dump_usage()) < 0) {
-            logger.log(error, Logger::Error);
-            return -1;
+        if (link) {
+            if (load_rom_from_dir(gb2, rom_path, rom_list, force_gb, force_gbc, dump_usage) < 0)
+                return -1;
         }
     }
 
     else {
-        if (gb.load_rom(rom_path, error, dump_usage_option.get_dump_usage()) < 0) {
-            logger.log(error, Logger::Error);
+        if (load_rom_from_path(gb, rom_path, force_gb, force_gbc, dump_usage) < 0)
             return -1;
+
+        if (link) {
+            if (load_rom_from_path(gb2, rom_path, force_gb, force_gbc, dump_usage) < 0)
+                return -1;
         }
     }
 
@@ -151,13 +135,17 @@ int main(int argc, char **argv) {
     logger.enable_verbose(verbose_option.get_verbose());
 
     WindowSDL window;
-    if (window.create("Azayaka", scale_option.get_scale(), force_sdl_option.get_force_sdl()) < 0)
+    if (window.create("Azayaka", scale_option.get_scale(), link, force_sdl_option.get_force_sdl()) < 0)
         return -1;
 
     AudioSDL audio_driver;
-    InputSDL input;
+    InputSDL input, input2;
 
     gb.bind_input(input);
+
+    if (link)
+        gb2.bind_input(input2);
+
     gb.bind_audio_driver(&audio_driver);
 
     Uint64 frame_start, frame_end;
@@ -172,19 +160,25 @@ int main(int argc, char **argv) {
     SDL_Event event;
     Rewinder rewinder;
 
-    // Is it acceptable to use Azayaka as the Organization?
+    // Is it acceptable to use "Azayaka" as the Organization?
     char *settings_path = SDL_GetPrefPath("Azayaka", "Azayaka");
 
     logger.log("Looking for INI file in \"" + std::string(settings_path) + "\"", Logger::Notice);
 
     Settings settings;
     settings.load(std::string(settings_path) + "azayaka.ini");
-    settings.configure(gb, window.get_display(), audio_driver, input, rewinder);
+    settings.configure(gb, window.get_display(), audio_driver, input, input2, rewinder);
     settings.save(std::string(settings_path) + "azayaka.ini");
 
     SDL_free(settings_path);
 
     gb.init();
+
+    if (link) {
+        gb2.init();
+        gb.connect_gameboy_link(gb2);
+    }
+
     audio_driver.pause(0);
 
     if (debug_option.get_debug()) {
@@ -201,7 +195,7 @@ int main(int argc, char **argv) {
                 running = 0;
 
             else if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_RESIZED)
-                window.resize(event.window.data1, event.window.data2);
+                window.resize(event.window.data1, event.window.data2, link ? 1 : 0);
 
             else if (event.type == SDL_DROPFILE) {
                 // TODO
@@ -275,7 +269,7 @@ int main(int argc, char **argv) {
                         break;
 
                     case SDLK_BACKSPACE: // Rewind
-                        if (!pause && !rewinding) {
+                        if (!pause && !rewinding && !link) {
                             audio_driver.set_mode(AudioDriver::Mode_Turbo);
 
                             rewinding = 1;
@@ -353,7 +347,7 @@ int main(int argc, char **argv) {
                         break;
 
                     case SDLK_BACKSPACE: // Rewind
-                        if (!pause) {
+                        if (!pause && !link) {
                             audio_driver.set_mode(AudioDriver::Mode_Normal);
 
                             rewinding = 0;
@@ -393,8 +387,12 @@ int main(int argc, char **argv) {
             continue;
         }
 
-        if (!rewinding)
+        if (!rewinding) {
             input.update();
+
+            if (link)
+                input2.update();
+        }
 
         if (debug_option.get_debug()) {
             if (debugger.is_activated()) {
@@ -426,11 +424,27 @@ int main(int argc, char **argv) {
         }
 
         else {
-            gb.run_frame();
-            rewinder.push(gb);
+            if (link)
+                gb.run_link_frame(gb2);
+
+            else {
+                gb.run_frame();
+                rewinder.push(gb);
+            }
         }
 
-        window.update(gb.get_screen_buffer());
+        if (link) {
+            window.clear();
+            window.update(gb.get_screen_buffer(), 0);
+
+            // Let the 2nd GameBoy's frame finished rendering
+            gb.run_link_frame2(gb2);
+
+            window.update(gb2.get_screen_buffer(), 1);
+            window.show();
+        }
+        else
+            window.update(gb.get_screen_buffer());
 
         frame_end = SDL_GetPerformanceCounter();
 
@@ -467,4 +481,82 @@ void print_usage(char *arg0, const std::vector <Option*> &options) {
         else
             std::cout << "\t    --" << o->get_long_option() << "\t" << o->get_description() << std::endl;
     }
+}
+
+int load_rom_from_path(GameBoy &gb, const std::string &path, bool force_gb, bool force_gbc, bool dump_usage) {
+    std::string error;
+
+    if (force_gb) {
+        if (gb.load_rom_force_mode(path, error, 0, dump_usage) < 0) {
+            logger.log(error, Logger::Error);
+            return -1;
+        }
+    }
+
+    else if (force_gbc) {
+        if (gb.load_rom_force_mode(path, error, 1, dump_usage) < 0) {
+            logger.log(error, Logger::Error);
+            return -1;
+        }
+    }
+
+    else {
+        if (gb.load_rom(path, error, dump_usage) < 0) {
+            logger.log(error, Logger::Error);
+            return -1;
+        }
+    }
+
+    return 0;
+}
+
+int load_rom_from_dir(GameBoy &gb, std::string &path, RomList &rom_list, bool force_gb, bool force_gbc, bool dump_usage) {
+    std::string error;
+
+    std::vector <std::string> files;
+    rom_list.get_files_names(files);
+
+    if (!files.size()) {
+        logger.log("No ROMs in given directory!", Logger::Error);
+        return -1;
+    }
+
+    for (unsigned int i = 0; i < files.size(); i++)
+        std::cout << i+1 << ":\t" << files.at(i) << std::endl;
+
+    unsigned int index;
+
+    std::cout << "\nWhich ROM would you like(1-" << files.size() << "): ";
+    std::cin >> index;
+
+    if (index <= files.size())
+        path = rom_list.get_file_path(files.at(index - 1));
+
+    else {
+        logger.log("Index out of range!", Logger::Error);
+        return -1;
+    }
+
+    if (force_gb) {
+        if (gb.load_rom_force_mode(path, error, 0, dump_usage) < 0) {
+            logger.log(error, Logger::Error);
+            return -1;
+        }
+    }
+
+    else if (force_gbc) {
+        if (gb.load_rom_force_mode(path, error, 1, dump_usage) < 0) {
+            logger.log(error, Logger::Error);
+            return -1;
+        }
+    }
+
+    else {
+        if (gb.load_rom(path, error, dump_usage) < 0) {
+            logger.log(error, Logger::Error);
+            return -1;
+        }
+    }
+
+    return 0;
 }

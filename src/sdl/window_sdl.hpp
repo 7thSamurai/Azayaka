@@ -29,11 +29,16 @@ public:
     WindowSDL();
     ~WindowSDL();
 
-    int create(const std::string &title, float scale, bool force_sdl);
-    void update(const Color *screen_buffer);
+    int create(const std::string &title, float scale, bool multiplayer, bool force_sdl);
+
+    void update(const Color *buffer);
+    void update(const Color *buffer, int index);
+
+    void clear();
+    void show();
 
     void set_title(const std::string &title);
-    void resize(int w, int h);
+    void resize(int w, int h, int num);
 
     void set_fullscreen(bool fullscreen);
 

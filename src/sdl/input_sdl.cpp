@@ -17,7 +17,7 @@
 #include "input/joypad.hpp"
 
 #include <map>
-#include "SDL2/SDL_keyboard.h"
+#include <SDL_keyboard.h>
 
 static const std::map <SDL_Keycode, std::string> keycodes = {
     {SDL_SCANCODE_RETURN, "Return"},
@@ -71,6 +71,16 @@ static const std::map <SDL_Keycode, std::string> keycodes = {
     {SDL_SCANCODE_LEFT, "Left"},
     {SDL_SCANCODE_DOWN, "Down"},
     {SDL_SCANCODE_UP, "Up"},
+    {SDL_SCANCODE_KP_0, "Keypad 0"},
+    {SDL_SCANCODE_KP_1, "Keypad 1"},
+    {SDL_SCANCODE_KP_2, "Keypad Down"},
+    {SDL_SCANCODE_KP_3, "Keypad 3"},
+    {SDL_SCANCODE_KP_4, "Keypad Left"},
+    {SDL_SCANCODE_KP_5, "Keypad 5"},
+    {SDL_SCANCODE_KP_6, "Keypad Right"},
+    {SDL_SCANCODE_KP_7, "Keypad 7"},
+    {SDL_SCANCODE_KP_8, "Keypad Up"},
+    {SDL_SCANCODE_KP_ENTER, "Keypad Enter"}
 };
 
 InputSDL::InputSDL() {

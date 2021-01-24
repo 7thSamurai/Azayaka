@@ -21,13 +21,16 @@
 
 class State;
 
-class Serial : public Component
+class Serial : public Component, public SerialDevice
 {
 public:
     Serial(GameBoy *gb);
     ~Serial();
 
     void tick();
+
+    bool send();
+    void receive(bool bit);
 
     byte read(word address) override;
     void write(word address, byte value) override;
@@ -39,6 +42,7 @@ public:
 
 private:
     void start_transfer();
+    void check_transfer();
 
     byte data;
     byte control;
@@ -46,6 +50,8 @@ private:
     bool transfering;
     int length, count;
     int timer;
+
+    bool internal_clock;
 
     SerialDevice *serial_device;
 };

@@ -147,4 +147,19 @@ private:
     bool printer;
 };
 
+// Enable GameBoy Link-Cable
+class LinkOption : public Option
+{
+public:
+    LinkOption();
+
+    bool get_link() const;
+
+    std::string get_description() const;
+    void set(char **argv, int index);
+
+private:
+    bool link;
+};
+
 #endif // _OPTIONS_HPP_

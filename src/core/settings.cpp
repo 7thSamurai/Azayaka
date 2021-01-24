@@ -37,14 +37,23 @@ Settings::Settings() {
     bios_cgb_path = "";
 
     // Input
-    input_a      = "Z";
-    input_b      = "X";
-    input_start  = "Return";
-    input_select = "Space";
-    input_up     = "Up";
-    input_down   = "Down";
-    input_left   = "Left";
-    input_right  = "Right";
+    input1_a      = "Z";
+    input1_b      = "X";
+    input1_start  = "Return";
+    input1_select = "Space";
+    input1_up     = "Up";
+    input1_down   = "Down";
+    input1_left   = "Left";
+    input1_right  = "Right";
+
+    input2_a      = "A";
+    input2_b      = "S";
+    input2_start  = "Keypad Enter";
+    input2_select = "Keypad 0";
+    input2_up     = "Keypad Up";
+    input2_down   = "Keypad Down";
+    input2_left   = "Keypad Left";
+    input2_right  = "Keypad Right";
 
     // Video
     video_lock_aspect_ratio = true;
@@ -80,11 +89,12 @@ int Settings::save(const std::string &file_path) {
     return ini.save(file_path);
 }
 
-void Settings::configure(GameBoy &gameboy, Display &display, AudioDriver &audio_driver, Input &input, Rewinder &rewinder) {
+void Settings::configure(GameBoy &gameboy, Display &display, AudioDriver &audio_driver, Input &input1, Input &input2, Rewinder &rewinder) {
     gameboy.load_settings(*this);
     display.load_settings(*this);
     audio_driver.load_settings(*this);
-    input.load_settings(*this);
+    input1.load_settings(*this, 0);
+    input2.load_settings(*this, 1);
 
     rewinder.set_length(emu_rewind_length);
 }
@@ -92,46 +102,67 @@ void Settings::configure(GameBoy &gameboy, Display &display, AudioDriver &audio_
 void Settings::load_audio(IniFile &ini) {
     IniFile::Section *audio = ini.get_section("Audio");
 
-    audio_sample_rate     = audio->get_int("SampleRate");
-    audio_buffer_size     = audio->get_int("BufferSize");
-    audio_master_volume   = audio->get_int("MasterVolume");
-    audio_channel1_volume = audio->get_int("Channel1Volume");
-    audio_channel2_volume = audio->get_int("Channel2Volume");
-    audio_channel3_volume = audio->get_int("Channel3Volume");
-    audio_channel4_volume = audio->get_int("Channel4Volume");
+    if (audio) {
+        audio_sample_rate     = audio->get_int("SampleRate");
+        audio_buffer_size     = audio->get_int("BufferSize");
+        audio_master_volume   = audio->get_int("MasterVolume");
+        audio_channel1_volume = audio->get_int("Channel1Volume");
+        audio_channel2_volume = audio->get_int("Channel2Volume");
+        audio_channel3_volume = audio->get_int("Channel3Volume");
+        audio_channel4_volume = audio->get_int("Channel4Volume");
+    }
 }
 
 void Settings::load_bios(IniFile &ini) {
     IniFile::Section *bios = ini.get_section("Bios");
 
-    bios_dmg_path = bios->get_str("DmgPath");
-    bios_cgb_path = bios->get_str("CgbPath");
+    if (bios) {
+        bios_dmg_path = bios->get_str("DmgPath");
+        bios_cgb_path = bios->get_str("CgbPath");
+    }
 }
 
 void Settings::load_input(IniFile &ini) {
-    IniFile::Section *input = ini.get_section("Input");
+    IniFile::Section *input1 = ini.get_section("Input1");
+    IniFile::Section *input2 = ini.get_section("Input2");
 
-    input_a      = input->get_str("A");
-    input_b      = input->get_str("B");
-    input_start  = input->get_str("Start");
-    input_select = input->get_str("Select");
-    input_up     = input->get_str("Up");
-    input_down   = input->get_str("Down");
-    input_left   = input->get_str("Left");
-    input_right  = input->get_str("Right");
+    if (input1) {
+        input1_a      = input1->get_str("A");
+        input1_b      = input1->get_str("B");
+        input1_start  = input1->get_str("Start");
+        input1_select = input1->get_str("Select");
+        input1_up     = input1->get_str("Up");
+        input1_down   = input1->get_str("Down");
+        input1_left   = input1->get_str("Left");
+        input1_right  = input1->get_str("Right");
+    }
+
+    if (input2) {
+        input2_a      = input2->get_str("A");
+        input2_b      = input2->get_str("B");
+        input2_start  = input2->get_str("Start");
+        input2_select = input2->get_str("Select");
+        input2_up     = input2->get_str("Up");
+        input2_down   = input2->get_str("Down");
+        input2_left   = input2->get_str("Left");
+        input2_right  = input2->get_str("Right");
+    }
 }
 
 void Settings::load_video(IniFile &ini) {
     IniFile::Section *video = ini.get_section("Video");
 
-    video_lock_aspect_ratio = video->get_bool("LockAspectRatio");
+    if (video)
+        video_lock_aspect_ratio = video->get_bool("LockAspectRatio");
 }
 
 void Settings::load_emulation(IniFile &ini) {
     IniFile::Section *emulation = ini.get_section("Emulation");
 
-    emu_rewind_length = emulation->get_int("RewindLength");
-    emu_sync_to_audio = emulation->get_bool("SyncToAudio");
+    if (emulation) {
+        emu_rewind_length = emulation->get_int("RewindLength");
+        emu_sync_to_audio = emulation->get_bool("SyncToAudio");
+    }
 }
 
 
@@ -155,16 +186,26 @@ void Settings::save_bios(IniFile &ini) {
 }
 
 void Settings::save_input(IniFile &ini) {
-    IniFile::Section *input = ini.get_or_create_section("Input");
+    IniFile::Section *input1 = ini.get_or_create_section("Input1");
+    IniFile::Section *input2 = ini.get_or_create_section("Input2");
 
-    input->set_str("A",      input_a);
-    input->set_str("B",      input_b);
-    input->set_str("Start",  input_start);
-    input->set_str("Select", input_select);
-    input->set_str("Up",     input_up);
-    input->set_str("Down",   input_down);
-    input->set_str("Left",   input_left);
-    input->set_str("Right",  input_right);
+    input1->set_str("A",      input1_a);
+    input1->set_str("B",      input1_b);
+    input1->set_str("Start",  input1_start);
+    input1->set_str("Select", input1_select);
+    input1->set_str("Up",     input1_up);
+    input1->set_str("Down",   input1_down);
+    input1->set_str("Left",   input1_left);
+    input1->set_str("Right",  input1_right);
+
+    input2->set_str("A",      input2_a);
+    input2->set_str("B",      input2_b);
+    input2->set_str("Start",  input2_start);
+    input2->set_str("Select", input2_select);
+    input2->set_str("Up",     input2_up);
+    input2->set_str("Down",   input2_down);
+    input2->set_str("Left",   input2_left);
+    input2->set_str("Right",  input2_right);
 }
 
 void Settings::save_video(IniFile &ini) {
