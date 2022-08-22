@@ -1,4 +1,4 @@
-// Copyright (C) 2020-2021 Zach Collins <the_7thSamurai@protonmail.com>
+// Copyright (C) 2020-2022 Zach Collins <the_7thSamurai@protonmail.com>
 //
 // Azayaka is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -13,8 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#ifndef _INPUT_HPP_
-#define _INPUT_HPP_
+#pragma once
 
 #include <string>
 
@@ -51,5 +50,3 @@ protected:
 
     Joypad *joypad;
 };
-
-#endif // _INPUT_HPP_

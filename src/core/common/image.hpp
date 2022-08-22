@@ -1,4 +1,4 @@
-// Copyright (C) 2020-2021 Zach Collins <the_7thSamurai@protonmail.com>
+// Copyright (C) 2020-2022 Zach Collins <the_7thSamurai@protonmail.com>
 //
 // Azayaka is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -13,8 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#ifndef _IMAGE_HPP_
-#define _IMAGE_HPP_
+#pragma once
 
 #include "types.hpp"
 #include <string>
@@ -32,5 +31,3 @@ int save_png(const std::string &file_path, const Color *image, unsigned int widt
 #endif
 
 }
-
-#endif // _IMAGE_HPP_

@@ -13,8 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#ifndef _PRINTER_HPP_
-#define _PRINTER_HPP_
+#pragma once
 
 #include "serial/serial_device.hpp"
 #include "types.hpp"
@@ -77,5 +76,3 @@ private:
 
     std::string rom_path;
 };
-
-#endif // _PRINTER_HPP_

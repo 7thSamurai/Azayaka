@@ -1,4 +1,4 @@
-// Copyright (C) 2020-2021 Zach Collins <the_7thSamurai@protonmail.com>
+// Copyright (C) 2020-2022 Zach Collins <the_7thSamurai@protonmail.com>
 //
 // Azayaka is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -13,8 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#ifndef _DEFS_HPP_
-#define _DEFS_HPP_
+#pragma once
 
 #define BIT0 0x01
 #define BIT1 0x02
@@ -30,5 +29,3 @@
 #define INT50 0x50 // Timer
 #define INT58 0x58 // Serial
 #define INT60 0x60 // Joypad
-
-#endif // _DEFS_HPP_

@@ -1,4 +1,4 @@
-// Copyright (C) 2020-2021 Zach Collins <the_7thSamurai@protonmail.com>
+// Copyright (C) 2020-2022 Zach Collins <the_7thSamurai@protonmail.com>
 //
 // Azayaka is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -13,8 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#ifndef _FILE_UTILS_HPP_
-#define _FILE_UTILS_HPP_
+#pragma once
 
 #include <string>
 #include <vector>
@@ -37,5 +36,3 @@ void list_files_recursively(const std::string &path, std::vector <std::string> &
 std::string get_next_path(const std::string &file_path);
 
 }
-
-#endif // _FILE_UTILS_HPP_
