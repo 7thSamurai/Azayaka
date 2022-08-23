@@ -29,7 +29,3 @@ typedef std::int64_t s64;
 
 typedef u8  byte;
 typedef u16 word;
-
-struct Color {
-    u8 r, g, b, a;
-};

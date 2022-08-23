@@ -19,6 +19,7 @@ add_library(core STATIC
 	audio/volume_envelope.cpp
 	common/binary_file.cpp
 	common/bmp.cpp
+	common/color.cpp
 	common/file_utils.cpp
 	common/hash.cpp
 	common/image.cpp

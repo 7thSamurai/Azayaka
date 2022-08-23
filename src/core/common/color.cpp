@@ -13,28 +13,31 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#pragma once
-
-#include "types.hpp"
 #include "common/color.hpp"
+#include <cassert>
 
-class State;
+Color::Color() : r(0x00), g(0x00), b(0x00), a(0xFF) {
+}
 
-class DmgPalette
-{
-public:
-    DmgPalette();
+Color::Color(std::uint8_t r0, std::uint8_t g0, std::uint8_t b0, std::uint8_t a0) : r(r0), g(g0), b(b0), a(a0) {
+}
 
-    byte get_palette() const;
-    void set_palette(byte palette);
+std::uint8_t &Color::operator [] (std::size_t i) {
+    assert(i < 4);
 
-    const Color operator [] (int i) const;
+    return reinterpret_cast<std::uint8_t*>(this)[i];
+}
 
-    void save_state(State &state);
-    void load_state(State &state);
+std::uint8_t Color::operator [] (std::size_t i) const {
+    assert(i < 4);
 
-private:
-    byte palette;
+    return reinterpret_cast<const std::uint8_t*>(this)[i];
+}
 
-    Color colors[4];
-};
+bool Color::operator == (const Color &c) const {
+    return r == c.r && g == c.g && b == c.b && a == c.a;
+}
+
+bool Color::operator != (const Color &c) const {
+    return r != c.r || g != c.g || b != c.b || a != c.a;
+}

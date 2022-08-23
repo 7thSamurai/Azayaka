@@ -16,6 +16,7 @@
 #pragma once
 
 #include "types.hpp"
+#include "common/color.hpp"
 #include <string>
 
 class Cpu;

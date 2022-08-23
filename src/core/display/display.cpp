@@ -14,7 +14,7 @@
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
 #include "display.hpp"
-#include "types.hpp"
+#include "common/color.hpp"
 #include "font.hpp"
 #include "settings.hpp"
 

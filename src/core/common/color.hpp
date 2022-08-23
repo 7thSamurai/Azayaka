@@ -15,26 +15,19 @@
 
 #pragma once
 
-#include "types.hpp"
-#include "common/color.hpp"
+#include <cstdint>
 
-class State;
-
-class DmgPalette
+class Color
 {
 public:
-    DmgPalette();
+    Color();
+    Color(std::uint8_t r0, std::uint8_t g0, std::uint8_t b0, std::uint8_t a0 = 0xFF);
 
-    byte get_palette() const;
-    void set_palette(byte palette);
+    std::uint8_t &operator [] (std::size_t i);
+    std::uint8_t  operator [] (std::size_t i) const;
 
-    const Color operator [] (int i) const;
+    bool operator == (const Color &c) const;
+    bool operator != (const Color &c) const;
 
-    void save_state(State &state);
-    void load_state(State &state);
-
-private:
-    byte palette;
-
-    Color colors[4];
+    std::uint8_t r, g, b, a;
 };
