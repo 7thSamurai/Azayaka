@@ -56,7 +56,7 @@ byte BootRom::read(word address) {
         if (!enabled)
             return data[address];
         else {
-            LOG_WARNING("BootRom::read can't access address 0x" + hex(address) + " when not enabled");
+            LOG_WARNING("BootRom::read can't access address 0x" + StringUtils::hex(address) + " when not enabled");
             return 0;
         }
     }
@@ -64,7 +64,7 @@ byte BootRom::read(word address) {
     else if (address == 0xFF50)
         return 0xFF;
 
-    LOG_WARNING("BootRom::read can't access address 0x" + hex(address));
+    LOG_WARNING("BootRom::read can't access address 0x" + StringUtils::hex(address));
 
     return 0;
 }
@@ -82,5 +82,5 @@ void BootRom::write(word address, byte value) {
         return;
     }
 
-    LOG_WARNING("BootRom::write can't access address 0x" + hex(address));
+    LOG_WARNING("BootRom::write can't access address 0x" + StringUtils::hex(address));
 }

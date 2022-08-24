@@ -78,7 +78,7 @@ byte Serial::read(word address) {
         return value | (gb->gbc_mode ? 0x7C : 0x7E);
     }
 
-    LOG_WARNING("Serial::read can't access address 0x" + hex(address));
+    LOG_WARNING("Serial::read can't access address 0x" + StringUtils::hex(address));
 
     return 0;
 }
@@ -102,7 +102,7 @@ void Serial::write(word address, byte value) {
     }
 
     else
-        LOG_WARNING("Serial::write can't access address 0x" + hex(address));
+        LOG_WARNING("Serial::write can't access address 0x" + StringUtils::hex(address));
 }
 
 void Serial::start_transfer() {

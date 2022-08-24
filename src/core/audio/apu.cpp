@@ -192,7 +192,7 @@ byte Apu::read(word address) {
             break;
     }
 
-    LOG_WARNING("Apu::read can't access address 0x" + hex(address));
+    LOG_WARNING("Apu::read can't access address 0x" + StringUtils::hex(address));
 
     return 0x0;
 }
@@ -286,7 +286,7 @@ void Apu::write(word address, byte value) {
             break;
     }
 
-    LOG_WARNING("Apu::write can't access address 0x" + hex(address));
+    LOG_WARNING("Apu::write can't access address 0x" + StringUtils::hex(address));
 }
 
 void Apu::save_state(State &state) {

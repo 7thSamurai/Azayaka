@@ -60,7 +60,7 @@ byte Mbc1::read_byte(word address, UsageType usage) {
     }
 
     else
-        LOG_WARNING("Mbc1::read_byte can't access address 0x" + hex(address));
+        LOG_WARNING("Mbc1::read_byte can't access address 0x" + StringUtils::hex(address));
 
     return 0;
 }
@@ -101,7 +101,7 @@ void Mbc1::write_byte(word address, byte value) {
     }
 
     else
-        LOG_WARNING("Mbc1::write_byte can't access address 0x" + hex(address));
+        LOG_WARNING("Mbc1::write_byte can't access address 0x" + StringUtils::hex(address));
 }
 
 void Mbc1::check_multicart() {

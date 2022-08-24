@@ -47,7 +47,7 @@ byte Mbc2::read_byte(word address, UsageType usage) {
     }
 
     else
-        LOG_WARNING("Mbc2::read_byte can't access address 0x" + hex(address));
+        LOG_WARNING("Mbc2::read_byte can't access address 0x" + StringUtils::hex(address));
 
     return 0;
 }
@@ -73,5 +73,5 @@ void Mbc2::write_byte(word address, byte value) {
     }
 
     else
-        LOG_WARNING("Mbc2::write_byte can't access address 0x" + hex(address));
+        LOG_WARNING("Mbc2::write_byte can't access address 0x" + StringUtils::hex(address));
 }

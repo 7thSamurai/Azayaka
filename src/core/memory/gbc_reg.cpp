@@ -48,7 +48,7 @@ byte GbcReg::read(word address) {
             break;
     }
 
-    LOG_WARNING("GbcReg::read can't handle address 0x" + hex(address));
+    LOG_WARNING("GbcReg::read can't handle address 0x" + StringUtils::hex(address));
 
     return 0;
 }
@@ -83,7 +83,7 @@ void GbcReg::write(word address, byte value) {
             break;
     }
 
-    LOG_WARNING("GbcReg::write can't handle address 0x" + hex(address));
+    LOG_WARNING("GbcReg::write can't handle address 0x" + StringUtils::hex(address));
 }
 
 void GbcReg::save_state(State &state) {

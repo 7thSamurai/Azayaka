@@ -68,7 +68,7 @@ byte Rtc::get_reg(byte reg) {
             break;
     }
 
-    LOG_WARNING("Rtc::get_reg can't handle register 0x" + hex(reg));
+    LOG_WARNING("Rtc::get_reg can't handle register 0x" + StringUtils::hex(reg));
 
     return 0;
 }
@@ -106,7 +106,7 @@ void Rtc::set_reg(byte reg, byte value) {
             break;
     }
 
-    LOG_WARNING("Rtc::set_reg can't handle register 0x" + hex(reg));
+    LOG_WARNING("Rtc::set_reg can't handle register 0x" + StringUtils::hex(reg));
 }
 
 int Rtc::load(const std::string &file_path) {

@@ -34,7 +34,7 @@ byte Sprite::read_byte(word address) const {
         case 3: return flags;
 
         default:
-            LOG_WARNING("Sprite::read_byte can't access address 0x" + hex(address));
+            LOG_WARNING("Sprite::read_byte can't access address 0x" + StringUtils::hex(address));
             break;
     }
 
@@ -60,7 +60,7 @@ void Sprite::write_byte(word address, byte value) {
             break;
 
         default:
-            LOG_WARNING("Sprite::write_byte can't 0x" + hex(address));
+            LOG_WARNING("Sprite::write_byte can't 0x" + StringUtils::hex(address));
             break;
     }
 }

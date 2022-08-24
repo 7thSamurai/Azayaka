@@ -18,6 +18,8 @@
 #include <sstream>
 #include <iomanip>
 
+namespace StringUtils {
+
 std::string hex(unsigned int n, unsigned int digits) {
     std::stringstream ss;
 
@@ -84,3 +86,5 @@ void to_upper(std::string &s) {
             c += 'A' - 'a';
     }
 }
+
+} // StringUtils

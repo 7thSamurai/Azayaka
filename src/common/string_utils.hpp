@@ -17,6 +17,8 @@
 
 #include <string>
 
+namespace StringUtils {
+
 std::string hex(unsigned int n, unsigned int digits);
 
 template<typename T>
@@ -35,3 +37,5 @@ bool is_a_num16(const std::string &num);
 std::string ftos(float f, int precision=2);
 
 void to_upper(std::string &s);
+
+} // StringUtils

@@ -53,7 +53,7 @@ byte Timer::read(word address) {
             break;
     }
 
-    LOG_WARNING("Timer::read can't access address 0x" + hex(address));
+    LOG_WARNING("Timer::read can't access address 0x" + StringUtils::hex(address));
 
     return 0;
 }
@@ -99,7 +99,7 @@ void Timer::write(word address, byte value) {
             break;
     }
 
-    LOG_WARNING("Timer::write can't access address 0x" + hex(address));
+    LOG_WARNING("Timer::write can't access address 0x" + StringUtils::hex(address));
 }
 
 void Timer::tick() {

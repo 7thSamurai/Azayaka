@@ -131,7 +131,7 @@ bool Debugger::update() {
     int address = cpu_debugger.check_pc(gb->cpu);
 
     if (address != -1) {
-        print("Breakpoint triggered: $" + hex(address));
+        print("Breakpoint triggered: $" + StringUtils::hex(address));
 
         activated = 1;
     }
@@ -301,28 +301,28 @@ int Debugger::get_reg(const std::string &reg) const {
 
 int Debugger::get_num(const std::string &num) const {
     if (num[0] == '$') {
-        if (is_a_num16(num.substr(1)))
+        if (StringUtils::is_a_num16(num.substr(1)))
             return std::stoi(num.substr(1), 0, 16);
         else
             return -1;
     }
 
     else if (num[0] == '0' && (num[1] == 'X' || num[1] == 'x')) {
-        if (is_a_num16(num.substr(2)))
+        if (StringUtils::is_a_num16(num.substr(2)))
             return std::stoi(num.substr(2), 0, 16);
         else
             return -1;
     }
 
     else if (num[0] == '0' && (num[1] == 'B' || num[1] == 'b')) {
-        if (is_a_num2(num.substr(2)))
+        if (StringUtils::is_a_num2(num.substr(2)))
             return std::stoi(num.substr(2), 0, 2);
         else
             return -1;
     }
 
     else {
-        if (is_a_num10(num))
+        if (StringUtils::is_a_num10(num))
             return std::stoi(num);
         else
             return -1;
@@ -406,8 +406,8 @@ void Debugger::command_cartridge(const std::vector <std::string> &tokens) {
     if (rom_is_mbc()) {
         print("\nMBC:");
 
-        print("    Current ROM Bank: $" + hex(get_mbc_rom_bank()));
-        print("    Current RAM Bank: $" + hex(get_mbc_ram_bank()));
+        print("    Current ROM Bank: $" + StringUtils::hex(get_mbc_rom_bank()));
+        print("    Current RAM Bank: $" + StringUtils::hex(get_mbc_ram_bank()));
         print("    RAM: " + STR(get_mbc_ram_on() ? "Enabled" : "Disabled"));
 
         if (rom_is_mbc1())
@@ -508,8 +508,8 @@ void Debugger::command_lcd(const std::vector <std::string> &tokens) {
     print("    LY=LYC Flag: " + STR(stat & BIT2 ? "On" : "Off"));
     print("    Mode: " + modes[stat & 0b11]);
 
-    print("\nLY:  $" + hex(ly));
-    print("LYC: $" + hex(lyc));
+    print("\nLY:  $" + StringUtils::hex(ly));
+    print("LYC: $" + StringUtils::hex(lyc));
 }
 
 void Debugger::command_list(const std::vector <std::string> &tokens) {
@@ -522,13 +522,13 @@ void Debugger::command_list(const std::vector <std::string> &tokens) {
     if (breakpoints.size() != 0) {
         print("BreakPoints");
         for (word address : breakpoints)
-            print("    $" + hex(address));
+            print("    $" + StringUtils::hex(address));
     }
 
     if (watchpoints.size() != 0) {
         print("WatchPoints");
         for (word address : watchpoints)
-            print("    $" + hex(address));
+            print("    $" + StringUtils::hex(address));
     }
 }
 
@@ -536,7 +536,7 @@ void Debugger::command_print(const std::vector <std::string> &tokens) {
     int value;
 
     if ((value = get_constant(tokens[1])) != -1)
-        print("$" + hex(value));
+        print("$" + StringUtils::hex(value));
     else {
         INVALID_PARAMETER
     }
@@ -549,17 +549,17 @@ void Debugger::command_quit(const std::vector <std::string> &tokens) {
 void Debugger::command_registers(const std::vector <std::string> &tokens) {
     int f = get_reg8('f');
 
-    print("AF = $" + hex(get_reg16('a', 'f')) + " ("
+    print("AF = $" + StringUtils::hex(get_reg16('a', 'f')) + " ("
         + ((f & BIT7) ? 'Z' : '_')
         + ((f & BIT6) ? 'N' : '_')
         + ((f & BIT5) ? 'H' : '_')
         + ((f & BIT4) ? 'C' : '_') + ")");
 
-    print("BC = $" + hex(get_reg16('b', 'c')));
-    print("DE = $" + hex(get_reg16('d', 'e')));
-    print("HL = $" + hex(get_reg16('h', 'l')));
-    print("PC = $" + hex(get_reg16('p', 'c')));
-    print("SP = $" + hex(get_reg16('s', 'p')));
+    print("BC = $" + StringUtils::hex(get_reg16('b', 'c')));
+    print("DE = $" + StringUtils::hex(get_reg16('d', 'e')));
+    print("HL = $" + StringUtils::hex(get_reg16('h', 'l')));
+    print("PC = $" + StringUtils::hex(get_reg16('p', 'c')));
+    print("SP = $" + StringUtils::hex(get_reg16('s', 'p')));
 }
 
 void Debugger::command_step(const std::vector <std::string> &tokens) {

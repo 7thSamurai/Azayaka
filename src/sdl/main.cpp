@@ -453,7 +453,7 @@ int main(int argc, char **argv) {
         if (elapsed_time >= 1.0) {
             elapsed_time /= (double)frame_counter;
 
-            window.set_title("Azayaka | " + gb.get_rom_name() + " | " + ftos(1.0/elapsed_time, 2) + " FPS");
+            window.set_title("Azayaka | " + gb.get_rom_name() + " | " + StringUtils::ftos(1.0/elapsed_time, 2) + " FPS");
 
             elapsed_time  = 0.0;
             frame_counter = 0;

@@ -54,7 +54,7 @@ bool MemoryDebugger::update_watchpoints(Mmu *mmu) {
         if (it->second != data) {
             it->second = data;
             triggered = true;
-            std::cout << "Watchpoint triggered: 0x" << hex(it->first) << std::endl;
+            std::cout << "Watchpoint triggered: 0x" << StringUtils::hex(it->first) << std::endl;
         }
     }
 

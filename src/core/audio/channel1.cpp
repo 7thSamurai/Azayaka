@@ -52,7 +52,7 @@ byte Channel1::read(word address) {
             break;
     }
 
-    LOG_WARNING("Channel1::read can't access address 0x" + hex(address));
+    LOG_WARNING("Channel1::read can't access address 0x" + StringUtils::hex(address));
 
     return 0;
 }
@@ -96,7 +96,7 @@ void Channel1::write(word address, byte value) {
             break;
     }
 
-    LOG_WARNING("Channel1::write can't access address 0x" + hex(address));
+    LOG_WARNING("Channel1::write can't access address 0x" + StringUtils::hex(address));
 }
 
 void Channel1::tick() {

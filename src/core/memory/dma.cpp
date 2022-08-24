@@ -57,7 +57,7 @@ byte Dma::read(word address) {
     if (address == 0xFF46)
         return value;
 
-    LOG_WARNING("Dma::read can't access address 0x" + hex(address));
+    LOG_WARNING("Dma::read can't access address 0x" + StringUtils::hex(address));
 
     return 0;
 }
@@ -74,7 +74,7 @@ void Dma::write(word address, byte value) {
     }
 
     else
-        LOG_WARNING("Dma::write can't access address 0x" + hex(address));
+        LOG_WARNING("Dma::write can't access address 0x" + StringUtils::hex(address));
 }
 
 bool Dma::is_transfering() const {

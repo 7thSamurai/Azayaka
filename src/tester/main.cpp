@@ -122,7 +122,7 @@ void test_rom(const std::string &base_path, RomType type) {
         new_checksum = Common::crc32(bmp_path);
 
         if (old_checksum != new_checksum)
-            std::cout << "\"" << File::remove_extension(bmp_path) << "\" changed! " << hex(new_checksum) << std::endl;
+            std::cout << "\"" << File::remove_extension(bmp_path) << "\" changed! " << StringUtils::hex(new_checksum) << std::endl;
 
         results.add_result(path.substr(path_start), new_checksum);
     }
