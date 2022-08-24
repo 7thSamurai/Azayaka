@@ -63,3 +63,10 @@ void Logger::enable(bool enabled) {
 void Logger::enable_verbose(bool enabled) {
     verbose_enabled = enabled;
 }
+
+Logger &Logger::get_instance() {
+    // Singleton
+    static Logger logger;
+
+    return logger;
+}

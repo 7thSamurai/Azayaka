@@ -18,7 +18,6 @@
 #include "core/state.hpp"
 #include "core/memory/mmu.hpp"
 #include "core/gpu/gpu.hpp"
-#include "core/globals.hpp"
 #include "core/defs.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
@@ -73,7 +72,7 @@ byte Hdma::read(word address) {
             break;
     }
 
-    logger.log("Hdma::read can't access address 0x" + hex(address, 4), Logger::Warning);
+    LOG_WARNING("Hdma::read can't access address 0x" + hex(address, 4));
 
     return 0;
 }
@@ -127,7 +126,7 @@ void Hdma::write(word address, byte value) {
             break;
     }
 
-    logger.log("Hdma::write can't access address 0x" + hex(address, 4), Logger::Warning);
+    LOG_WARNING("Hdma::write can't access address 0x" + hex(address, 4));
 }
 
 void Hdma::save_state(State &state) {

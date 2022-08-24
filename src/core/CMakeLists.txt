@@ -1,7 +1,6 @@
 add_library(core STATIC
 	component.cpp
 	gameboy.cpp
-	globals.cpp
 	rewinder.cpp
 	rom_list.cpp
 	settings.cpp

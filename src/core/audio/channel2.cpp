@@ -16,7 +16,6 @@
 #include "core/audio/channel2.hpp"
 #include "core/gameboy.hpp"
 #include "core/defs.hpp"
-#include "core/globals.hpp"
 #include "core/state.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
@@ -52,7 +51,7 @@ byte Channel2::read(word address) {
             break;
     }
 
-    logger.log("Channel2::read can't access address 0x" + hex(address, 4), Logger::Warning);
+    LOG_WARNING("Channel2::read can't access address 0x" + hex(address, 4));
 
     return 0;
 }
@@ -92,7 +91,7 @@ void Channel2::write(word address, byte value) {
             break;
     }
 
-    logger.log("Channel2::write can't access address 0x" + hex(address, 4), Logger::Warning);
+    LOG_WARNING("Channel2::write can't access address 0x" + hex(address, 4));
 }
 
 void Channel2::tick() {

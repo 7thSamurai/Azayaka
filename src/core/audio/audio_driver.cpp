@@ -15,7 +15,6 @@
 
 #include "core/audio/audio_driver.hpp"
 #include "common/logger.hpp"
-#include "core/globals.hpp"
 #include "core/settings.hpp"
 
 #include <cmath>
@@ -91,11 +90,11 @@ int AudioDriver::start_dumping_audio(const std::string &file_path) {
         wave_file.close();
 
     if (wave_file.open(file_path, sample_rate)) {
-        logger.log("Unable to dump audio", Logger::Error);
+        LOG_ERROR("Unable to dump audio");
         return -1;
     }
     else
-        logger.log("Starting to dump audio...", Logger::Debug);
+        LOG_DEBUG("Starting to dump audio...");
 
     dump_audio = true;
 
@@ -107,7 +106,7 @@ void AudioDriver::stop_dumping_audio() {
         wave_file.close();
         dump_audio = false;
 
-        logger.log("Stopped dumping audio", Logger::Debug);
+        LOG_DEBUG("Stopped dumping audio");
     }
 }
 
@@ -136,15 +135,15 @@ void AudioDriver::set_mode(Mode mode) {
 
     switch (mode) {
         case Mode_Normal:
-            logger.log("Set audio-driver to run at normal-speed", Logger::Debug);
+            LOG_DEBUG("Set audio-driver to run at normal-speed");
             break;
 
         case Mode_SlowMotion:
-            logger.log("Set audio-driver to run at half-speed", Logger::Debug);
+            LOG_DEBUG("Set audio-driver to run at half-speed");
             break;
 
         case Mode_Turbo:
-            logger.log("Set audio-driver to run at double-speed", Logger::Debug);
+            LOG_DEBUG("Set audio-driver to run at double-speed");
             break;
     }
 }

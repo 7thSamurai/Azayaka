@@ -14,7 +14,6 @@
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
 #include "core/rom/mbc3.hpp"
-#include "core/globals.hpp"
 #include "core/defs.hpp"
 #include "core/state.hpp"
 #include "common/logger.hpp"
@@ -59,7 +58,7 @@ byte Mbc3::read_byte(word address, UsageType usage) {
     }
 
     else
-        logger.log("Mbc3::read_byte can't access address 0x" + hex(address, 4), Logger::Warning);
+        LOG_WARNING("Mbc3::read_byte can't access address 0x" + hex(address, 4));
 
     return 0;
 }
@@ -107,7 +106,7 @@ void Mbc3::write_byte(word address, byte value) {
     }
 
     else
-        logger.log("Mbc3::write_byte can't access address 0x" + hex(address, 4), Logger::Warning);
+        LOG_WARNING("Mbc3::write_byte can't access address 0x" + hex(address, 4));
 }
 
 int Mbc3::load_timer(const std::string &file_path) {

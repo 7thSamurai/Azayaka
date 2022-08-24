@@ -15,7 +15,6 @@
 
 #include "common/wave_file.hpp"
 #include "common/logger.hpp"
-#include "core/globals.hpp" // FIXME
 
 WaveFile::WaveFile() {
     num_of_samples = 0;
@@ -27,11 +26,11 @@ WaveFile::~WaveFile() {
 
 int WaveFile::open(const std::string &file_path, unsigned int rate) {
     if (!file.open(file_path, BinaryFile::Mode_Write)) {
-        logger.log("Unable to open wave-file", Logger::Error);
+        LOG_ERROR("Unable to open wave-file");
         return -1;
     }
     else
-        logger.log("Opened wave-file", Logger::Debug);
+        LOG_DEBUG("Opened wave-file");
 
     // Write the header info
     write4("RIFF");           // Riff
@@ -67,7 +66,7 @@ void WaveFile::close() {
 
     file.close();
 
-    logger.log("Closed wave-file", Logger::Debug);
+    LOG_DEBUG("Opened wave-file");
 }
 
 void WaveFile::write_sample(s16 left, s16 right) {

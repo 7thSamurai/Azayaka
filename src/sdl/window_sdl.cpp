@@ -17,7 +17,6 @@
 #include "sdl/display_sdl.hpp"
 #include "sdl/opengl/display_gl.hpp"
 #include "core/display/display.hpp"
-#include "core/globals.hpp"
 #include "common/logger.hpp"
 
 #include <SDL.h>
@@ -25,9 +24,9 @@
 
 WindowSDL::WindowSDL() {
     if (SDL_InitSubSystem(SDL_INIT_VIDEO) < 0)
-        logger.log("Unable to initialize video subsystem", Logger::Error);
+        LOG_ERROR("Unable to initialize video subsystem");
     else
-        logger.log("Initialized video subsystem", Logger::Debug);
+        LOG_DEBUG("Initialized video subsystem");
 
     window     = nullptr;
     gl_context = nullptr;
@@ -57,35 +56,35 @@ int WindowSDL::create(const std::string &title, float scale, bool multiplayer, b
         window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 160*scale, 144*scale, SDL_WINDOW_OPENGL);
 
     if (window == NULL) {
-        logger.log("Unable to create window: " + std::string(SDL_GetError()), Logger::Error);
+        LOG_ERROR("Unable to create window: " + std::string(SDL_GetError()));
         return -1;
     }
     else
-        logger.log("Created window", Logger::Debug);
+        LOG_DEBUG("Created window");
 
 #ifdef USE_GL
     if (force_sdl) {
         gl_context = nullptr;
-        logger.log("Forcing SDL as the video-driver", Logger::Debug);
+        LOG_DEBUG("Forcing SDL as the video-driver");
     }
 
     else {
         gl_context = SDL_GL_CreateContext(window);
-        logger.log("Created OpenGL context", Logger::Debug);
+        LOG_DEBUG("Created OpenGL context");
 
         // Get the OpenGL version
         int major = 0, minor = 0;
         glGetIntegerv(GL_MAJOR_VERSION, &major);
         glGetIntegerv(GL_MINOR_VERSION, &minor);
 
-        logger.log("Got OpenGL "+std::to_string(major)+"."+std::to_string(minor), Logger::Debug);
+        LOG_DEBUG("Got OpenGL "+std::to_string(major)+"."+std::to_string(minor));
 
         // Make sure the the OpenGL Version is new enough
         if (major*100 + minor < 303) {
             SDL_GL_DeleteContext(gl_context);
             gl_context = nullptr;
 
-            logger.log("Could not get new enough OpenGL(3.3 required), falling back to SDL video-driver", Logger::Notice);
+            LOG_NOTICE("Could not get new enough OpenGL(3.3 required), falling back to SDL video-driver");
         }
     }
 
@@ -96,7 +95,7 @@ int WindowSDL::create(const std::string &title, float scale, bool multiplayer, b
     else
         display = new DisplaySDL(window);
 #else
-    logger.log("Only SDL was enabled as the video-driver at compile-time", Logger::Debug);
+    LOG_DEBUG("Only SDL was enabled as the video-driver at compile-time");
     display = new DisplaySDL(window);
 #endif
 
@@ -151,11 +150,11 @@ void WindowSDL::resize(int w, int h, int num) {
 
 void WindowSDL::set_fullscreen(bool fullscreen) {
     if (fullscreen) {
-        logger.log("Switching to fullscreen", Logger::Debug);
+        LOG_DEBUG("Switching to fullscreen");
         SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
     }
     else {
-        logger.log("Switching back from fullscreen", Logger::Debug);
+        LOG_DEBUG("Switching back from fullscreen");
         SDL_SetWindowFullscreen(window, 0);
     }
 }

@@ -16,7 +16,6 @@
 #include "sdl/opengl/texture.hpp"
 #include "sdl/opengl/gl.hpp"
 #include "common/logger.hpp"
-#include "core/globals.hpp"
 
 Texture::Texture() {
     id = 0;
@@ -28,7 +27,7 @@ Texture::~Texture() {
 }
 
 void Texture::create() {
-    logger.log("Creating OpenGL texture...", Logger::Debug);
+    LOG_DEBUG("Creating OpenGL texture...");
 
     glGenTextures(1, &id);
 

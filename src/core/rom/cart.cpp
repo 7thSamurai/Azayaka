@@ -19,7 +19,6 @@
 #include "core/rom/mbc3.hpp"
 #include "core/rom/mbc5.hpp"
 #include "core/state.hpp"
-#include "core/globals.hpp"
 #include "common/logger.hpp"
 #include "common/binary_file.hpp"
 #include "common/file_utils.hpp"
@@ -70,7 +69,7 @@ int Cart::load_ecart(const std::string &file_path) {
 
         BinaryFile file(file_path + ".sav", BinaryFile::Mode_Read);
         if(!file.is_open()) {
-            logger.log("Cart::load_ecart Unable to open ECART", Logger::Error);
+            LOG_ERROR("Cart::load_ecart Unable to open ECART");
             return -1;
         }
 
@@ -79,13 +78,13 @@ int Cart::load_ecart(const std::string &file_path) {
         Mbc3 *mbc3 = dynamic_cast<Mbc3*>(this);
         if (mbc3 != nullptr && (rom_type == 0x0F || rom_type == 0x10)) {
             if (mbc3->load_timer(file_path+".rtc") < 0)
-                logger.log("Cart::load_ecart Unable to load RTC", Logger::Error);
+                LOG_ERROR("Cart::load_ecart Unable to load RTC");
         }
 
         if (size == ecart_size())
             file.read(ecart, size);
         else
-            logger.log("Cart::load_ecart Invalid ECART file size", Logger::Error);
+            LOG_ERROR("Cart::load_ecart Invalid ECART file size");
     }
 
     return 0;
@@ -101,7 +100,7 @@ void Cart::save_ecart(const std::string &file_path) {
         BinaryFile file(file_path + ".sav", BinaryFile::Mode_Write);
 
         if (!file.is_open()) {
-            logger.log("Cart::save_ecart Unable to save ECART", Logger::Error);
+            LOG_ERROR("Cart::save_ecart Unable to save ECART");
             return;
         }
 
@@ -110,7 +109,7 @@ void Cart::save_ecart(const std::string &file_path) {
         Mbc3 *mbc3 = dynamic_cast<Mbc3*>(this);
         if (mbc3 != nullptr && (rom_type == 0x0F || rom_type == 0x10)) {
             if (mbc3->save_timer(file_path + ".rtc") < 0)
-                logger.log("Cart::save_ecart Unable to save RTC", Logger::Error);
+                LOG_ERROR("Cart::save_ecart Unable to save RTC");
         }
     }
 }

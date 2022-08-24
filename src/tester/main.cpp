@@ -15,7 +15,6 @@
 
 #include "core/gameboy.hpp"
 #include "tester/results.hpp"
-#include "core/globals.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
 #include "common/hash.hpp"
@@ -53,7 +52,7 @@ int main(int argc, char **argv) {
     if (results.init(std::string(argv[2])) < 0)
         std::cout << "Unable to load CSV!" << std::endl;
 
-    logger.enable(0);
+    Logger::get_instance().enable(0);
 
     time_t time_start = time(NULL);
 

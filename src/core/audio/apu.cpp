@@ -16,7 +16,6 @@
 #include "core/audio/apu.hpp"
 #include "core/gameboy.hpp"
 #include "core/defs.hpp"
-#include "core/globals.hpp"
 #include "core/state.hpp"
 #include "core/settings.hpp"
 #include "core/audio/audio_driver.hpp"
@@ -193,7 +192,7 @@ byte Apu::read(word address) {
             break;
     }
 
-    logger.log("Apu::read can't access address 0x" + hex(address, 4), Logger::Warning);
+    LOG_WARNING("Apu::read can't access address 0x" + hex(address, 4));
 
     return 0x0;
 }
@@ -287,7 +286,7 @@ void Apu::write(word address, byte value) {
             break;
     }
 
-    logger.log("Apu::write can't access address 0x" + hex(address, 4), Logger::Warning);
+    LOG_WARNING("Apu::write can't access address 0x" + hex(address, 4));
 }
 
 void Apu::save_state(State &state) {

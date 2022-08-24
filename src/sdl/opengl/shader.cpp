@@ -15,7 +15,6 @@
 
 #include "sdl/opengl/shader.hpp"
 #include "sdl/opengl/gl.hpp"
-#include "core/globals.hpp"
 #include "common/logger.hpp"
 
 #include <fstream>
@@ -32,7 +31,7 @@ Shader::Shader(const std::string &vertex_path, const std::string &frag_path) {
 }
 
 Shader::~Shader() {
-    logger.log("Deleting OpenGL stuff", Logger::Debug);
+    LOG_DEBUG("Deleting OpenGL stuff");
 
     if (program) {
         glDetachShader(program, vertex_shader);
@@ -58,9 +57,9 @@ void Shader::create(const std::string &vertex_path, const std::string &frag_path
     GLint status = 0;
     glGetProgramiv(program, GL_LINK_STATUS, &status);
     if (status != GL_TRUE)
-        logger.log("Unable to link shader-program", Logger::Error);
+        LOG_ERROR("Unable to link shader-program");
     else
-        logger.log("Successfully linked shader-program", Logger::Debug);
+        LOG_DEBUG("Successfully linked shader-program");
 }
 
 void Shader::use() const {
@@ -79,9 +78,9 @@ int Shader::create_shader(const std::string &file_path, int type) {
     std::ifstream file(file_path);
 
     if (!file.is_open())
-        logger.log("Unable to open shader source-file: " + file_path, Logger::Error);
+        LOG_ERROR("Unable to open shader source-file: " + file_path);
     else
-        logger.log("Opened shader source-file: " + file_path, Logger::Debug);
+        LOG_DEBUG("Opened shader source-file: " + file_path);
 
     std::stringstream ss;
     ss << file.rdbuf();
@@ -98,9 +97,9 @@ int Shader::create_shader(const std::string &file_path, int type) {
     GLint status = 0;
     glGetShaderiv(shader, GL_COMPILE_STATUS, &status);
     if (status != GL_TRUE)
-        logger.log("Unable to compile shader: " + file_path, Logger::Error);
+        LOG_ERROR("Unable to compile shader: " + file_path);
     else
-        logger.log("Successfully compiled shader: " + file_path, Logger::Debug);
+        LOG_DEBUG("Successfully compiled shader: " + file_path);
 
     return shader;
 }

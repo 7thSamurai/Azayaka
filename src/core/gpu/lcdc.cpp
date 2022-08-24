@@ -14,7 +14,6 @@
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
 #include "core/gpu/lcdc.hpp"
-#include "core/globals.hpp"
 #include "core/defs.hpp"
 #include "core/state.hpp"
 #include "common/logger.hpp"
@@ -28,7 +27,7 @@ byte Lcdc::read(word address) {
     if (address == 0xFF40)
         return value;
 
-    logger.log("Lcdc::read can't access address 0x" + hex(address, 4), Logger::Warning);
+    LOG_WARNING("Lcdc::read can't access address 0x" + hex(address, 4));
 
     return 0;
 }
@@ -39,7 +38,7 @@ void Lcdc::write(word address, byte value) {
         return;
     }
 
-    logger.log("Lcdc::write can't access address 0x" + hex(address, 4), Logger::Warning);
+    LOG_WARNING("Lcdc::write can't access address 0x" + hex(address, 4));
 }
 
 bool Lcdc::background_on() const {

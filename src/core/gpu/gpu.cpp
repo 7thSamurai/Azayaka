@@ -19,7 +19,6 @@
 #include "core/memory/dma.hpp"
 #include "core/memory/hdma.hpp"
 #include "core/state.hpp"
-#include "core/globals.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
 
@@ -142,7 +141,7 @@ byte Gpu::read(word address) {
             break;
     }
 
-    logger.log("Gpu::read can't access address: 0x" + hex(address, 4), Logger::Warning);
+    LOG_WARNING("Gpu::read can't access address: 0x" + hex(address, 4));
 
     return 0;
 }
@@ -229,7 +228,7 @@ void Gpu::write(word address, byte value) {
             break;
     }
 
-    logger.log("Gpu::write can't access address: 0x" + hex(address, 4), Logger::Warning);
+    LOG_WARNING("Gpu::write can't access address: 0x" + hex(address, 4));
 }
 
 void Gpu::write_oam(word address, byte value) {
@@ -258,7 +257,7 @@ void Gpu::write_lcdc(byte value) {
     if (lcd_was_on && !lcdc.lcd_on()) {
         // The screen should not be turned off unless in VBLANK Mode
         if (gpu_mode != Mode_VBlank)
-            logger.log("The screen shouldn't turn off while not in VBLANK", Logger::Warning);
+            LOG_WARNING("The screen shouldn't turn off while not in VBLANK");
 
         for (int i = 0; i < (160*144); i++)
             screen_buffer[i] = Color { 0xFF, 0xFF, 0xFF, 0xFF };

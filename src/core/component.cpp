@@ -14,7 +14,6 @@
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
 #include "core/component.hpp"
-#include "core/globals.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
 
@@ -26,13 +25,13 @@ Component::~Component() {
 }
 
 byte Component::read(word address) {
-    logger.log("Component::read can't access address 0x" + hex(address, 4), Logger::Warning);
+    LOG_WARNING("Component::read can't access address 0x" + hex(address, 4));
 
     return 0;
 }
 
 void Component::write(word address, byte value) {
-    logger.log("Component::write can't access address 0x" + hex(address, 4), Logger::Warning);
+    LOG_WARNING("Component::write can't access address 0x" + hex(address, 4));
 }
 
 byte Component::read_instruction(word address) {
@@ -42,4 +41,3 @@ byte Component::read_instruction(word address) {
 byte Component::read_operand(word address) {
     return read(address);
 }
-

@@ -21,7 +21,6 @@
 #include "core/defs.hpp"
 #include "core/gameboy.hpp"
 #include "core/state.hpp"
-#include "core/globals.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
 #include "common/binary_file.hpp"
@@ -78,7 +77,7 @@ int Rom::load_rom(const std::string &rom_path, std::string &error) {
         case 5: ram_size_num = (64  * 1024); break;
 
         default:
-            logger.log("Rom::load_rom unknown ram-size 0x" + hex(header[0x149], 2), Logger::Warning);
+            LOG_WARNING("Rom::load_rom unknown ram-size 0x" + hex(header[0x149], 2));
     }
 
     if (cart != nullptr)
@@ -148,7 +147,7 @@ int Rom::load_rom(const std::string &rom_path, std::string &error) {
     }
 
     if (!logo_match)
-        logger.log("Nintendo logo doesn't match. The ROM will not boot on a real GameBoy.", Logger::Warning);
+        LOG_WARNING("Nintendo logo doesn't match. The ROM will not boot on a real GameBoy.");
 
     checksum = 0x19;
 
@@ -156,7 +155,7 @@ int Rom::load_rom(const std::string &rom_path, std::string &error) {
         checksum += header[i];
 
     if (checksum)
-        logger.log("Checksum is incorrect. You may have a bad ROM dump.", Logger::Warning);
+        LOG_WARNING("Checksum is incorrect. You may have a bad ROM dump.");
 
     if (ram_size_num > 0 || rom_type == 0x06)
         cart->load_ecart(File::remove_extension(path));
@@ -389,7 +388,7 @@ byte Plain::read_byte(word address, UsageType usage) {
     else if (address >= 0xA000 && address <= 0xBFFF)
         return ecart[address - 0xA000];
 
-    logger.log("Plain::read_byte can't access address 0x" + hex(address, 4), Logger::Warning);
+    LOG_WARNING("Plain::read_byte can't access address 0x" + hex(address, 4));
 
     return 0;
 }
@@ -399,7 +398,7 @@ void Plain::write_byte(word address, byte value) {
         ecart[address - 0xA000] = value;
 
     else
-        logger.log("Plain::write_byte can't access address 0x" + hex(address, 4), Logger::Warning);
+        LOG_WARNING("Plain::write_byte can't access address 0x" + hex(address, 4));
 }
 
 int Plain::get_usage(word address) {

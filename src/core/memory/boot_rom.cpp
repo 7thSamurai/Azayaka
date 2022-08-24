@@ -17,7 +17,6 @@
 #include "core/gameboy.hpp"
 #include "core/memory/mmu.hpp"
 #include "core/rom/rom.hpp"
-#include "core/globals.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
 #include "common/binary_file.hpp"
@@ -42,7 +41,7 @@ int BootRom::load(const std::string &file_path) {
     unsigned int size = file.size();
 
     if (size != 0x100 && size != 0x900) {
-        logger.log("BootRom::load Invalid size for BootRom: " + std::to_string(size), Logger::Error);
+        LOG_ERROR("BootRom::load Invalid size for BootRom: " + std::to_string(size));
         return -1;
     }
 
@@ -57,7 +56,7 @@ byte BootRom::read(word address) {
         if (!enabled)
             return data[address];
         else {
-            logger.log("BootRom::read can't access address 0x" + hex(address, 4) + " when not enabled", Logger::Warning);
+            LOG_WARNING("BootRom::read can't access address 0x" + hex(address, 4) + " when not enabled");
             return 0;
         }
     }
@@ -65,7 +64,7 @@ byte BootRom::read(word address) {
     else if (address == 0xFF50)
         return 0xFF;
 
-    logger.log("BootRom::read can't access address 0x" + hex(address, 4), Logger::Warning);
+    LOG_WARNING("BootRom::read can't access address 0x" + hex(address, 4));
 
     return 0;
 }
@@ -83,5 +82,5 @@ void BootRom::write(word address, byte value) {
         return;
     }
 
-    logger.log("BootRom::write can't access address 0x" + hex(address, 4), Logger::Warning);
+    LOG_WARNING("BootRom::write can't access address 0x" + hex(address, 4));
 }

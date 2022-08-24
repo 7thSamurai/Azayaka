@@ -19,7 +19,6 @@
 #include "common/utils.hpp"
 #include "common/image.hpp"
 #include "common/file_utils.hpp"
-#include "core/globals.hpp"
 
 Printer::Printer() {
     byte_to_send = 0;
@@ -78,7 +77,7 @@ void Printer::byte_received(byte byte) {
             compression = byte & BIT0;
 
             if (compression)
-                logger.log("Printer is using compressed data, currently unsupported!", Logger::Error);
+                LOG_ERROR("Printer is using compressed data, currently unsupported!");
             break;
 
         case CommandPos_LengthLow:
@@ -179,7 +178,7 @@ void Printer::run_command(byte command) {
 
             // Ignore empty packets
             else if (command_length != 0)
-                logger.log("Printer gave unsupported data size of 0x" + hex(command_length, 4), Logger::Error);
+                LOG_ERROR("Printer gave unsupported data size of 0x" + hex(command_length, 4));
             break;
 
         case CommandId_Status:
@@ -190,7 +189,7 @@ void Printer::run_command(byte command) {
             break;
 
         default:
-            logger.log("Unknown printer command 0x" + hex(command, 2), Logger::Warning);
+            LOG_WARNING("Unknown printer command 0x" + hex(command, 2));
             break;
     }
 }

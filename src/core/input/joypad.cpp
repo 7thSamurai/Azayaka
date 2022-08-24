@@ -18,7 +18,6 @@
 #include "core/state.hpp"
 #include "core/cpu/cpu.hpp"
 #include "core/defs.hpp"
-#include "core/globals.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
 
@@ -124,7 +123,7 @@ byte Joypad::read(word address) {
             return 0xCF;
     }
 
-    logger.log("Joypad::read can't access address 0x" + hex(address, 4), Logger::Warning);
+    LOG_WARNING("Joypad::read can't access address 0x" + hex(address, 4));
 
     return 0;
 }
@@ -134,7 +133,7 @@ void Joypad::write(word address, byte value) {
         column = value & 0x30;
 
     else
-        logger.log("Joypad::write can't access address 0x" + hex(address, 4), Logger::Warning);
+        LOG_WARNING("Joypad::write can't access address 0x" + hex(address, 4));
 }
 
 void Joypad::save_state(State &state) {

@@ -17,7 +17,6 @@
 #include "core/gameboy.hpp"
 #include "core/state.hpp"
 #include "core/cpu/cpu.hpp"
-#include "core/globals.hpp"
 #include "core/defs.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
@@ -79,7 +78,7 @@ byte Serial::read(word address) {
         return value | (gb->gbc_mode ? 0x7C : 0x7E);
     }
 
-    logger.log("Serial::read can't access address 0x" + hex(address, 4), Logger::Warning);
+    LOG_WARNING("Serial::read can't access address 0x" + hex(address, 4));
 
     return 0;
 }
@@ -103,7 +102,7 @@ void Serial::write(word address, byte value) {
     }
 
     else
-        logger.log("Serial::write can't access address 0x" + hex(address, 4), Logger::Warning);
+        LOG_WARNING("Serial::write can't access address 0x" + hex(address, 4));
 }
 
 void Serial::start_transfer() {

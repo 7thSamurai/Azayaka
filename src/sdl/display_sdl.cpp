@@ -14,7 +14,6 @@
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
 #include "sdl/display_sdl.hpp"
-#include "core/globals.hpp"
 #include "common/logger.hpp"
 
 #include <SDL.h>
@@ -24,11 +23,11 @@ DisplaySDL::DisplaySDL(SDL_Window *window) {
 
     renderer = SDL_CreateRenderer(window, -1, 0);
     if (renderer == NULL)
-        logger.log("Unable to create SDL Renderer: " + std::string(SDL_GetError()), Logger::Error);
+        LOG_ERROR("Unable to create SDL Renderer: " + std::string(SDL_GetError()));
 
     texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_STREAMING, display_width, display_height);
     if (texture == NULL)
-        logger.log("Unable to create SDL Texture: " + std::string(SDL_GetError()), Logger::Error);
+        LOG_ERROR("Unable to create SDL Texture: " + std::string(SDL_GetError()));
 
     // Clear the screen
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);

@@ -14,7 +14,6 @@
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
 #include "core/rom/mbc1.hpp"
-#include "core/globals.hpp"
 #include "core/state.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
@@ -61,7 +60,7 @@ byte Mbc1::read_byte(word address, UsageType usage) {
     }
 
     else
-        logger.log("Mbc1::read_byte can't access address 0x" + hex(address, 4), Logger::Warning);
+        LOG_WARNING("Mbc1::read_byte can't access address 0x" + hex(address, 4));
 
     return 0;
 }
@@ -102,7 +101,7 @@ void Mbc1::write_byte(word address, byte value) {
     }
 
     else
-        logger.log("Mbc1::write_byte can't access address 0x" + hex(address, 4), Logger::Warning);
+        LOG_WARNING("Mbc1::write_byte can't access address 0x" + hex(address, 4));
 }
 
 void Mbc1::check_multicart() {

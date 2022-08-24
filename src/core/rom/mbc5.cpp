@@ -14,7 +14,6 @@
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
 #include "core/rom/mbc5.hpp"
-#include "core/globals.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
 
@@ -50,7 +49,7 @@ byte Mbc5::read_byte(word address, UsageType usage) {
     }
 
     else
-        logger.log("Mbc5::read_byte can't access address 0x" + hex(address, 4), Logger::Warning);
+        LOG_WARNING("Mbc5::read_byte can't access address 0x" + hex(address, 4));
 
     return 0;
 }
@@ -87,5 +86,5 @@ void Mbc5::write_byte(word address, byte value) {
     }
 
     else
-        logger.log("Mbc5::write_byte can't access address 0x" + hex(address, 4), Logger::Warning);
+        LOG_WARNING("Mbc5::write_byte can't access address 0x" + hex(address, 4));
 }

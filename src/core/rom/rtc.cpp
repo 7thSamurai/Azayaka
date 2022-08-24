@@ -15,7 +15,6 @@
 
 #include "core/rom/rtc.hpp"
 #include "core/defs.hpp"
-#include "core/globals.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
 #include "common/binary_file.hpp"
@@ -69,7 +68,7 @@ byte Rtc::get_reg(byte reg) {
             break;
     }
 
-    logger.log("Rtc::get_reg can't handle register 0x" + hex(reg, 2), Logger::Warning);
+    LOG_WARNING("Rtc::get_reg can't handle register 0x" + hex(reg, 2));
 
     return 0;
 }
@@ -107,7 +106,7 @@ void Rtc::set_reg(byte reg, byte value) {
             break;
     }
 
-    logger.log("Rtc::set_reg can't handle register 0x" + hex(reg, 2), Logger::Warning);
+    LOG_WARNING("Rtc::set_reg can't handle register 0x" + hex(reg, 2));
 }
 
 int Rtc::load(const std::string &file_path) {

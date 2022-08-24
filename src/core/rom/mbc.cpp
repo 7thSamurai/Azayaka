@@ -15,7 +15,6 @@
 
 #include "core/rom/mbc.hpp"
 #include "core/state.hpp"
-#include "core/globals.hpp"
 #include "core/defs.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"

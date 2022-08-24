@@ -36,6 +36,34 @@ public:
     void enable(bool enabled);
     void enable_verbose(bool enabled);
 
+    // Singleton
+    static Logger &get_instance();
+
 private:
     bool enabled, verbose_enabled;
 };
+
+#define LOG_INFO(msg) \
+    do { \
+        Logger::get_instance().log(msg, Logger::Level::Info); \
+    } while (0)
+
+#define LOG_NOTICE(msg) \
+    do { \
+        Logger::get_instance().log(msg, Logger::Level::Notice); \
+    } while (0)
+
+#define LOG_WARNING(msg) \
+    do { \
+        Logger::get_instance().log(msg, Logger::Level::Warning); \
+    } while (0)
+
+#define LOG_DEBUG(msg) \
+    do { \
+        Logger::get_instance().log(msg, Logger::Level::Debug); \
+    } while (0)
+
+#define LOG_ERROR(msg) \
+    do { \
+        Logger::get_instance().log(msg, Logger::Level::Error); \
+    } while (0)

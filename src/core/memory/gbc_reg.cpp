@@ -15,7 +15,6 @@
 
 #include "core/memory/gbc_reg.hpp"
 #include "core/gameboy.hpp"
-#include "core/globals.hpp"
 #include "core/state.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
@@ -49,7 +48,7 @@ byte GbcReg::read(word address) {
             break;
     }
 
-    logger.log("GbcReg::read can't handle address 0x" + hex(address, 4), Logger::Warning);
+    LOG_WARNING("GbcReg::read can't handle address 0x" + hex(address, 4));
 
     return 0;
 }
@@ -84,7 +83,7 @@ void GbcReg::write(word address, byte value) {
             break;
     }
 
-    logger.log("GbcReg::write can't handle address 0x" + hex(address, 4), Logger::Warning);
+    LOG_WARNING("GbcReg::write can't handle address 0x" + hex(address, 4));
 }
 
 void GbcReg::save_state(State &state) {

@@ -17,7 +17,6 @@
 #include "core/memory/gbc_reg.hpp"
 #include "core/gameboy.hpp"
 #include "core/state.hpp"
-#include "core/globals.hpp"
 #include "core/defs.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
@@ -199,7 +198,7 @@ byte Mmu::read(word address) {
             return 0xFF;
     }
 
-    logger.log("Mmu::read can't access address 0x" + hex(address, 4), Logger::Warning);
+    LOG_WARNING("Mmu::read can't access address 0x" + hex(address, 4));
 
     return 0;
 }
@@ -258,6 +257,6 @@ void Mmu::write(word address, byte value) {
                 return;
         }
 
-        logger.log("Mmu::write can't access address 0x" + hex(address, 4), Logger::Warning);
+        LOG_WARNING("Mmu::write can't access address 0x" + hex(address, 4));
     }
 }

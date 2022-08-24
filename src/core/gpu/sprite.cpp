@@ -16,7 +16,6 @@
 #include "core/gpu/sprite.hpp"
 #include "core/defs.hpp"
 #include "core/state.hpp"
-#include "core/globals.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
 
@@ -35,7 +34,7 @@ byte Sprite::read_byte(word address) const {
         case 3: return flags;
 
         default:
-            logger.log("Sprite::read_byte can't access address 0x" + hex(address, 4), Logger::Warning);
+            LOG_WARNING("Sprite::read_byte can't access address 0x" + hex(address, 4));
             break;
     }
 
@@ -61,7 +60,7 @@ void Sprite::write_byte(word address, byte value) {
             break;
 
         default:
-            logger.log("Sprite::write_byte can't 0x" + hex(address, 4), Logger::Warning);
+            LOG_WARNING("Sprite::write_byte can't 0x" + hex(address, 4));
             break;
     }
 }

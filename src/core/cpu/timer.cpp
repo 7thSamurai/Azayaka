@@ -17,7 +17,6 @@
 #include "core/defs.hpp"
 #include "core/gameboy.hpp"
 #include "core/cpu/cpu.hpp"
-#include "core/globals.hpp"
 #include "core/state.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
@@ -54,7 +53,7 @@ byte Timer::read(word address) {
             break;
     }
 
-    logger.log("Timer::read can't access address 0x" + hex(address, 4), Logger::Warning);
+    LOG_WARNING("Timer::read can't access address 0x" + hex(address, 4));
 
     return 0;
 }
@@ -100,7 +99,7 @@ void Timer::write(word address, byte value) {
             break;
     }
 
-    logger.log("Timer::write can't access address 0x" + hex(address, 4), Logger::Warning);
+    LOG_WARNING("Timer::write can't access address 0x" + hex(address, 4));
 }
 
 void Timer::tick() {

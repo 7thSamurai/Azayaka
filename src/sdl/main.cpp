@@ -26,7 +26,6 @@
 #include "sdl/options.hpp"
 #include "core/gameboy.hpp"
 #include "core/rom_list.hpp"
-#include "core/globals.hpp"
 #include "common/utils.hpp"
 #include "common/parser.hpp"
 #include "common/logger.hpp"
@@ -132,7 +131,7 @@ int main(int argc, char **argv) {
         gb.bind_serial_device(&printer);
     }
 
-    logger.enable_verbose(verbose_option.get_verbose());
+    Logger::get_instance().enable_verbose(verbose_option.get_verbose());
 
     WindowSDL window;
     if (window.create("Azayaka", scale_option.get_scale(), link, force_sdl_option.get_force_sdl()) < 0)
@@ -163,7 +162,7 @@ int main(int argc, char **argv) {
     // Is it acceptable to use "Azayaka" as the Organization?
     char *settings_path = SDL_GetPrefPath("Azayaka", "Azayaka");
 
-    logger.log("Looking for INI file in \"" + std::string(settings_path) + "\"", Logger::Notice);
+    LOG_NOTICE("Looking for INI file in \"" + std::string(settings_path) + "\"");
 
     Settings settings;
     settings.load(std::string(settings_path) + "azayaka.ini");
@@ -219,12 +218,12 @@ int main(int argc, char **argv) {
                                 audio_driver.set_mode(AudioDriver::Mode_Normal);
 
                                 window.set_status_text("Paused", -1);
-                                logger.log("Paused emulation", Logger::Debug);
+                                LOG_DEBUG("Paused emulation");
                             }
                             else {
                                 audio_driver.pause(0);
                                 window.clear_status_text();
-                                logger.log("Unpaused emulation", Logger::Debug);
+                                LOG_DEBUG("Unpaused emulation");
                             }
                         }
                         break;
@@ -246,7 +245,7 @@ int main(int argc, char **argv) {
                             audio_driver.reset();
 
                             window.set_status_text("Reseting", 2);
-                            logger.log("Reset emulation", Logger::Debug);
+                            LOG_DEBUG("Reset emulation");
                         }
                         break;
 
@@ -255,7 +254,7 @@ int main(int argc, char **argv) {
                         if (!pause) {
                             audio_driver.set_mode(AudioDriver::Mode_Turbo);
                             window.set_status_text("Turbo", -1);
-                            logger.log("Started running in turbo mode", Logger::Debug);
+                            LOG_DEBUG("Started running in turbo mode");
                         }
                         break;
 
@@ -264,7 +263,7 @@ int main(int argc, char **argv) {
                         if (!pause) {
                             audio_driver.set_mode(AudioDriver::Mode_SlowMotion);
                             window.set_status_text("Slow-Motion", -1);
-                            logger.log("Started running in slow-motion mode", Logger::Debug);
+                            LOG_DEBUG("Started running in slow-motion mode");
                         }
                         break;
 
@@ -274,7 +273,7 @@ int main(int argc, char **argv) {
 
                             rewinding = 1;
                             window.set_status_text("Rewinding", -1);
-                            logger.log("Started rewinding", Logger::Debug);
+                            LOG_DEBUG("Started rewinding");
                         }
                         break;
 
@@ -333,7 +332,7 @@ int main(int argc, char **argv) {
                         if (!pause) {
                             audio_driver.set_mode(AudioDriver::Mode_Normal);
                             window.clear_status_text();
-                            logger.log("Stopped turbo mode", Logger::Debug);
+                            LOG_DEBUG("Stopped turbo mode");
                         }
                         break;
 
@@ -342,7 +341,7 @@ int main(int argc, char **argv) {
                         if (!pause) {
                             audio_driver.set_mode(AudioDriver::Mode_Normal);
                             window.clear_status_text();
-                            logger.log("Stopped slow-motion mode", Logger::Debug);
+                            LOG_DEBUG("Stopped slow-motion mode");
                         }
                         break;
 
@@ -352,7 +351,7 @@ int main(int argc, char **argv) {
 
                             rewinding = 0;
                             window.clear_status_text();
-                            logger.log("Stopped rewinding", Logger::Debug);
+                            LOG_DEBUG("Stopped rewinding");
 
                             input.reset();
                         }
@@ -465,7 +464,7 @@ int main(int argc, char **argv) {
 
     audio_driver.stop();
 
-    logger.log("Shutting down SDL...", Logger::Debug);
+    LOG_DEBUG("Shutting down SDL...");
 
     SDL_Quit();
 
@@ -488,21 +487,21 @@ int load_rom_from_path(GameBoy &gb, const std::string &path, bool force_gb, bool
 
     if (force_gb) {
         if (gb.load_rom_force_mode(path, error, 0, dump_usage) < 0) {
-            logger.log(error, Logger::Error);
+            LOG_ERROR(error);
             return -1;
         }
     }
 
     else if (force_gbc) {
         if (gb.load_rom_force_mode(path, error, 1, dump_usage) < 0) {
-            logger.log(error, Logger::Error);
+            LOG_ERROR(error);
             return -1;
         }
     }
 
     else {
         if (gb.load_rom(path, error, dump_usage) < 0) {
-            logger.log(error, Logger::Error);
+            LOG_ERROR(error);
             return -1;
         }
     }
@@ -517,7 +516,7 @@ int load_rom_from_dir(GameBoy &gb, std::string &path, RomList &rom_list, bool fo
     rom_list.get_files_names(files);
 
     if (!files.size()) {
-        logger.log("No ROMs in given directory!", Logger::Error);
+        LOG_ERROR("No ROMs in given directory!");
         return -1;
     }
 
@@ -533,27 +532,27 @@ int load_rom_from_dir(GameBoy &gb, std::string &path, RomList &rom_list, bool fo
         path = rom_list.get_file_path(files.at(index - 1));
 
     else {
-        logger.log("Index out of range!", Logger::Error);
+        LOG_ERROR("Index out of range!");
         return -1;
     }
 
     if (force_gb) {
         if (gb.load_rom_force_mode(path, error, 0, dump_usage) < 0) {
-            logger.log(error, Logger::Error);
+            LOG_ERROR(error);
             return -1;
         }
     }
 
     else if (force_gbc) {
         if (gb.load_rom_force_mode(path, error, 1, dump_usage) < 0) {
-            logger.log(error, Logger::Error);
+            LOG_ERROR(error);
             return -1;
         }
     }
 
     else {
         if (gb.load_rom(path, error, dump_usage) < 0) {
-            logger.log(error, Logger::Error);
+            LOG_ERROR(error);
             return -1;
         }
     }

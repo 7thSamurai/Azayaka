@@ -14,7 +14,6 @@
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
 #include "sdl/audio_sdl.hpp"
-#include "core/globals.hpp"
 #include "common/logger.hpp"
 
 #include <SDL.h>
@@ -33,11 +32,11 @@ int AudioSDL::start(unsigned int sample_rate, unsigned int buffer_size) {
     this->buffer_size = buffer_size;
 
     if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
-        logger.log("Unable to initialize audio subsystem", Logger::Error);
+        LOG_ERROR("Unable to initialize audio subsystem");
         return -1;
     }
     else {
-        logger.log("Initialized audio subsystem", Logger::Debug);
+        LOG_DEBUG("Initialized audio subsystem");
     }
 
     mutex = SDL_CreateMutex();
@@ -55,11 +54,11 @@ int AudioSDL::start(unsigned int sample_rate, unsigned int buffer_size) {
     device_id = SDL_OpenAudioDevice(NULL, 0, &desired, &obtained, SDL_AUDIO_ALLOW_FREQUENCY_CHANGE);
 
     if (device_id == 0) {
-        logger.log("Unable to open audio-device: " + std::string(SDL_GetError()), Logger::Error);
+        LOG_ERROR("Unable to open audio-device: " + std::string(SDL_GetError()));
         return -1;
     }
     else
-        logger.log("Opened audio-device", Logger::Debug);
+        LOG_DEBUG("Opened audio-device");
 
     started = 1;
 
@@ -79,16 +78,16 @@ void AudioSDL::stop() {
 
     SDL_DestroyMutex(mutex);
 
-    logger.log("Stopped audio-device", Logger::Debug);
+    LOG_DEBUG("Stopped audio-device");
 }
 
 void AudioSDL::pause(bool value) {
     SDL_PauseAudioDevice(device_id, value);
 
     if (value)
-        logger.log("Paused audio-device", Logger::Debug);
+        LOG_DEBUG("Paused audio-device");
     else
-        logger.log("Unpaused audio-device", Logger::Debug);
+        LOG_DEBUG("Unpaused audio-device");
 }
 
 void AudioSDL::reset() {
@@ -108,9 +107,9 @@ void AudioSDL::set_sync_to_audio(bool sync_to_audio) {
     SDL_UnlockAudioDevice(device_id);
 
     if (sync_to_audio)
-        logger.log("Syncing emulation to audio", Logger::Debug);
+        LOG_DEBUG("Syncing emulation to audio");
     else
-        logger.log("Not syncing emulation to audio", Logger::Debug);
+        LOG_DEBUG("Not syncing emulation to audio");
 }
 
 void AudioSDL::callback(uint8_t *stream, int len) {

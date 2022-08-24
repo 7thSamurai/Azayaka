@@ -18,7 +18,6 @@
 #include "core/memory/mmu.hpp"
 #include "core/state.hpp"
 #include "core/gpu/gpu.hpp"
-#include "core/globals.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
 
@@ -58,7 +57,7 @@ byte Dma::read(word address) {
     if (address == 0xFF46)
         return value;
 
-    logger.log("Dma::read can't access address 0x" + hex(address, 4), Logger::Warning);
+    LOG_WARNING("Dma::read can't access address 0x" + hex(address, 4));
 
     return 0;
 }
@@ -75,7 +74,7 @@ void Dma::write(word address, byte value) {
     }
 
     else
-        logger.log("Dma::write can't access address 0x" + hex(address, 4), Logger::Warning);
+        LOG_WARNING("Dma::write can't access address 0x" + hex(address, 4));
 }
 
 bool Dma::is_transfering() const {
