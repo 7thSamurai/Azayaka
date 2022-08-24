@@ -17,5 +17,5 @@
 
 #include "common/types.hpp"
 
-typedef u8  byte;
-typedef u16 word;
+using byte = u8;
+using word = u16;
