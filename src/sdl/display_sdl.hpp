@@ -15,8 +15,8 @@
 
 #pragma once
 
-#include "display/display.hpp"
-#include "window_sdl.hpp"
+#include "core/display/display.hpp"
+#include "sdl/window_sdl.hpp"
 
 #include <cstdint>
 

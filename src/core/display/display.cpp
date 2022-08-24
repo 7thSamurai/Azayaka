@@ -13,10 +13,10 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "display.hpp"
+#include "core/display/display.hpp"
 #include "common/color.hpp"
-#include "font.hpp"
-#include "settings.hpp"
+#include "core/display/font.hpp"
+#include "core/settings.hpp"
 
 Display::Display() {
     video_buffer = new Color[display_width * display_height];

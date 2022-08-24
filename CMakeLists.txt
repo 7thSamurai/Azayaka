@@ -18,6 +18,8 @@ if (OpenGL_FOUND)
 	add_definitions(-DUSE_GL)
 endif()
 
+include_directories(src)
+
 find_package(SDL2)
 if (SDL2_FOUND)
 	add_subdirectory(src/sdl)

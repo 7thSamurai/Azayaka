@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "state.hpp"
+#include "core/state.hpp"
 #include "common/utils.hpp"
 
 int State_File::open_read(const std::string &file_path) {

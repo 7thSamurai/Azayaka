@@ -15,9 +15,9 @@
 
 #pragma once
 
-#include "cpu_debugger.hpp"
-#include "memory_debugger.hpp"
-#include "tools/disassembler.hpp"
+#include "core/debug/cpu_debugger.hpp"
+#include "core/debug/memory_debugger.hpp"
+#include "core/tools/disassembler.hpp"
 
 #include <string>
 #include <vector>

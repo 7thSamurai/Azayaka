@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "mbc2.hpp"
-#include "globals.hpp"
+#include "core/rom/mbc2.hpp"
+#include "core/globals.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
 

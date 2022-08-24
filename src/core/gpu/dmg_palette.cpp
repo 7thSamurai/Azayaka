@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "dmg_palette.hpp"
-#include "state.hpp"
+#include "core/gpu/dmg_palette.hpp"
+#include "core/state.hpp"
 
 DmgPalette::DmgPalette() {
     palette = 0x00;

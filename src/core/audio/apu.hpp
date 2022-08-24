@@ -15,9 +15,9 @@
 
 #pragma once
 
-#include "component.hpp"
-#include "types.hpp"
-#include "channel.hpp"
+#include "core/component.hpp"
+#include "core/types.hpp"
+#include "core/audio/channel.hpp"
 
 class AudioDriver;
 class State;

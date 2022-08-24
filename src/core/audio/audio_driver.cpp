@@ -13,10 +13,10 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "audio_driver.hpp"
+#include "core/audio/audio_driver.hpp"
 #include "common/logger.hpp"
-#include "globals.hpp"
-#include "settings.hpp"
+#include "core/globals.hpp"
+#include "core/settings.hpp"
 
 #include <cmath>
 

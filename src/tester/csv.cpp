@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "csv.hpp"
+#include "tester/csv.hpp"
 
 #include <fstream>
 #include <sstream>

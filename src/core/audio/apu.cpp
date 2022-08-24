@@ -13,20 +13,20 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "apu.hpp"
-#include "gameboy.hpp"
-#include "defs.hpp"
-#include "globals.hpp"
-#include "state.hpp"
-#include "settings.hpp"
-#include "audio_driver.hpp"
-#include "common/logger.hpp"
-#include "common/utils.hpp"
+#include "core/audio/apu.hpp"
+#include "core/gameboy.hpp"
+#include "core/defs.hpp"
+#include "core/globals.hpp"
+#include "core/state.hpp"
+#include "core/settings.hpp"
+#include "core/audio/audio_driver.hpp"
+#include "core/common/logger.hpp"
+#include "core/common/utils.hpp"
 
-#include "channel1.hpp"
-#include "channel2.hpp"
-#include "channel3.hpp"
-#include "channel4.hpp"
+#include "core/audio/channel1.hpp"
+#include "core/audio/channel2.hpp"
+#include "core/audio/channel3.hpp"
+#include "core/audio/channel4.hpp"
 
 #include <iostream>
 

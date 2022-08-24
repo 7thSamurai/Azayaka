@@ -13,14 +13,14 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "settings.hpp"
+#include "core/settings.hpp"
 #include "common/ini_file.hpp"
 
-#include "gameboy.hpp"
-#include "audio/audio_driver.hpp"
-#include "display/display.hpp"
-#include "input/input.hpp"
-#include "rewinder.hpp"
+#include "core/gameboy.hpp"
+#include "core/audio/audio_driver.hpp"
+#include "core/display/display.hpp"
+#include "core/input/input.hpp"
+#include "core/rewinder.hpp"
 
 Settings::Settings() {
     // Audio

@@ -15,14 +15,14 @@
 
 #pragma once
 
-#include "component.hpp"
-#include "types.hpp"
-#include "defs.hpp"
-#include "dmg_palette.hpp"
-#include "color_palette.hpp"
-#include "lcdc.hpp"
-#include "tile_attribute.hpp"
-#include "sprite.hpp"
+#include "core/component.hpp"
+#include "core/types.hpp"
+#include "core/defs.hpp"
+#include "core/gpu/dmg_palette.hpp"
+#include "core/gpu/color_palette.hpp"
+#include "core/gpu/lcdc.hpp"
+#include "core/gpu/tile_attribute.hpp"
+#include "core/gpu/sprite.hpp"
 
 class State;
 

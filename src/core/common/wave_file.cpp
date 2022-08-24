@@ -13,9 +13,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "wave_file.hpp"
+#include "common/wave_file.hpp"
 #include "common/logger.hpp"
-#include "globals.hpp"
+#include "core/globals.hpp" // FIXME
 
 WaveFile::WaveFile() {
     num_of_samples = 0;

@@ -13,10 +13,10 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "lcdc.hpp"
-#include "globals.hpp"
-#include "defs.hpp"
-#include "state.hpp"
+#include "core/gpu/lcdc.hpp"
+#include "core/globals.hpp"
+#include "core/defs.hpp"
+#include "core/state.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
 

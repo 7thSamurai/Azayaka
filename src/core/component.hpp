@@ -15,7 +15,7 @@
 
 #pragma once
 
-#include "types.hpp"
+#include "core/types.hpp"
 
 class GameBoy;
 

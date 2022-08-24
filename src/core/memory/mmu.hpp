@@ -15,8 +15,8 @@
 
 #pragma once
 
-#include "component.hpp"
-#include "types.hpp"
+#include "core/component.hpp"
+#include "core/types.hpp"
 
 class State;
 class GbcReg;

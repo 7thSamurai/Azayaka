@@ -13,11 +13,11 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "channel1.hpp"
-#include "gameboy.hpp"
-#include "defs.hpp"
-#include "globals.hpp"
-#include "state.hpp"
+#include "core/audio/channel1.hpp"
+#include "core/gameboy.hpp"
+#include "core/defs.hpp"
+#include "core/globals.hpp"
+#include "core/state.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
 

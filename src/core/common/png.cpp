@@ -15,7 +15,7 @@
 
 #ifdef USE_PNG
 
-#include "image.hpp"
+#include "common/image.hpp"
 #include <png.h>
 
 namespace Common {

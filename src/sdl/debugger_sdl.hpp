@@ -15,7 +15,7 @@
 
 #pragma once
 
-#include "debug/debugger.hpp"
+#include "core/debug/debugger.hpp"
 
 class Debugger_SDL : public Debugger
 {

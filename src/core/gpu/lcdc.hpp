@@ -15,7 +15,7 @@
 
 #pragma once
 
-#include "component.hpp"
+#include "core/component.hpp"
 
 class State;
 

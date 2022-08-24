@@ -15,7 +15,7 @@
 
 #pragma once
 
-#include "cart.hpp"
+#include "core/rom/cart.hpp"
 
 class Mbc : public Cart {
 public:

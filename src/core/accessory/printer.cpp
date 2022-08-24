@@ -13,13 +13,13 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "printer.hpp"
-#include "defs.hpp"
+#include "core/accessory/printer.hpp"
+#include "core/defs.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
 #include "common/image.hpp"
 #include "common/file_utils.hpp"
-#include "globals.hpp"
+#include "core/globals.hpp"
 
 Printer::Printer() {
     byte_to_send = 0;

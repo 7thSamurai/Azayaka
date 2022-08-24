@@ -13,9 +13,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "rtc.hpp"
-#include "defs.hpp"
-#include "globals.hpp"
+#include "core/rom/rtc.hpp"
+#include "core/defs.hpp"
+#include "core/globals.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
 #include "common/binary_file.hpp"

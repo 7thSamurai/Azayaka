@@ -15,7 +15,7 @@
 
 #pragma once
 
-#include "types.hpp"
+#include "core/types.hpp"
 
 #define FONT_WIDTH  8
 #define FONT_HEIGHT 8

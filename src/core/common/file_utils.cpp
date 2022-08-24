@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "file_utils.hpp"
+#include "common/file_utils.hpp"
 
 #include <filesystem>
 #include <iostream>

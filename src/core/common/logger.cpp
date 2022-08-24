@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "logger.hpp"
+#include "common/logger.hpp"
 
 #include <iostream>
 

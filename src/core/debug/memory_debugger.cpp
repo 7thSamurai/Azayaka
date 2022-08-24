@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "memory_debugger.hpp"
-#include "memory/mmu.hpp"
+#include "core/debug/memory_debugger.hpp"
+#include "core/memory/mmu.hpp"
 #include "common/utils.hpp"
 
 #include <iostream>

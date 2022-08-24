@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "input.hpp"
-#include "settings.hpp"
+#include "core/input/input.hpp"
+#include "core/settings.hpp"
 
 void Input::bind_joypad(Joypad *joypad) {
     this->joypad = joypad;

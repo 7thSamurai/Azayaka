@@ -13,9 +13,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "tile_attribute.hpp"
-#include "defs.hpp"
-#include "state.hpp"
+#include "core/gpu/tile_attribute.hpp"
+#include "core/defs.hpp"
+#include "core/state.hpp"
 
 TileAttribute::TileAttribute() {
     value = 0;

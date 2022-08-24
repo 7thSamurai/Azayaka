@@ -13,13 +13,13 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "cart.hpp"
-#include "mbc1.hpp"
-#include "mbc2.hpp"
-#include "mbc3.hpp"
-#include "mbc5.hpp"
-#include "state.hpp"
-#include "globals.hpp"
+#include "core/rom/cart.hpp"
+#include "core/rom/mbc1.hpp"
+#include "core/rom/mbc2.hpp"
+#include "core/rom/mbc3.hpp"
+#include "core/rom/mbc5.hpp"
+#include "core/state.hpp"
+#include "core/globals.hpp"
 #include "common/logger.hpp"
 #include "common/binary_file.hpp"
 #include "common/file_utils.hpp"

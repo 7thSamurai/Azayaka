@@ -15,9 +15,9 @@
 
 #pragma once
 
-#include "component.hpp"
-#include "types.hpp"
-#include "input.hpp"
+#include "core/component.hpp"
+#include "core/types.hpp"
+#include "core/input/input.hpp"
 
 class Cpu;
 class State;

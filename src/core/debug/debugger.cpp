@@ -13,12 +13,12 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "debugger.hpp"
-#include "cpu/cpu.hpp"
-#include "memory/mmu.hpp"
-#include "rom/cart.hpp"
-#include "rom/rom.hpp"
-#include "gameboy.hpp"
+#include "core/debug/debugger.hpp"
+#include "core/cpu/cpu.hpp"
+#include "core/memory/mmu.hpp"
+#include "core/rom/cart.hpp"
+#include "core/rom/rom.hpp"
+#include "core/gameboy.hpp"
 #include "common/utils.hpp"
 
 #include <sstream>

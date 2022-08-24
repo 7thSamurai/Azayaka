@@ -15,7 +15,7 @@
 
 #pragma once
 
-#include "display/display.hpp"
+#include "core/display/display.hpp"
 
 class Shader;
 class Texture;

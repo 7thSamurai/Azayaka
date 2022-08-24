@@ -15,8 +15,8 @@
 
 #pragma once
 
-#include "component.hpp"
-#include "length_counter.hpp"
+#include "core/component.hpp"
+#include "core/audio/length_counter.hpp"
 
 class State;
 

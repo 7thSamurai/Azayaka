@@ -17,24 +17,24 @@
 #include <vector>
 #include <SDL.h>
 
-#include "window_sdl.hpp"
-#include "input_sdl.hpp"
-#include "audio_sdl.hpp"
-#include "debugger_sdl.hpp"
-#include "rewinder.hpp"
+#include "sdl/window_sdl.hpp"
+#include "sdl/input_sdl.hpp"
+#include "sdl/audio_sdl.hpp"
+#include "sdl/debugger_sdl.hpp"
+#include "core/rewinder.hpp"
 
-#include "options.hpp"
-#include "gameboy.hpp"
-#include "rom_list.hpp"
-#include "globals.hpp"
+#include "sdl/options.hpp"
+#include "core/gameboy.hpp"
+#include "core/rom_list.hpp"
+#include "core/globals.hpp"
 #include "common/utils.hpp"
 #include "common/parser.hpp"
 #include "common/logger.hpp"
 #include "common/image.hpp"
 #include "common/file_utils.hpp"
-#include "settings.hpp"
+#include "core/settings.hpp"
 
-#include "accessory/printer.hpp"
+#include "core/accessory/printer.hpp"
 
 #ifdef __APPLE__
 #define MODIFIER KMOD_GUI

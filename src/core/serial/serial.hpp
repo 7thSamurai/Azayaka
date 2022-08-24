@@ -15,8 +15,8 @@
 
 #pragma once
 
-#include "component.hpp"
-#include "serial_device.hpp"
+#include "core/component.hpp"
+#include "core/serial/serial_device.hpp"
 
 class State;
 

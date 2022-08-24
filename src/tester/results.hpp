@@ -15,8 +15,8 @@
 
 #pragma once
 
-#include "csv.hpp"
-#include "types.hpp"
+#include "tester/csv.hpp"
+#include "core/types.hpp"
 
 #include <vector>
 

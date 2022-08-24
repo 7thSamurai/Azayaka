@@ -15,8 +15,8 @@
 
 #pragma once
 
-#include "mbc.hpp"
-#include "rtc.hpp"
+#include "core/rom/mbc.hpp"
+#include "core/rom/rtc.hpp"
 
 class Mbc3 : public Mbc
 {

@@ -13,9 +13,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "frequency_sweep.hpp"
-#include "defs.hpp"
-#include "state.hpp"
+#include "core/audio/frequency_sweep.hpp"
+#include "core/defs.hpp"
+#include "core/state.hpp"
 
 #include <iostream>
 

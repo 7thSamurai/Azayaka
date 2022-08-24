@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "debugger_sdl.hpp"
+#include "sdl/debugger_sdl.hpp"
 
 #include <iostream>
 

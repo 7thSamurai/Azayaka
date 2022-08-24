@@ -15,9 +15,9 @@
 
 #pragma once
 
-#include "types.hpp"
-#include "component.hpp"
-#include "cart.hpp"
+#include "core/types.hpp"
+#include "core/component.hpp"
+#include "core/rom/cart.hpp"
 
 #include <string>
 #include <fstream>

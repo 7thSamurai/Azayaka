@@ -13,17 +13,17 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "cpu.hpp"
-#include "gameboy.hpp"
-#include "cpu/timer.hpp"
-#include "memory/mmu.hpp"
-#include "memory/dma.hpp"
-#include "memory/hdma.hpp"
-#include "gpu/gpu.hpp"
-#include "audio/apu.hpp"
-#include "serial/serial.hpp"
-#include "state.hpp"
-#include "globals.hpp"
+#include "core/cpu/cpu.hpp"
+#include "core/gameboy.hpp"
+#include "core/cpu/timer.hpp"
+#include "core/memory/mmu.hpp"
+#include "core/memory/dma.hpp"
+#include "core/memory/hdma.hpp"
+#include "core/gpu/gpu.hpp"
+#include "core/audio/apu.hpp"
+#include "core/serial/serial.hpp"
+#include "core/state.hpp"
+#include "core/globals.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
 

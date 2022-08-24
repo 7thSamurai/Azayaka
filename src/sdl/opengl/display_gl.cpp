@@ -13,10 +13,10 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "display_gl.hpp"
-#include "shader.hpp"
-#include "texture.hpp"
-#include "gl.hpp"
+#include "sdl/opengl/display_gl.hpp"
+#include "sdl/opengl/shader.hpp"
+#include "sdl/opengl/texture.hpp"
+#include "sdl/opengl/gl.hpp"
 
 #include <SDL.h>
 #include <iostream>

@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "parser.hpp"
+#include "common/parser.hpp"
 
 Option::Option(const std::string &long_option, char short_option, int num_of_args) {
     this->long_option  = long_option;

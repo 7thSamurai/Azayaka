@@ -15,7 +15,7 @@
 
 #pragma once
 
-#include "mbc.hpp"
+#include "core/rom/mbc.hpp"
 
 class Mbc5 : public Mbc
 {

@@ -13,9 +13,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "shader.hpp"
-#include "gl.hpp"
-#include "globals.hpp"
+#include "sdl/opengl/shader.hpp"
+#include "sdl/opengl/gl.hpp"
+#include "core/globals.hpp"
 #include "common/logger.hpp"
 
 #include <fstream>

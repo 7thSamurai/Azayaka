@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "input_sdl.hpp"
-#include "input/joypad.hpp"
+#include "sdl/input_sdl.hpp"
+#include "core/input/joypad.hpp"
 
 #include <map>
 #include <SDL_keyboard.h>

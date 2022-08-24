@@ -13,9 +13,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "volume_envelope.hpp"
-#include "defs.hpp"
-#include "state.hpp"
+#include "core/audio/volume_envelope.hpp"
+#include "core/defs.hpp"
+#include "core/state.hpp"
 
 VolumeEnvelope::VolumeEnvelope() {
     power_off();

@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "cpu_debugger.hpp"
-#include "cpu/cpu.hpp"
+#include "core/debug/cpu_debugger.hpp"
+#include "core/cpu/cpu.hpp"
 
 CpuDebugger::CpuDebugger() {
 }

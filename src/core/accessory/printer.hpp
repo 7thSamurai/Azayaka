@@ -15,8 +15,8 @@
 
 #pragma once
 
-#include "serial/serial_device.hpp"
-#include "types.hpp"
+#include "core/serial/serial_device.hpp"
+#include "core/types.hpp"
 
 #include <string>
 

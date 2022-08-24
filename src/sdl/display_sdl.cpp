@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "display_sdl.hpp"
-#include "globals.hpp"
+#include "sdl/display_sdl.hpp"
+#include "core/globals.hpp"
 #include "common/logger.hpp"
 
 #include <SDL.h>

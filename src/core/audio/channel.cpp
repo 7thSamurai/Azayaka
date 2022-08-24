@@ -13,9 +13,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "channel.hpp"
-#include "defs.hpp"
-#include "state.hpp"
+#include "core/audio/channel.hpp"
+#include "core/defs.hpp"
+#include "core/state.hpp"
 
 Channel::Channel(GameBoy *gb) : Component(gb) {
     channel_enabled = 0;

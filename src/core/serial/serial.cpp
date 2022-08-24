@@ -13,12 +13,12 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "serial.hpp"
-#include "gameboy.hpp"
-#include "state.hpp"
-#include "cpu/cpu.hpp"
-#include "globals.hpp"
-#include "defs.hpp"
+#include "core/serial/serial.hpp"
+#include "core/gameboy.hpp"
+#include "core/state.hpp"
+#include "core/cpu/cpu.hpp"
+#include "core/globals.hpp"
+#include "core/defs.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
 

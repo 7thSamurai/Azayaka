@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "hash.hpp"
-#include "binary_file.hpp"
+#include "common/hash.hpp"
+#include "common/binary_file.hpp"
 
 namespace Common {
 

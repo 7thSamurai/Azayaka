@@ -15,7 +15,7 @@
 
 #pragma once
 
-#include "channel.hpp"
+#include "core/audio/channel.hpp"
 
 class Channel3 : public Channel
 {

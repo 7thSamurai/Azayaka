@@ -15,9 +15,9 @@
 
 #pragma once
 
-#include "component.hpp"
-#include "defs.hpp"
-#include "types.hpp"
+#include "core/component.hpp"
+#include "core/defs.hpp"
+#include "core/types.hpp"
 
 #include <string>
 

@@ -13,12 +13,12 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "joypad.hpp"
-#include "gameboy.hpp"
-#include "state.hpp"
-#include "cpu/cpu.hpp"
-#include "defs.hpp"
-#include "globals.hpp"
+#include "core/input/joypad.hpp"
+#include "core/gameboy.hpp"
+#include "core/state.hpp"
+#include "core/cpu/cpu.hpp"
+#include "core/defs.hpp"
+#include "core/globals.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
 

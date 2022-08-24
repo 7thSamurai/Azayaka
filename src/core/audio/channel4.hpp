@@ -15,8 +15,8 @@
 
 #pragma once
 
-#include "channel.hpp"
-#include "volume_envelope.hpp"
+#include "core/audio/channel.hpp"
+#include "core/audio/volume_envelope.hpp"
 
 class Channel4 : public Channel
 {

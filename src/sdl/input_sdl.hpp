@@ -15,7 +15,7 @@
 
 #pragma once
 
-#include "input/input.hpp"
+#include "core/input/input.hpp"
 
 class InputSDL : public Input
 {

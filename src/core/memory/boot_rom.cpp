@@ -13,11 +13,11 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "boot_rom.hpp"
-#include "gameboy.hpp"
-#include "memory/mmu.hpp"
-#include "rom/rom.hpp"
-#include "globals.hpp"
+#include "core/memory/boot_rom.hpp"
+#include "core/gameboy.hpp"
+#include "core/memory/mmu.hpp"
+#include "core/rom/rom.hpp"
+#include "core/globals.hpp"
 #include "common/logger.hpp"
 #include "common/utils.hpp"
 #include "common/binary_file.hpp"
