@@ -49,7 +49,7 @@ byte Mbc5::read_byte(word address, UsageType usage) {
     }
 
     else
-        LOG_WARNING("Mbc5::read_byte can't access address 0x" + hex(address, 4));
+        LOG_WARNING("Mbc5::read_byte can't access address 0x" + hex(address));
 
     return 0;
 }
@@ -86,5 +86,5 @@ void Mbc5::write_byte(word address, byte value) {
     }
 
     else
-        LOG_WARNING("Mbc5::write_byte can't access address 0x" + hex(address, 4));
+        LOG_WARNING("Mbc5::write_byte can't access address 0x" + hex(address));
 }

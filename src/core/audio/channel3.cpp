@@ -64,7 +64,7 @@ byte Channel3::read(word address) {
             break;
     }
 
-    LOG_WARNING("Channel3::read can't access address 0x" + hex(address, 4));
+    LOG_WARNING("Channel3::read can't access address 0x" + hex(address));
 
     return 0;
 }
@@ -112,7 +112,7 @@ void Channel3::write(word address, byte value) {
             break;
     }
 
-    LOG_WARNING("Channel3::write can't access address 0x" + hex(address, 4));
+    LOG_WARNING("Channel3::write can't access address 0x" + hex(address));
 }
 
 void Channel3::tick() {

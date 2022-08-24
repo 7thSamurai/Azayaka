@@ -123,7 +123,7 @@ byte Joypad::read(word address) {
             return 0xCF;
     }
 
-    LOG_WARNING("Joypad::read can't access address 0x" + hex(address, 4));
+    LOG_WARNING("Joypad::read can't access address 0x" + hex(address));
 
     return 0;
 }
@@ -133,7 +133,7 @@ void Joypad::write(word address, byte value) {
         column = value & 0x30;
 
     else
-        LOG_WARNING("Joypad::write can't access address 0x" + hex(address, 4));
+        LOG_WARNING("Joypad::write can't access address 0x" + hex(address));
 }
 
 void Joypad::save_state(State &state) {

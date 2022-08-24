@@ -17,8 +17,13 @@
 
 #include <string>
 
-std::string hex(int n);
-std::string hex(int n, int digits);
+std::string hex(unsigned int n, unsigned int digits);
+
+template<typename T>
+std::string hex(const T &n) {
+    // Automatically determine the number of digits required to represent the type
+    return hex(n, sizeof(T) * 2);
+}
 
 int as_hex(char c);
 int from_hex(const std::string &str);

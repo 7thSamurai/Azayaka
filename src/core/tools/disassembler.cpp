@@ -20,8 +20,8 @@
 #include <fstream>
 #include <iostream>
 
-#define N   "$"+hex(read_byte(), 2)
-#define NN  "$"+hex(read_word(), 4)
+#define N   "$"+hex(read_byte())
+#define NN  "$"+hex(read_word())
 #define IN  read_in(comment)
 #define INN read_inn(comment)
 #define REL read_branch()
@@ -60,21 +60,21 @@ Disassembler::~Disassembler() {
 std::string Disassembler::read_branch() {
     s8 offset = s8(read_byte());
 
-    return "$" + hex(pc + offset, 4);
+    return "$" + hex(pc + offset);
 }
 
 std::string Disassembler::read_in(std::string &comment) {
     byte offset = read_byte();
     comment = read_io(0xFF00 + offset);
 
-    return "($ff00+$" + hex(offset, 2) + ")";
+    return "($ff00+$" + hex(offset) + ")";
 }
 
 std::string Disassembler::read_inn(std::string &comment) {
     word address = read_word();
     comment = read_io(address);
 
-    return "($" + hex(address, 4) + ")";
+    return "($" + hex(address) + ")";
 }
 
 std::string Disassembler::read_io(word address) {
@@ -711,7 +711,7 @@ int FileDisassembler::disassemble(const std::string &file_path) {
     std::string instr, pc_str;
 
     while (pc < size) {
-        pc_str = "$" + hex(pc, 4) + ":\t";
+        pc_str = "$" + hex(pc) + ":\t";
         disassemble_instr(read_byte(), instr);
 
         std::cout << pc_str << instr << std::endl;
@@ -759,14 +759,14 @@ int FileDisassembler::disassemble(const std::string &file_path, const std::strin
                 data_bytes.clear();
             }
 
-            pc_str =  "$" + hex(pc, 4) + ":\t";
+            pc_str =  "$" + hex(pc) + ":\t";
             disassemble_instr(read_byte(), instr);
             std::cout << pc_str << instr << std::endl;
         }
 
         else if (rom_usage[pc] == USAGE_DATA) {
             if (!data_bytes.size())
-                std::cout << "$" << hex(pc, 4) << ":" << std::endl;
+                std::cout << "$" << hex(pc) << ":" << std::endl;
 
             data_bytes.push_back(data[pc++]);
         }
@@ -808,7 +808,7 @@ void FileDisassembler::print_data(const std::vector <byte> &data_bytes) {
             if (i+j > data_bytes.size())
                 break;
 
-            std::cout << "$" << hex(data_bytes[i+j], 2) << " ";
+            std::cout << "$" << hex(data_bytes[i+j]) << " ";
         }
 
         std::cout << std::endl;

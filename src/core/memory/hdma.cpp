@@ -72,7 +72,7 @@ byte Hdma::read(word address) {
             break;
     }
 
-    LOG_WARNING("Hdma::read can't access address 0x" + hex(address, 4));
+    LOG_WARNING("Hdma::read can't access address 0x" + hex(address));
 
     return 0;
 }
@@ -126,7 +126,7 @@ void Hdma::write(word address, byte value) {
             break;
     }
 
-    LOG_WARNING("Hdma::write can't access address 0x" + hex(address, 4));
+    LOG_WARNING("Hdma::write can't access address 0x" + hex(address));
 }
 
 void Hdma::save_state(State &state) {

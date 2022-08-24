@@ -27,7 +27,7 @@ byte Lcdc::read(word address) {
     if (address == 0xFF40)
         return value;
 
-    LOG_WARNING("Lcdc::read can't access address 0x" + hex(address, 4));
+    LOG_WARNING("Lcdc::read can't access address 0x" + hex(address));
 
     return 0;
 }
@@ -38,7 +38,7 @@ void Lcdc::write(word address, byte value) {
         return;
     }
 
-    LOG_WARNING("Lcdc::write can't access address 0x" + hex(address, 4));
+    LOG_WARNING("Lcdc::write can't access address 0x" + hex(address));
 }
 
 bool Lcdc::background_on() const {

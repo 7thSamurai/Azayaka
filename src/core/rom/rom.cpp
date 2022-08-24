@@ -77,7 +77,7 @@ int Rom::load_rom(const std::string &rom_path, std::string &error) {
         case 5: ram_size_num = (64  * 1024); break;
 
         default:
-            LOG_WARNING("Rom::load_rom unknown ram-size 0x" + hex(header[0x149], 2));
+            LOG_WARNING("Rom::load_rom unknown ram-size 0x" + hex(header[0x149]));
     }
 
     if (cart != nullptr)
@@ -118,7 +118,7 @@ int Rom::load_rom(const std::string &rom_path, std::string &error) {
 
         default:
             file.close();
-            error = "Unknown Rom-Type: 0x" + hex(rom_type, 2);
+            error = "Unknown Rom-Type: 0x" + hex(rom_type);
             return -1;
     }
 
@@ -388,7 +388,7 @@ byte Plain::read_byte(word address, UsageType usage) {
     else if (address >= 0xA000 && address <= 0xBFFF)
         return ecart[address - 0xA000];
 
-    LOG_WARNING("Plain::read_byte can't access address 0x" + hex(address, 4));
+    LOG_WARNING("Plain::read_byte can't access address 0x" + hex(address));
 
     return 0;
 }
@@ -398,7 +398,7 @@ void Plain::write_byte(word address, byte value) {
         ecart[address - 0xA000] = value;
 
     else
-        LOG_WARNING("Plain::write_byte can't access address 0x" + hex(address, 4));
+        LOG_WARNING("Plain::write_byte can't access address 0x" + hex(address));
 }
 
 int Plain::get_usage(word address) {

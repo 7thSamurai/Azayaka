@@ -178,7 +178,7 @@ void Printer::run_command(byte command) {
 
             // Ignore empty packets
             else if (command_length != 0)
-                LOG_ERROR("Printer gave unsupported data size of 0x" + hex(command_length, 4));
+                LOG_ERROR("Printer gave unsupported data size of 0x" + hex(command_length));
             break;
 
         case CommandId_Status:
@@ -189,7 +189,7 @@ void Printer::run_command(byte command) {
             break;
 
         default:
-            LOG_WARNING("Unknown printer command 0x" + hex(command, 2));
+            LOG_WARNING("Unknown printer command 0x" + hex(command));
             break;
     }
 }

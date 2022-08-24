@@ -141,7 +141,7 @@ byte Gpu::read(word address) {
             break;
     }
 
-    LOG_WARNING("Gpu::read can't access address: 0x" + hex(address, 4));
+    LOG_WARNING("Gpu::read can't access address: 0x" + hex(address));
 
     return 0;
 }
@@ -228,7 +228,7 @@ void Gpu::write(word address, byte value) {
             break;
     }
 
-    LOG_WARNING("Gpu::write can't access address: 0x" + hex(address, 4));
+    LOG_WARNING("Gpu::write can't access address: 0x" + hex(address));
 }
 
 void Gpu::write_oam(word address, byte value) {

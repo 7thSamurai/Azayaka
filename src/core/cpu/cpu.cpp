@@ -400,7 +400,7 @@ inline void Cpu::update_flag(byte flag, bool state) {
 }
 
 void Cpu::invalid_op() {
-    LOG_ERROR("Invalid Instruction 0x" + hex(gb->mmu->read_byte(pc-1), 2) + " at address: 0x" + hex(pc-1, 4));
+    LOG_ERROR("Invalid Instruction 0x" + hex(gb->mmu->read_byte(pc-1)) + " at address: 0x" + hex<u16>(pc-1));
 }
 
 inline bool Cpu::interrupts_to_do() {

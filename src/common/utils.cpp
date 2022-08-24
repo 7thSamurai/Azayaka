@@ -18,15 +18,7 @@
 #include <sstream>
 #include <iomanip>
 
-std::string hex(int n) {
-    std::stringstream ss;
-
-    ss << std::hex << n;
-
-    return ss.str();
-}
-
-std::string hex(int n, int digits) {
+std::string hex(unsigned int n, unsigned int digits) {
     std::stringstream ss;
 
     ss << std::setfill('0') << std::setw(digits) << std::hex << n;

@@ -25,13 +25,13 @@ Component::~Component() {
 }
 
 byte Component::read(word address) {
-    LOG_WARNING("Component::read can't access address 0x" + hex(address, 4));
+    LOG_WARNING("Component::read can't access address 0x" + hex(address));
 
     return 0;
 }
 
 void Component::write(word address, byte value) {
-    LOG_WARNING("Component::write can't access address 0x" + hex(address, 4));
+    LOG_WARNING("Component::write can't access address 0x" + hex(address));
 }
 
 byte Component::read_instruction(word address) {

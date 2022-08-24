@@ -198,7 +198,7 @@ byte Mmu::read(word address) {
             return 0xFF;
     }
 
-    LOG_WARNING("Mmu::read can't access address 0x" + hex(address, 4));
+    LOG_WARNING("Mmu::read can't access address 0x" + hex(address));
 
     return 0;
 }
@@ -257,6 +257,6 @@ void Mmu::write(word address, byte value) {
                 return;
         }
 
-        LOG_WARNING("Mmu::write can't access address 0x" + hex(address, 4));
+        LOG_WARNING("Mmu::write can't access address 0x" + hex(address));
     }
 }
