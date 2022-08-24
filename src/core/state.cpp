@@ -14,7 +14,7 @@
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
 #include "core/state.hpp"
-#include "common/utils.hpp"
+#include "common/string_utils.hpp"
 
 int State_File::open_read(const std::string &file_path) {
     return file.open(file_path, BinaryFile::Mode_Read) ? 0 : -1;

@@ -19,7 +19,7 @@
 #include "core/state.hpp"
 #include "core/defs.hpp"
 #include "common/logger.hpp"
-#include "common/utils.hpp"
+#include "common/string_utils.hpp"
 
 Mmu::Mmu(GameBoy *gb) : Component(gb) {
     for (int i = 0; i < 8; i++)

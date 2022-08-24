@@ -18,7 +18,7 @@
 #include "core/memory/mmu.hpp"
 #include "core/rom/rom.hpp"
 #include "common/logger.hpp"
-#include "common/utils.hpp"
+#include "common/string_utils.hpp"
 #include "common/binary_file.hpp"
 
 BootRom::BootRom(GameBoy *gb) : Component(gb) {

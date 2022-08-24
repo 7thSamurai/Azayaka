@@ -24,7 +24,7 @@
 #include "core/serial/serial.hpp"
 #include "core/state.hpp"
 #include "common/logger.hpp"
-#include "common/utils.hpp"
+#include "common/string_utils.hpp"
 
 #include <fstream>
 

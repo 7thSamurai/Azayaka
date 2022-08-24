@@ -9,7 +9,7 @@ add_library(common STATIC
 	logger.cpp
 	parser.cpp
 	png.cpp
-	utils.cpp
+	string_utils.cpp
 	wave_file.cpp
 )
 

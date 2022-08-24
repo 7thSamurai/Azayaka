@@ -20,7 +20,7 @@
 #include "core/memory/hdma.hpp"
 #include "core/state.hpp"
 #include "common/logger.hpp"
-#include "common/utils.hpp"
+#include "common/string_utils.hpp"
 
 Gpu::Gpu(GameBoy *gb) : Component(gb) {
     screen_buffer = new Color[160*144];

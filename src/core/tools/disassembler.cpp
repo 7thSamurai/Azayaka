@@ -15,7 +15,7 @@
 
 #include "core/tools/disassembler.hpp"
 #include "core/memory/mmu.hpp"
-#include "common/utils.hpp"
+#include "common/string_utils.hpp"
 
 #include <fstream>
 #include <iostream>

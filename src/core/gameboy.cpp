@@ -28,7 +28,7 @@
 #include "core/state.hpp"
 #include "core/input/input.hpp"
 #include "core/display/display.hpp"
-#include "common/utils.hpp"
+#include "common/string_utils.hpp"
 #include "core/settings.hpp"
 
 GameBoy::GameBoy() {

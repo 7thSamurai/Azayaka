@@ -15,7 +15,7 @@
 
 #include "core/rom/mbc5.hpp"
 #include "common/logger.hpp"
-#include "common/utils.hpp"
+#include "common/string_utils.hpp"
 
 Mbc5::Mbc5(int rom_size_num, int ram_size_num) : Mbc(rom_size_num, ram_size_num) {
 }

@@ -15,7 +15,7 @@
 
 #include "core/component.hpp"
 #include "common/logger.hpp"
-#include "common/utils.hpp"
+#include "common/string_utils.hpp"
 
 Component::Component(GameBoy *gb) {
     this->gb = gb;

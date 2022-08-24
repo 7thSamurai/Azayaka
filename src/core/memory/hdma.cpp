@@ -20,7 +20,7 @@
 #include "core/gpu/gpu.hpp"
 #include "core/defs.hpp"
 #include "common/logger.hpp"
-#include "common/utils.hpp"
+#include "common/string_utils.hpp"
 
 Hdma::Hdma(GameBoy *gb) : Component(gb) {
     mode = Mode_Gdma;

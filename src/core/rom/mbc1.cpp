@@ -16,7 +16,7 @@
 #include "core/rom/mbc1.hpp"
 #include "core/state.hpp"
 #include "common/logger.hpp"
-#include "common/utils.hpp"
+#include "common/string_utils.hpp"
 
 Mbc1::Mbc1(int rom_size_num, int ram_size_num) : Mbc(rom_size_num, ram_size_num) {
     mode = 0;

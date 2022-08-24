@@ -19,7 +19,7 @@
 #include "core/cpu/cpu.hpp"
 #include "core/defs.hpp"
 #include "common/logger.hpp"
-#include "common/utils.hpp"
+#include "common/string_utils.hpp"
 
 static SerialDeviceNull null_serial_device;
 

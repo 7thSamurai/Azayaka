@@ -19,7 +19,7 @@
 #include "core/state.hpp"
 #include "core/gpu/gpu.hpp"
 #include "common/logger.hpp"
-#include "common/utils.hpp"
+#include "common/string_utils.hpp"
 
 Dma::Dma(GameBoy *gb) : Component(gb) {
     enabled    = 0;

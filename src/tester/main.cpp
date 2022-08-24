@@ -16,7 +16,7 @@
 #include "core/gameboy.hpp"
 #include "tester/results.hpp"
 #include "common/logger.hpp"
-#include "common/utils.hpp"
+#include "common/string_utils.hpp"
 #include "common/hash.hpp"
 #include "common/image.hpp"
 #include "common/file_utils.hpp"

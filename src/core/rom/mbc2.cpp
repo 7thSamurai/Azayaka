@@ -15,7 +15,7 @@
 
 #include "core/rom/mbc2.hpp"
 #include "common/logger.hpp"
-#include "common/utils.hpp"
+#include "common/string_utils.hpp"
 
 Mbc2::Mbc2(int rom_size_num, int ram_size_num) : Mbc(rom_size_num, ram_size_num) {
 }

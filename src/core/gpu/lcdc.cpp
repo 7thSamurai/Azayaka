@@ -17,7 +17,7 @@
 #include "core/defs.hpp"
 #include "core/state.hpp"
 #include "common/logger.hpp"
-#include "common/utils.hpp"
+#include "common/string_utils.hpp"
 
 Lcdc::Lcdc() : Component(nullptr) {
     value = 0x00;

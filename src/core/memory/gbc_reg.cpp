@@ -17,7 +17,7 @@
 #include "core/gameboy.hpp"
 #include "core/state.hpp"
 #include "common/logger.hpp"
-#include "common/utils.hpp"
+#include "common/string_utils.hpp"
 
 GbcReg::GbcReg(GameBoy *gb) : Component(gb) {
     ff6c = ff72 = ff73 = ff74 = ff75 = 0x00;

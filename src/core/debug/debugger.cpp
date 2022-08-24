@@ -19,7 +19,7 @@
 #include "core/rom/cart.hpp"
 #include "core/rom/rom.hpp"
 #include "core/gameboy.hpp"
-#include "common/utils.hpp"
+#include "common/string_utils.hpp"
 
 #include <sstream>
 

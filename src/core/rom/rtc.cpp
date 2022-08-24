@@ -16,7 +16,7 @@
 #include "core/rom/rtc.hpp"
 #include "core/defs.hpp"
 #include "common/logger.hpp"
-#include "common/utils.hpp"
+#include "common/string_utils.hpp"
 #include "common/binary_file.hpp"
 
 #include <ctime>

@@ -19,7 +19,7 @@
 #include "core/cpu/cpu.hpp"
 #include "core/state.hpp"
 #include "common/logger.hpp"
-#include "common/utils.hpp"
+#include "common/string_utils.hpp"
 
 Timer::Timer(GameBoy *gb) : Component(gb) {
     div  = 0;

@@ -18,7 +18,7 @@
 #include "core/defs.hpp"
 #include "core/state.hpp"
 #include "common/logger.hpp"
-#include "common/utils.hpp"
+#include "common/string_utils.hpp"
 
 Channel2::Channel2(GameBoy *gb) : Channel(gb) {
     timer     = 0;

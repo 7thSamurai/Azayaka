@@ -17,7 +17,7 @@
 #include "core/defs.hpp"
 #include "core/state.hpp"
 #include "common/logger.hpp"
-#include "common/utils.hpp"
+#include "common/string_utils.hpp"
 
 Mbc3::Mbc3(int rom_size_num, int ram_size_num) : Mbc(rom_size_num, ram_size_num) {
 }

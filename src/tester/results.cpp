@@ -14,7 +14,7 @@
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
 #include "tester/results.hpp"
-#include "common/utils.hpp"
+#include "common/string_utils.hpp"
 
 #include <fstream>
 #include <iostream>

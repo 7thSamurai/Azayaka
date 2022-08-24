@@ -22,7 +22,7 @@
 #include "core/gameboy.hpp"
 #include "core/state.hpp"
 #include "common/logger.hpp"
-#include "common/utils.hpp"
+#include "common/string_utils.hpp"
 #include "common/binary_file.hpp"
 #include "common/file_utils.hpp"
 

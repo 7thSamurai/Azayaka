@@ -26,7 +26,7 @@
 #include "sdl/options.hpp"
 #include "core/gameboy.hpp"
 #include "core/rom_list.hpp"
-#include "common/utils.hpp"
+#include "common/string_utils.hpp"
 #include "common/parser.hpp"
 #include "common/logger.hpp"
 #include "common/image.hpp"
