@@ -25,6 +25,7 @@ if (SDL2_FOUND)
 	add_subdirectory(src/sdl)
 endif()
 
+add_subdirectory(src/common)
 add_subdirectory(src/core)
 add_subdirectory(src/tester)
 

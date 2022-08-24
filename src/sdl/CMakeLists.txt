@@ -9,8 +9,6 @@ add_executable(Azayaka-sdl
 	options.cpp
 	window_sdl.cpp)
 
-target_include_directories(Azayaka-sdl PUBLIC ../core)
-
 if (OpenGL_FOUND)
 	target_sources(Azayaka-sdl PRIVATE 
 		opengl/display_gl.cpp

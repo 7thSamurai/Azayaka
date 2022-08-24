@@ -20,8 +20,8 @@
 #include "core/state.hpp"
 #include "core/settings.hpp"
 #include "core/audio/audio_driver.hpp"
-#include "core/common/logger.hpp"
-#include "core/common/utils.hpp"
+#include "common/logger.hpp"
+#include "common/utils.hpp"
 
 #include "core/audio/channel1.hpp"
 #include "core/audio/channel2.hpp"

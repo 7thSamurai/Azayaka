@@ -17,18 +17,6 @@ add_library(core STATIC
 	audio/frequency_sweep.cpp
 	audio/length_counter.cpp
 	audio/volume_envelope.cpp
-	common/binary_file.cpp
-	common/bmp.cpp
-	common/color.cpp
-	common/file_utils.cpp
-	common/hash.cpp
-	common/image.cpp
-	common/ini_file.cpp
-	common/logger.cpp
-	common/parser.cpp
-	common/png.cpp
-	common/utils.cpp
-	common/wave_file.cpp
 	cpu/cpu.cpp
 	cpu/timer.cpp
 	debug/cpu_debugger.cpp
@@ -60,9 +48,4 @@ add_library(core STATIC
 	serial/serial.cpp
 	tools/disassembler.cpp)
 
-target_include_directories(core PUBLIC ../core)
-target_link_libraries(core PUBLIC stdc++fs)
-
-if (PNG_FOUND)
-	target_link_libraries(core PUBLIC png)
-endif()
+target_link_libraries(core PUBLIC common stdc++fs)

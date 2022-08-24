@@ -5,6 +5,4 @@ add_executable(Azayaka-tester
 	main.cpp
 	results.cpp)
 
-target_include_directories(Azayaka-tester PUBLIC ../core)
-
 target_link_libraries(Azayaka-tester PRIVATE core)
