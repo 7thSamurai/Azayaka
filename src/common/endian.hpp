@@ -15,7 +15,7 @@
 
 #pragma once
 
-#include "core/types.hpp"
+#include "common/types.hpp"
 
 #ifdef __linux__
     #include <endian.h>
