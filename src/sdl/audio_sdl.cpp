@@ -37,7 +37,7 @@ int AudioSDL::start(unsigned int sample_rate, unsigned int buffer_size) {
         return -1;
     }
     else {
-        logger.log("Initialized audio subsystem", Logger::Info, Logger::Verbose);
+        logger.log("Initialized audio subsystem", Logger::Debug);
     }
 
     mutex = SDL_CreateMutex();
@@ -59,7 +59,7 @@ int AudioSDL::start(unsigned int sample_rate, unsigned int buffer_size) {
         return -1;
     }
     else
-        logger.log("Opened audio-device", Logger::Info, Logger::Verbose);
+        logger.log("Opened audio-device", Logger::Debug);
 
     started = 1;
 
@@ -79,16 +79,16 @@ void AudioSDL::stop() {
 
     SDL_DestroyMutex(mutex);
 
-    logger.log("Stopped audio-device", Logger::Info, Logger::Verbose);
+    logger.log("Stopped audio-device", Logger::Debug);
 }
 
 void AudioSDL::pause(bool value) {
     SDL_PauseAudioDevice(device_id, value);
 
     if (value)
-        logger.log("Paused audio-device", Logger::Info, Logger::Verbose);
+        logger.log("Paused audio-device", Logger::Debug);
     else
-        logger.log("Unpaused audio-device", Logger::Info, Logger::Verbose);
+        logger.log("Unpaused audio-device", Logger::Debug);
 }
 
 void AudioSDL::reset() {
@@ -108,9 +108,9 @@ void AudioSDL::set_sync_to_audio(bool sync_to_audio) {
     SDL_UnlockAudioDevice(device_id);
 
     if (sync_to_audio)
-        logger.log("Syncing emulation to audio", Logger::Info, Logger::Verbose);
+        logger.log("Syncing emulation to audio", Logger::Debug);
     else
-        logger.log("Not syncing emulation to audio", Logger::Info, Logger::Verbose);
+        logger.log("Not syncing emulation to audio", Logger::Debug);
 }
 
 void AudioSDL::callback(uint8_t *stream, int len) {

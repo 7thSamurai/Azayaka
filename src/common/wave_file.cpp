@@ -31,7 +31,7 @@ int WaveFile::open(const std::string &file_path, unsigned int rate) {
         return -1;
     }
     else
-        logger.log("Opened wave-file", Logger::Info, Logger::Verbose);
+        logger.log("Opened wave-file", Logger::Debug);
 
     // Write the header info
     write4("RIFF");           // Riff
@@ -67,7 +67,7 @@ void WaveFile::close() {
 
     file.close();
 
-    logger.log("Closed wave-file", Logger::Info, Logger::Verbose);
+    logger.log("Closed wave-file", Logger::Debug);
 }
 
 void WaveFile::write_sample(s16 left, s16 right) {

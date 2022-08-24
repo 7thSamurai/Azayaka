@@ -27,7 +27,7 @@ WindowSDL::WindowSDL() {
     if (SDL_InitSubSystem(SDL_INIT_VIDEO) < 0)
         logger.log("Unable to initialize video subsystem", Logger::Error);
     else
-        logger.log("Initialized video subsystem", Logger::Info, Logger::Verbose);
+        logger.log("Initialized video subsystem", Logger::Debug);
 
     window     = nullptr;
     gl_context = nullptr;
@@ -61,24 +61,24 @@ int WindowSDL::create(const std::string &title, float scale, bool multiplayer, b
         return -1;
     }
     else
-        logger.log("Created window", Logger::Info, Logger::Verbose);
+        logger.log("Created window", Logger::Debug);
 
 #ifdef USE_GL
     if (force_sdl) {
         gl_context = nullptr;
-        logger.log("Forcing SDL as the video-driver", Logger::Info, Logger::Verbose);
+        logger.log("Forcing SDL as the video-driver", Logger::Debug);
     }
 
     else {
         gl_context = SDL_GL_CreateContext(window);
-        logger.log("Created OpenGL context", Logger::Info, Logger::Verbose);
+        logger.log("Created OpenGL context", Logger::Debug);
 
         // Get the OpenGL version
         int major = 0, minor = 0;
         glGetIntegerv(GL_MAJOR_VERSION, &major);
         glGetIntegerv(GL_MINOR_VERSION, &minor);
 
-        logger.log("Got OpenGL "+std::to_string(major)+"."+std::to_string(minor), Logger::Info, Logger::Verbose);
+        logger.log("Got OpenGL "+std::to_string(major)+"."+std::to_string(minor), Logger::Debug);
 
         // Make sure the the OpenGL Version is new enough
         if (major*100 + minor < 303) {
@@ -96,7 +96,7 @@ int WindowSDL::create(const std::string &title, float scale, bool multiplayer, b
     else
         display = new DisplaySDL(window);
 #else
-    logger.log("Only SDL was enabled as the video-driver at compile-time", Logger::Info, Logger::Verbose);
+    logger.log("Only SDL was enabled as the video-driver at compile-time", Logger::Debug);
     display = new DisplaySDL(window);
 #endif
 
@@ -151,11 +151,11 @@ void WindowSDL::resize(int w, int h, int num) {
 
 void WindowSDL::set_fullscreen(bool fullscreen) {
     if (fullscreen) {
-        logger.log("Switching to fullscreen", Logger::Info, Logger::Verbose);
+        logger.log("Switching to fullscreen", Logger::Debug);
         SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
     }
     else {
-        logger.log("Switching back from fullscreen", Logger::Info, Logger::Verbose);
+        logger.log("Switching back from fullscreen", Logger::Debug);
         SDL_SetWindowFullscreen(window, 0);
     }
 }

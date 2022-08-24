@@ -28,7 +28,7 @@ Texture::~Texture() {
 }
 
 void Texture::create() {
-    logger.log("Creating OpenGL texture...", Logger::Info, Logger::Verbose);
+    logger.log("Creating OpenGL texture...", Logger::Debug);
 
     glGenTextures(1, &id);
 

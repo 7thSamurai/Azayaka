@@ -219,12 +219,12 @@ int main(int argc, char **argv) {
                                 audio_driver.set_mode(AudioDriver::Mode_Normal);
 
                                 window.set_status_text("Paused", -1);
-                                logger.log("Paused emulation", Logger::Info, Logger::Verbose);
+                                logger.log("Paused emulation", Logger::Debug);
                             }
                             else {
                                 audio_driver.pause(0);
                                 window.clear_status_text();
-                                logger.log("Unpaused emulation", Logger::Info, Logger::Verbose);
+                                logger.log("Unpaused emulation", Logger::Debug);
                             }
                         }
                         break;
@@ -246,7 +246,7 @@ int main(int argc, char **argv) {
                             audio_driver.reset();
 
                             window.set_status_text("Reseting", 2);
-                            logger.log("Reset emulation", Logger::Info, Logger::Verbose);
+                            logger.log("Reset emulation", Logger::Debug);
                         }
                         break;
 
@@ -255,7 +255,7 @@ int main(int argc, char **argv) {
                         if (!pause) {
                             audio_driver.set_mode(AudioDriver::Mode_Turbo);
                             window.set_status_text("Turbo", -1);
-                            logger.log("Started running in turbo mode", Logger::Info, Logger::Verbose);
+                            logger.log("Started running in turbo mode", Logger::Debug);
                         }
                         break;
 
@@ -264,7 +264,7 @@ int main(int argc, char **argv) {
                         if (!pause) {
                             audio_driver.set_mode(AudioDriver::Mode_SlowMotion);
                             window.set_status_text("Slow-Motion", -1);
-                            logger.log("Started running in slow-motion mode", Logger::Info, Logger::Verbose);
+                            logger.log("Started running in slow-motion mode", Logger::Debug);
                         }
                         break;
 
@@ -274,7 +274,7 @@ int main(int argc, char **argv) {
 
                             rewinding = 1;
                             window.set_status_text("Rewinding", -1);
-                            logger.log("Started rewinding", Logger::Info, Logger::Verbose);
+                            logger.log("Started rewinding", Logger::Debug);
                         }
                         break;
 
@@ -333,7 +333,7 @@ int main(int argc, char **argv) {
                         if (!pause) {
                             audio_driver.set_mode(AudioDriver::Mode_Normal);
                             window.clear_status_text();
-                            logger.log("Stopped turbo mode", Logger::Info, Logger::Verbose);
+                            logger.log("Stopped turbo mode", Logger::Debug);
                         }
                         break;
 
@@ -342,7 +342,7 @@ int main(int argc, char **argv) {
                         if (!pause) {
                             audio_driver.set_mode(AudioDriver::Mode_Normal);
                             window.clear_status_text();
-                            logger.log("Stopped slow-motion mode", Logger::Info, Logger::Verbose);
+                            logger.log("Stopped slow-motion mode", Logger::Debug);
                         }
                         break;
 
@@ -352,7 +352,7 @@ int main(int argc, char **argv) {
 
                             rewinding = 0;
                             window.clear_status_text();
-                            logger.log("Stopped rewinding", Logger::Info, Logger::Verbose);
+                            logger.log("Stopped rewinding", Logger::Debug);
 
                             input.reset();
                         }
@@ -465,7 +465,7 @@ int main(int argc, char **argv) {
 
     audio_driver.stop();
 
-    logger.log("Shutting down SDL...", Logger::Info, Logger::Verbose);
+    logger.log("Shutting down SDL...", Logger::Debug);
 
     SDL_Quit();
 

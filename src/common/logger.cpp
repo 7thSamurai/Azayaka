@@ -25,16 +25,17 @@ Logger::Logger() {
 Logger::~Logger() {
 }
 // verbose verbosity
-void Logger::log(const std::string &msg, Level level, Verbosity verbosity) {
+void Logger::log(const std::string &msg, Level level) {
     if (!enabled)
         return;
 
-    if (verbosity && !verbose_enabled)
+    if (level == Level::Debug && !verbose_enabled)
         return;
 
 #ifdef __linux__
     switch (level) {
         case Level::Info:
+        case Level::Debug:
             std::cout << msg << std::endl;
             break;
 

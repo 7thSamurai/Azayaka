@@ -32,7 +32,7 @@ Shader::Shader(const std::string &vertex_path, const std::string &frag_path) {
 }
 
 Shader::~Shader() {
-    logger.log("Deleting OpenGL stuff", Logger::Info, Logger::Verbose);
+    logger.log("Deleting OpenGL stuff", Logger::Debug);
 
     if (program) {
         glDetachShader(program, vertex_shader);
@@ -60,7 +60,7 @@ void Shader::create(const std::string &vertex_path, const std::string &frag_path
     if (status != GL_TRUE)
         logger.log("Unable to link shader-program", Logger::Error);
     else
-        logger.log("Successfully linked shader-program", Logger::Info, Logger::Verbose);
+        logger.log("Successfully linked shader-program", Logger::Debug);
 }
 
 void Shader::use() const {
@@ -81,7 +81,7 @@ int Shader::create_shader(const std::string &file_path, int type) {
     if (!file.is_open())
         logger.log("Unable to open shader source-file: " + file_path, Logger::Error);
     else
-        logger.log("Opened shader source-file: " + file_path, Logger::Info, Logger::Verbose);
+        logger.log("Opened shader source-file: " + file_path, Logger::Debug);
 
     std::stringstream ss;
     ss << file.rdbuf();
@@ -100,7 +100,7 @@ int Shader::create_shader(const std::string &file_path, int type) {
     if (status != GL_TRUE)
         logger.log("Unable to compile shader: " + file_path, Logger::Error);
     else
-        logger.log("Successfully compiled shader: " + file_path, Logger::Info, Logger::Verbose);
+        logger.log("Successfully compiled shader: " + file_path, Logger::Debug);
 
     return shader;
 }

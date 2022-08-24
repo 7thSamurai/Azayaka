@@ -27,15 +27,11 @@ public:
         Info,    // General information
         Notice,  // Important Notice
         Warning, // Warning
+        Debug,   // Verbose debugging information
         Error,   // Fatal Error
     };
 
-    enum Verbosity {
-        NonVerbose = 0,
-        Verbose    = 1
-    };
-
-    void log(const std::string &msg, Level level, Verbosity verbosity = NonVerbose);
+    void log(const std::string &msg, Level level);
 
     void enable(bool enabled);
     void enable_verbose(bool enabled);
