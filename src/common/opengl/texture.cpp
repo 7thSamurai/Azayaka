@@ -19,13 +19,11 @@
 
 namespace GL {
 
-Texture::Texture() {
-    id = 0;
+Texture::Texture() : id(0), w(0), h(0) {
 }
 
 Texture::~Texture() {
-    if (id)
-        glDeleteTextures(1, &id);
+    destroy();
 }
 
 void Texture::create() {
@@ -38,7 +36,14 @@ void Texture::create() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 }
 
-void Texture::update(const void *image, int width, int height) const {
+void Texture::destroy() {
+    if (id) {
+        glDeleteTextures(1, &id);
+        id = w = h = 0;
+    }
+}
+
+void Texture::update(const Color *image, unsigned int width, unsigned int height) {
     glBindTexture(GL_TEXTURE_2D, id);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 }

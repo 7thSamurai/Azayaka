@@ -15,6 +15,8 @@
 
 #pragma once
 
+class Color;
+
 namespace GL {
 
 class Texture
@@ -24,11 +26,17 @@ public:
     ~Texture();
 
     void create();
-    void update(const void *image, int width, int height) const;
+    void destroy();
+
+    void update(const Color *image, unsigned int width, unsigned int height);
     void use() const;
+
+    inline unsigned int width () const { return w; }
+    inline unsigned int height() const { return h; }
 
 private:
     unsigned int id;
+    unsigned int w, h;
 };
 
 } // GL

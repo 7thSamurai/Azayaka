@@ -74,7 +74,7 @@ DisplayGL::~DisplayGL() {
 }
 
 void DisplayGL::display(int index) {
-    texture->update((const void*)video_buffer, display_width, display_height);
+    texture->update(video_buffer, display_width, display_height);
 
     glViewport(offset_x + (index*correct_width), offset_y, correct_width, correct_height);
 
