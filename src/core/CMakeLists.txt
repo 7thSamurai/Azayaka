@@ -45,6 +45,10 @@ add_library(core STATIC
 	rom/rom.cpp
 	rom/rtc.cpp
 	serial/serial.cpp
-	tools/disassembler.cpp)
+	tools/disassembler.cpp
+)
 
-target_link_libraries(core PUBLIC common stdc++fs)
+target_link_libraries(core PUBLIC
+	common
+	stdc++fs
+)

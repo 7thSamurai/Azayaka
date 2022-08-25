@@ -22,7 +22,8 @@ endif()
 if (OpenGL_FOUND)
 	target_sources(common PRIVATE
 		opengl/shader.cpp
-		opengl/texture.cpp)
-		
+		opengl/texture.cpp
+	)
+
 	target_link_libraries(common PRIVATE OpenGL::GL)
 endif()
