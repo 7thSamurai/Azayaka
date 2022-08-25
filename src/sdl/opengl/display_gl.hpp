@@ -17,8 +17,10 @@
 
 #include "core/display/display.hpp"
 
-class Shader;
-class Texture;
+namespace GL {
+    class Shader;
+    class Texture;
+}
 
 struct SDL_Window;
 
@@ -33,8 +35,8 @@ public:
     void show () override;
 
 private:
-    Texture *texture;
-    Shader  *shader;
+    GL::Texture *texture;
+    GL::Shader  *shader;
 
     unsigned int vao, vbo;
 

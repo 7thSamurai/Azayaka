@@ -15,6 +15,8 @@
 
 #pragma once
 
+namespace GL {
+
 class Texture
 {
 public:
@@ -28,3 +30,5 @@ public:
 private:
     unsigned int id;
 };
+
+} // GL

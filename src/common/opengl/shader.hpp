@@ -17,6 +17,8 @@
 
 #include <string>
 
+namespace GL {
+
 class Shader
 {
 public:
@@ -38,3 +40,5 @@ private:
     int vertex_shader, frag_shader;
     int program;
 };
+
+} // GL

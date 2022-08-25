@@ -47,12 +47,12 @@ DisplayGL::DisplayGL(SDL_Window *window) {
     glGenVertexArrays(1, &vao);
     glBindVertexArray(vao);
 
-    texture = new Texture;
+    texture = new GL::Texture;
     texture->create();
 
     char *base_path = SDL_GetBasePath();
 
-    shader = new Shader;
+    shader = new GL::Shader;
     shader->create(std::string(base_path)+"data/shaders/vertex.glsl", std::string(base_path)+"data/shaders/frag.glsl");
 
     SDL_free(base_path);

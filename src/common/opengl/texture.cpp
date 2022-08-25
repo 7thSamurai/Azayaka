@@ -1,4 +1,4 @@
-// Copyright (C) 2020-2021 Zach Collins <the_7thSamurai@protonmail.com>
+// Copyright (C) 2020-2022 Zach Collins <the_7thSamurai@protonmail.com>
 //
 // Azayaka is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -16,6 +16,8 @@
 #include "common/opengl/texture.hpp"
 #include "common/opengl/gl.hpp"
 #include "common/logger.hpp"
+
+namespace GL {
 
 Texture::Texture() {
     id = 0;
@@ -44,3 +46,5 @@ void Texture::update(const void *image, int width, int height) const {
 void Texture::use() const {
     glBindTexture(GL_TEXTURE_2D, id);
 }
+
+} // GL

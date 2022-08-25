@@ -1,4 +1,4 @@
-// Copyright (C) 2020-2021 Zach Collins <the_7thSamurai@protonmail.com>
+// Copyright (C) 2020-2022 Zach Collins <the_7thSamurai@protonmail.com>
 //
 // Azayaka is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -19,6 +19,8 @@
 
 #include <fstream>
 #include <sstream>
+
+namespace GL {
 
 Shader::Shader() {
     vertex_shader = 0;
@@ -107,3 +109,5 @@ int Shader::create_shader(const std::string &file_path, int type) {
 int Shader::find_uniform_location(const std::string &name) {
     return glGetUniformLocation(program, name.c_str());
 }
+
+} // GL
