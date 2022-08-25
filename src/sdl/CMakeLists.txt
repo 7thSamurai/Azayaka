@@ -11,11 +11,7 @@ add_executable(Azayaka-sdl
 
 if (OpenGL_FOUND)
 	target_sources(Azayaka-sdl PRIVATE 
-		opengl/display_gl.cpp
-		opengl/shader.cpp
-		opengl/texture.cpp)
-		
-	target_link_libraries(Azayaka-sdl PRIVATE OpenGL::GL)
+		opengl/display_gl.cpp)
 endif()
 
 target_link_libraries(Azayaka-sdl PRIVATE core SDL2::SDL2 SDL2::SDL2main)

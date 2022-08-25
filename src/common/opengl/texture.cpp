@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "sdl/opengl/texture.hpp"
-#include "sdl/opengl/gl.hpp"
+#include "common/opengl/texture.hpp"
+#include "common/opengl/gl.hpp"
 #include "common/logger.hpp"
 
 Texture::Texture() {

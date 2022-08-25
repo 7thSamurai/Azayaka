@@ -14,9 +14,9 @@
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
 #include "sdl/opengl/display_gl.hpp"
-#include "sdl/opengl/shader.hpp"
-#include "sdl/opengl/texture.hpp"
-#include "sdl/opengl/gl.hpp"
+#include "common/opengl/shader.hpp"
+#include "common/opengl/texture.hpp"
+#include "common/opengl/gl.hpp"
 
 #include <SDL.h>
 #include <iostream>
