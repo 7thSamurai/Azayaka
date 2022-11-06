@@ -19,15 +19,15 @@
 #include <vector>
 #include <map>
 
-class Csv
+class CsvFile
 {
 public:
     using Row = std::map<std::string, std::string>;
     using iterator = typename std::vector<Row>::iterator;
     using const_iterator = typename std::vector<Row>::const_iterator;
 
-    Csv() = default;
-    Csv(const std::string &path);
+    CsvFile() = default;
+    CsvFile(const std::string &path);
 
     bool open(const std::string &path);
 

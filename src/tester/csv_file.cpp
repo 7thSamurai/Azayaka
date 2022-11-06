@@ -13,18 +13,18 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "tester/csv.hpp"
+#include "tester/csv_file.hpp"
 
 #include <fstream>
 #include <sstream>
 #include <optional>
 #include <algorithm>
 
-Csv::Csv(const std::string &path) : Csv() {
+CsvFile::CsvFile(const std::string &path) : CsvFile() {
     open(path);
 }
 
-bool Csv::open(const std::string &path) {
+bool CsvFile::open(const std::string &path) {
     // Open the file
     std::ifstream file(path);
     if (!file.is_open())
@@ -76,18 +76,18 @@ bool Csv::open(const std::string &path) {
     return true;
 }
 
-const Csv::Row &Csv::operator [] (std::size_t index) const {
+const CsvFile::Row &CsvFile::operator [] (std::size_t index) const {
     return rows.at(index);
 }
 
-const Csv::Row &Csv::at(std::size_t index) const {
+const CsvFile::Row &CsvFile::at(std::size_t index) const {
     return rows.at(index);
 }
 
-std::size_t Csv::num_rows() const {
+std::size_t CsvFile::num_rows() const {
     return rows.size();
 }
 
-bool Csv::col_exists(const std::string &name) {
+bool CsvFile::col_exists(const std::string &name) {
     return std::find(header.begin(), header.end(), name) != header.end();
 }
