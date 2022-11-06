@@ -44,7 +44,7 @@ mooneye,acceptance/jp_cc_timing.gb,5790edc0
 mooneye,acceptance/jp_timing.gb,5790edc0
 mooneye,acceptance/ld_hl_sp_e_timing.gb,130d8951
 mooneye,acceptance/oam_dma_restart.gb,a8d74834
-mooneye,acceptance/oam_dma_start.gb,f653e0d6
+mooneye,acceptance/oam_dma_start.gb,d078519e
 mooneye,acceptance/oam_dma_timing.gb,a8d74834
 mooneye,acceptance/oam_dma/basic.gb,5790edc0
 mooneye,acceptance/oam_dma/reg_read.gb,5790edc0
