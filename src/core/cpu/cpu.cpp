@@ -305,10 +305,10 @@ bool Cpu::is_blargg_done() const {
 }
 
 bool Cpu::is_mooneye_done() const {
-    // See "halt_execution" in "common/macros.s"
-    if (gb->mmu->read_byte(pc+0) == 0x00 && // nop
+    // See https://github.com/Gekkio/mooneye-test-suite/#passfail-reporting
+    if (gb->mmu->read_byte(pc+0) == 0x40 && // ld b, b
         gb->mmu->read_byte(pc+1) == 0x18 && // jr
-        gb->mmu->read_byte(pc+2) == 0xFD)   // -3
+        gb->mmu->read_byte(pc+2) == 0xFE)   // -2
         return 1;
 
     return 0;
