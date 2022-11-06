@@ -6,6 +6,7 @@ add_executable(
 	main.cpp
 	results.cpp
 	suites/blargg.cpp
+	suites/mooneye.cpp
 	suites/suite.cpp
     tester.cpp
 )

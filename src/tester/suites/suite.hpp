@@ -49,3 +49,15 @@ public:
 protected:
     void run_until_done(GameBoy &gb) override;
 };
+
+// Gekkio's Mooneye Test Suite
+class MooneyeSuite : public TestSuite
+{
+public:
+    using TestSuite::TestSuite;
+
+    const char *name() const override;
+
+protected:
+    void run_until_done(GameBoy &gb) override;
+};
