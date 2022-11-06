@@ -13,39 +13,13 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include <string>
-#include <vector>
+#include "tester/suites/suite.hpp"
+#include "core/gameboy.hpp"
 
-class GameBoy;
+const char *BlarggSuite::name() const {
+    return "blargg";
+}
 
-// Base test suite
-class TestSuite
-{
-public:
-    TestSuite(const std::string &base_path);
-    virtual ~TestSuite() = default;
-
-    // Run the test suite
-    std::vector<std::pair<std::string, bool>> run();
-
-    // Get the name of the test suite
-    virtual const char *name() const = 0;
-
-protected:
-    // Runs the Game Boy until the test has finished
-    virtual void run_until_done(GameBoy &gb) = 0;
-
-    std::string base_path;
-};
-
-// Blargg's tests
-class BlarggSuite : public TestSuite
-{
-public:
-    using TestSuite::TestSuite;
-
-    const char *name() const override;
-
-protected:
-    void run_until_done(GameBoy &gb) override;
-};
+void BlarggSuite::run_until_done(GameBoy &gb) {
+    gb.run_until_blargg_done();
+}

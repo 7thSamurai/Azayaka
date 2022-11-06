@@ -14,6 +14,7 @@
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
 #include "tester/tester.hpp"
+#include "tester/suites/suite.hpp"
 #include <chrono>
 
 void Tester::add_suite(std::unique_ptr<TestSuite> suite) {
@@ -25,7 +26,7 @@ bool Tester::run() {
 
     // Run each suite
     for (auto &suite : suites) {
-        auto results = suite->test();
+        auto results = suite->run();
 
         // Check if the suite passsed
         if (results.empty())

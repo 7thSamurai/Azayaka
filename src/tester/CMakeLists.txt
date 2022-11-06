@@ -5,6 +5,7 @@ add_executable(
 	csv.cpp
 	main.cpp
 	results.cpp
+	suites/blargg.cpp
 	suites/suite.cpp
     tester.cpp
 )
