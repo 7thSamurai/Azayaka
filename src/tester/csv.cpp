@@ -1,4 +1,4 @@
-// Copyright (C) 2020-2021 Zach Collins <the_7thSamurai@protonmail.com>
+// Copyright (C) 2020-2022 Zach Collins <the_7thSamurai@protonmail.com>
 //
 // Azayaka is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -17,55 +17,77 @@
 
 #include <fstream>
 #include <sstream>
+#include <optional>
+#include <algorithm>
 
-Csv::Csv() {
-    num_of_cols = 0;
+Csv::Csv(const std::string &path) : Csv() {
+    open(path);
 }
 
-int Csv::load(const std::string &file_path) {
-    rows.clear();
-
-    std::ifstream file(file_path);
+bool Csv::open(const std::string &path) {
+    // Open the file
+    std::ifstream file(path);
     if (!file.is_open())
-        return -1;
+        return false;
 
-    std::string value;
+    // Reads a line and returns the tokenized contents
+    auto parse_line = [&]() -> std::optional<std::vector<std::string>> {
+        // Read the line
+        std::string str;
+        if (!std::getline(file, str))
+            return {};
 
-    while (std::getline(file, value)) {
-        CsvRow row;
+        // Tokenize the line
+        std::stringstream ss;
+        ss << str;
 
-        std::stringstream line;
-        line << value;
+        // Split at any colons
+        std::vector<std::string> tokens;
+        while (std::getline(ss, str, ','))
+            tokens.push_back(str);
 
-        while (std::getline(line, value, ','))
-            row.push_back(value);
+        return std::optional<std::vector<std::string>>(tokens);
+    };
 
+    // Read the header
+    auto value = parse_line();
+    if (!value)
+        return false;
+
+    header = *value;
+
+    // Parse the rest of the values
+    while (value = parse_line()) {
+        // Make sure that this row isn't bigger than the header row
+        if (value->size() > header.size())
+            return false;
+
+        // Populate the row
+        Row row;
+        for (std::size_t i = 0; i < value->size(); i++)
+            row.insert(std::make_pair(header.at(i), value->at(i)));
+
+        // Add the row
         rows.push_back(row);
-        num_of_cols = row.size();
     }
 
     file.close();
 
-    return 0;
+    return true;
 }
 
-const CsvRow &Csv::operator [] (int index) const {
+const Csv::Row &Csv::operator [] (std::size_t index) const {
     return rows.at(index);
 }
 
-int Csv::find_header(const std::string &col_header) const {
-    for (unsigned int i = 0; i < rows.front().size(); i++) {
-        if (rows.front().at(i) == col_header)
-            return i;
-    }
-
-    return -1;
+const Csv::Row &Csv::at(std::size_t index) const {
+    return rows.at(index);
 }
 
-int Csv::get_num_of_cols() const {
-    return num_of_cols;
-}
-
-int Csv::get_num_of_rows() const {
+std::size_t Csv::num_rows() const {
     return rows.size();
+}
+
+bool Csv::col_exists(const std::string &name) {
+    return std::find(header.begin(), header.end(), name) != header.end();
 }

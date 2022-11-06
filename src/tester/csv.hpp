@@ -17,25 +17,34 @@
 
 #include <string>
 #include <vector>
-
-typedef std::vector <std::string> CsvRow;
+#include <map>
 
 class Csv
 {
 public:
-    Csv();
+    using Row = std::map<std::string, std::string>;
+    using iterator = typename std::vector<Row>::iterator;
+    using const_iterator = typename std::vector<Row>::const_iterator;
 
-    int load(const std::string &file_path);
+    Csv() = default;
+    Csv(const std::string &path);
 
-    const CsvRow &operator [] (int index) const;
+    bool open(const std::string &path);
 
-    int find_header(const std::string &col_header) const;
+    const Row &operator [] (std::size_t index) const;
+    const Row &at(std::size_t index) const;
 
-    int get_num_of_cols() const;
-    int get_num_of_rows() const;
+    std::size_t num_rows() const;
+    bool col_exists(const std::string &name);
+
+    // Iterators
+    iterator begin() { return rows.begin(); }
+    iterator end() { return rows.end(); }
+    const_iterator begin() const { return rows.begin(); }
+    const_iterator end() const { return rows.end(); }
 
 private:
-    std::vector <CsvRow> rows;
-
-    int num_of_cols;
+    std::vector<std::string> header;
+    std::vector<Row> rows;
 };
+
