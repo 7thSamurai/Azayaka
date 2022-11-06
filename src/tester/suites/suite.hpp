@@ -32,8 +32,8 @@ public:
     virtual const char *name() const = 0;
 
 protected:
-    // Runs the Game Boy until the test has finished
-    virtual void run_until_done(GameBoy &gb) = 0;
+    // Checks if the test has finished
+    virtual bool done(GameBoy &gb) = 0;
 
     std::string base_path;
 };
@@ -47,7 +47,7 @@ public:
     const char *name() const override;
 
 protected:
-    void run_until_done(GameBoy &gb) override;
+    bool done(GameBoy &gb) override;
 };
 
 // Gekkio's Mooneye Test Suite
@@ -59,5 +59,5 @@ public:
     const char *name() const override;
 
 protected:
-    void run_until_done(GameBoy &gb) override;
+    bool done(GameBoy &gb) override;
 };

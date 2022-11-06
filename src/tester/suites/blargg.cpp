@@ -15,11 +15,24 @@
 
 #include "tester/suites/suite.hpp"
 #include "core/gameboy.hpp"
+#include "core/cpu/cpu.hpp"
+#include "core/memory/mmu.hpp"
 
 const char *BlarggSuite::name() const {
     return "blargg";
 }
 
-void BlarggSuite::run_until_done(GameBoy &gb) {
-    gb.run_until_blargg_done();
+bool BlarggSuite::done(GameBoy &gb) {
+    auto pc = gb.cpu->get_pc();
+
+    if (gb.mmu->read_byte(pc+0) == 0x18 && // jp
+        gb.mmu->read_byte(pc+1) == 0xFE)   // -2
+        return true;
+
+    if (gb.mmu->read_byte(pc+0) == 0xc3 &&        // jp
+        gb.mmu->read_byte(pc+1) == (pc & 0xFF) && // LSB of pc
+        gb.mmu->read_byte(pc+2) == (pc >> 8))     // MSB of pc
+        return true;
+
+    return false;
 }

@@ -15,11 +15,21 @@
 
 #include "tester/suites/suite.hpp"
 #include "core/gameboy.hpp"
+#include "core/cpu/cpu.hpp"
+#include "core/memory/mmu.hpp"
 
 const char *MooneyeSuite::name() const {
     return "mooneye";
 }
 
-void MooneyeSuite::run_until_done(GameBoy &gb) {
-    gb.run_until_mooneye_done();
+bool MooneyeSuite::done(GameBoy &gb) {
+    auto pc = gb.cpu->get_pc();
+
+    // See https://github.com/Gekkio/mooneye-test-suite/#passfail-reporting
+    if (gb.mmu->read_byte(pc+0) == 0x40 && // ld b, b
+        gb.mmu->read_byte(pc+1) == 0x18 && // jr
+        gb.mmu->read_byte(pc+2) == 0xFE)   // -2
+        return true;
+
+    return false;
 }

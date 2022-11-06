@@ -15,6 +15,7 @@
 
 #include "tester/suites/suite.hpp"
 #include "core/gameboy.hpp"
+#include "core/cpu/cpu.hpp"
 
 #include <iostream>
 #include <filesystem>
@@ -84,7 +85,12 @@ std::vector<std::pair<std::string, bool>> TestSuite::run() {
 
         // Now run the Game Boy until the test is complete
         gb.init();
-        run_until_done(gb);
+        while (!done(gb)) {
+            gb.cpu->step();
+        }
+
+        // Make sure that the screen is fully rendered
+        gb.run_frame();
 
         // Check if the test passed
         if (1) { // TODO

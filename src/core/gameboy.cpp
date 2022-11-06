@@ -103,20 +103,6 @@ void GameBoy::run_link_frame2(GameBoy &gb2) {
     }
 }
 
-void GameBoy::run_until_blargg_done() {
-    while (!cpu->is_blargg_done())
-        cpu->step();
-
-    run_frame(); // Make sure that the screen is fully rendered
-}
-
-void GameBoy::run_until_mooneye_done() {
-    while (!cpu->is_mooneye_done())
-        cpu->step();
-
-    run_frame(); // Make sure that the screen is fully rendered
-}
-
 bool GameBoy::is_frame_done() {
     bool done = gpu->needs_refresh();
     gpu->clear_refresh();

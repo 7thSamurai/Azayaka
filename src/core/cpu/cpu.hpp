@@ -53,9 +53,6 @@ public:
     int get_pc() const;
     int get_sp() const;
 
-    bool is_blargg_done () const;
-    bool is_mooneye_done() const;
-
 private:
     void tick();
     void tick_double_speed();

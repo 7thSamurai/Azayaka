@@ -291,29 +291,6 @@ int Cpu::get_sp() const {
     return sp;
 }
 
-bool Cpu::is_blargg_done() const {
-    if (gb->mmu->read_byte(pc+0) == 0x18 && // jp
-        gb->mmu->read_byte(pc+1) == 0xFE)   // -2
-        return 1;
-
-    else if (gb->mmu->read_byte(pc+0) == 0xc3 &&        // jp
-             gb->mmu->read_byte(pc+1) == (pc & 0xFF) && // LSB of pc
-             gb->mmu->read_byte(pc+2) == (pc >> 8))     // MSB of pc
-             return 1;
-
-    return 0;
-}
-
-bool Cpu::is_mooneye_done() const {
-    // See https://github.com/Gekkio/mooneye-test-suite/#passfail-reporting
-    if (gb->mmu->read_byte(pc+0) == 0x40 && // ld b, b
-        gb->mmu->read_byte(pc+1) == 0x18 && // jr
-        gb->mmu->read_byte(pc+2) == 0xFE)   // -2
-        return 1;
-
-    return 0;
-}
-
 // Functions to read the registers when used as byte-pairs
 inline word Cpu::af() const {
     return a << 8 | f;
