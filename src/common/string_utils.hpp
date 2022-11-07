@@ -36,6 +36,7 @@ bool is_a_num16(const std::string &num);
 
 std::string ftos(float f, int precision=2);
 
-void to_upper(std::string &s);
+std::string to_lower(const std::string &s);
+std::string to_upper(const std::string &s);
 
 } // StringUtils

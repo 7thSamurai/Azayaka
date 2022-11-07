@@ -31,7 +31,7 @@ public:
     void add_suite(std::unique_ptr<TestSuite> suite);
 
     // Runs all the different test suites
-    bool run(const std::string &results_csv);
+    bool run(const std::string &results_csv, const std::vector<std::string> &suites);
 
     // Generate a markdown file of the test results at the given path
     bool gen_results(const std::string &path);

@@ -16,12 +16,13 @@
 #include "tester/tester.hpp"
 #include "tester/suite.hpp"
 #include "common/logger.hpp"
+#include "common/string_utils.hpp"
 #include <iostream>
 #include <filesystem>
 
 int main(int argc, char **argv) {
-    if (argc != 2) {
-        std::cerr << "Usage: " << argv[0] << " <Test ROMs Directory>" << std::endl;
+    if (argc < 2) {
+        std::cerr << "Usage: " << argv[0] << " <Test ROMs Directory> [Suites...]" << std::endl;
         return -1;
     }
 
@@ -40,9 +41,14 @@ int main(int argc, char **argv) {
     tester.add_suite(std::make_unique<BlarggSuite> (test_dir));
     tester.add_suite(std::make_unique<MooneyeSuite>(test_dir));
 
+    // If any specific suites were requested, generate a list of those
+    std::vector<std::string> suites;
+    for (int i = 2; i < argc; i++)
+        suites.push_back(StringUtils::to_lower(argv[i]));
+
     // Run the tester
     auto csv_path = test_dir + "/test_results.csv";
-    if (!tester.run(csv_path)) {
+    if (!tester.run(csv_path, suites)) {
         return -1;
     }
 

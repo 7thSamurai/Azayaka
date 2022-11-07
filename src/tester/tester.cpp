@@ -21,12 +21,27 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+#include <algorithm>
 
 void Tester::add_suite(std::unique_ptr<TestSuite> suite) {
     suites.push_back(std::move(suite));
 }
 
-bool Tester::run(const std::string &results_csv) {
+bool Tester::run(const std::string &results_csv, const std::vector<std::string> &suites) {
+    // Validate the suite names
+    for (const auto &suite_name : suites) {
+        // Search for the suite name
+        auto it = std::find_if(this->suites.begin(), this->suites.end(), [&](const auto &suite) {
+            return suite->name() == suite_name;
+        });
+
+        // Error out if not present
+        if (it == this->suites.end()) {
+            std::cerr << "Invalid suite name " << suite_name << std::endl;
+            return false;
+        }
+    }
+
     std::cout << "\r\033[1;92m[======]\033[0m Starting Azayaka Tester..." << std::endl;
     std::cout << "\r\033[1;92m[======]\033[0m Copyright (C) 2020-2022 Zach Collins" << std::endl;
 
@@ -60,7 +75,11 @@ bool Tester::run(const std::string &results_csv) {
     bool all_created = true;
 
     // Run each suite
-    for (auto &suite : suites) {
+    for (auto &suite : this->suites) {
+        // Check if this is one the of suites that were specified to run
+        if (suites.size() && std::find(suites.begin(), suites.end(), suite->name()) == suites.end())
+            continue;
+
         // Attempt to run the suite
         if (!suite->run(correct_results))
             return false;

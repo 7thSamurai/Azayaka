@@ -17,6 +17,7 @@
 
 #include <sstream>
 #include <iomanip>
+#include <algorithm>
 
 namespace StringUtils {
 
@@ -80,11 +81,20 @@ std::string ftos(float f, int precision) {
     return ss.str();
 }
 
-void to_upper(std::string &s) {
-    for (char &c : s) {
-        if (c >= 'a' && c <= 'z')
-            c += 'A' - 'a';
-    }
+std::string to_lower(const std::string &s) {
+    // Convert to lowercase
+    auto copy = s;
+    std::transform(copy.begin(), copy.end(), copy.begin(), ::tolower);
+
+    return copy;
+}
+
+std::string to_upper(const std::string &s) {
+    // Convert to lowercase
+    auto copy = s;
+    std::transform(copy.begin(), copy.end(), copy.begin(), ::toupper);
+
+    return copy;
 }
 
 } // StringUtils
