@@ -22,6 +22,10 @@ const char *BlarggSuite::name() const {
     return "blargg";
 }
 
+const char *BlarggSuite::title() const {
+    return "Blargg's Tests";
+}
+
 bool BlarggSuite::done(GameBoy &gb) {
     auto pc = gb.cpu->get_pc();
 

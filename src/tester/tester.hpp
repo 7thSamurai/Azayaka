@@ -15,7 +15,7 @@
 
 #pragma once
 
-
+#include <string>
 #include <vector>
 #include <memory>
 
@@ -24,14 +24,14 @@ class TestSuite;
 class Tester
 {
 public:
-    Tester()  = default;
+    Tester() = default;
     ~Tester() = default;
 
     // Adds a test suite to the tester
     void add_suite(std::unique_ptr<TestSuite> suite);
 
     // Runs all the different test suites
-    bool run();
+    bool run(const std::string &results_csv);
 
 private:
     std::vector<std::unique_ptr<TestSuite>> suites;

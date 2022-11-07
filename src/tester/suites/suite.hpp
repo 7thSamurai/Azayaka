@@ -17,25 +17,42 @@
 #include <vector>
 
 class GameBoy;
+class CsvFile;
 
 // Base test suite
 class TestSuite
 {
 public:
+    // Test Results data structure
+    struct Result {
+        std::string name;
+        bool changed;
+        bool passed;
+    };
+
     TestSuite(const std::string &base_path);
     virtual ~TestSuite() = default;
 
-    // Run the test suite
-    std::vector<std::pair<std::string, bool>> run();
+    // Run the test suite (Returns false if there are any errors getting the ROMs to run)
+    bool run(const CsvFile &correct_results);
+
+    // Get the test results
+    const std::vector<Result> &results() const;
 
     // Get the name of the test suite
     virtual const char *name() const = 0;
+
+    // Get the title of the test suite
+    virtual const char *title() const = 0;
 
 protected:
     // Checks if the test has finished
     virtual bool done(GameBoy &gb) = 0;
 
     std::string base_path;
+
+private:
+    std::vector<Result> results_;
 };
 
 // Blargg's tests
@@ -44,7 +61,8 @@ class BlarggSuite : public TestSuite
 public:
     using TestSuite::TestSuite;
 
-    const char *name() const override;
+    const char *name () const override;
+    const char *title() const override;
 
 protected:
     bool done(GameBoy &gb) override;
@@ -56,7 +74,8 @@ class MooneyeSuite : public TestSuite
 public:
     using TestSuite::TestSuite;
 
-    const char *name() const override;
+    const char *name () const override;
+    const char *title() const override;
 
 protected:
     bool done(GameBoy &gb) override;

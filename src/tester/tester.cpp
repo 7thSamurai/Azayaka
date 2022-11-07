@@ -14,24 +14,31 @@
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
 #include "tester/tester.hpp"
+#include "tester/csv_file.hpp"
 #include "tester/suites/suite.hpp"
+
 #include <chrono>
+#include <iostream>
 
 void Tester::add_suite(std::unique_ptr<TestSuite> suite) {
     suites.push_back(std::move(suite));
 }
 
-bool Tester::run() {
-    bool success = true;
+bool Tester::run(const std::string &results_csv) {
+    // Attempt to load the correct results CSV
+    CsvFile correct_results;
+    if (!correct_results.open(results_csv)) {
+        std::cerr << "Failed to load the Correct Results CSV" << std::endl;
+        return false;
+    }
 
     // Run each suite
     for (auto &suite : suites) {
-        auto results = suite->run();
+        // Attempt to run the suite
+        if (!suite->run(correct_results))
+            return false;
 
-        // Check if the suite passsed
-        if (results.empty())
-            success = true;
     }
 
-    return success;
+    return true;
 }

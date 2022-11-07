@@ -22,6 +22,10 @@ const char *MooneyeSuite::name() const {
     return "mooneye";
 }
 
+const char *MooneyeSuite::title() const {
+    return "Mooneye Test Suite";
+}
+
 bool MooneyeSuite::done(GameBoy &gb) {
     auto pc = gb.cpu->get_pc();
 
