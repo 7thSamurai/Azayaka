@@ -35,7 +35,11 @@ public:
     const Row &at(std::size_t index) const;
 
     std::size_t num_rows() const;
+
     bool col_exists(const std::string &name);
+
+    // Finds a row by looking for a certain value in a certain column
+    const_iterator find_row(const std::string &col_name, const std::string &col_value) const;
 
     // Iterators
     iterator begin() { return rows.begin(); }

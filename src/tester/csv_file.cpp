@@ -91,3 +91,16 @@ std::size_t CsvFile::num_rows() const {
 bool CsvFile::col_exists(const std::string &name) {
     return std::find(header.begin(), header.end(), name) != header.end();
 }
+
+CsvFile::const_iterator CsvFile::find_row(const std::string &col_name, const std::string &col_value) const {
+    // Search for the row looking for a certain value
+    return std::find_if(
+        rows.begin(),
+        rows.end(),
+        [&](const auto &row) {
+            auto it = row.find(col_name);
+            return it != row.end() && it->second == col_value;
+        }
+    );
+}
+
