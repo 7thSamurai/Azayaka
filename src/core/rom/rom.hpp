@@ -73,6 +73,7 @@ public:
     bool get_mbc1_mode() const;
 
     void set_dump_usage(bool dump_usage);
+    void set_save_enabled(bool enabled);
 
 private:
     const byte logo[48] = {
@@ -95,6 +96,7 @@ private:
 
     Cart *cart;
     bool dump_usage;
+    bool save_enabled;
 };
 
 class Plain : public Cart {

@@ -32,11 +32,13 @@ Rom::Rom(GameBoy *gb) : Component(gb) {
     cart = nullptr;
 
     dump_usage = false;
+    save_enabled = true;
 }
 
 Rom::~Rom() {
     if (cart != nullptr) {
-        cart->save_ecart(File::remove_extension(path));
+        if (save_enabled)
+            cart->save_ecart(File::remove_extension(path));
 
         if (dump_usage)
             cart->dump_usage(File::remove_extension(path));
@@ -366,6 +368,10 @@ bool Rom::get_mbc1_mode() const {
 
 void Rom::set_dump_usage(bool dump_usage) {
     this->dump_usage = dump_usage;
+}
+
+void Rom::set_save_enabled(bool enabled) {
+    save_enabled = enabled;
 }
 
 Plain::Plain() : Cart() {

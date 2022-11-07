@@ -17,6 +17,7 @@
 #include "tester/csv_file.hpp"
 #include "core/gameboy.hpp"
 #include "core/cpu/cpu.hpp"
+#include "core/rom/rom.hpp"
 #include "common/hash.hpp"
 #include "common/image.hpp"
 
@@ -92,8 +93,11 @@ bool TestSuite::run(const CsvFile &correct_results) {
             return false;
         }
 
-        // Now run the Game Boy until the test is complete
+        // Setup the Game Boy
         gb.init();
+        gb.rom->set_save_enabled(false);
+
+        // Now run the Game Boy until the test is complete
         while (!done(gb)) {
             gb.cpu->step();
         }
