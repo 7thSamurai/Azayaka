@@ -76,13 +76,15 @@ bool TestSuite::run(const CsvFile &correct_results) {
     // Sort the ROMS alphabetically
     std::sort(roms.begin(), roms.end());
 
-    std::cout << "Running " << roms.size() << " tests from " << name() << std::endl;
+    std::cout << "\n\033[1;92m[======]\033[0m Running " << roms.size() << " tests from " << name() << " suite" << std::endl;
 
     // Go through each ROM
     unsigned int pass_count = 0;
     for (const auto &rom_path : roms) {
         auto start = std::chrono::steady_clock::now();
         auto name  = rom_path.substr(suite_path.string().size()+1);
+
+        std::cout << "\033[1;92m[------]\033[0m " << name << std::flush;
 
         std::string error;
         GameBoy gb;
@@ -141,11 +143,11 @@ bool TestSuite::run(const CsvFile &correct_results) {
 
         // Check if the test passed
         if (passed) {
-            std::cout << "[PASSED] ";
+            std::cout << "\r\033[1;92m[PASSED]\033[0m ";
             pass_count++;
         }
         else {
-            std::cout << "[FAILED] ";
+            std::cout << "\r\033[1;91m[FAILED]\033[0m ";
         }
 
         // Add the result
@@ -163,8 +165,8 @@ bool TestSuite::run(const CsvFile &correct_results) {
     auto time = std::chrono::duration_cast<std::chrono::seconds>(end - start);
 
     // Print out status information
-    std::cout << "Ran " << roms.size() << " tests (" << time.count() << " sec)" << std::endl;
-    std::cout << pass_count << "/" << roms.size() << " passed" << std::endl;
+    std::cout << "\033[1;92m[------]\033[0m Ran " << roms.size() << " tests (" << time.count() << " sec)" << std::endl;
+    std::cout << "\033[1;92m[------]\033[0m " << pass_count << "/" << roms.size() << " passed (" << (roms.size()-pass_count) << " failed)" << std::endl;
 
     return true;
 }

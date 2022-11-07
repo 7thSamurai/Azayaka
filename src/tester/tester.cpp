@@ -27,6 +27,9 @@ void Tester::add_suite(std::unique_ptr<TestSuite> suite) {
 }
 
 bool Tester::run(const std::string &results_csv) {
+    std::cout << "\r\033[1;92m[======]\033[0m Starting Azayaka Tester..." << std::endl;
+    std::cout << "\r\033[1;92m[======]\033[0m Copyright (C) 2020-2022 Zach Collins" << std::endl;
+
     // Attempt to load the correct results CSV
     CsvFile correct_results;
     if (!correct_results.open(results_csv)) {
@@ -48,18 +51,46 @@ bool Tester::run(const std::string &results_csv) {
         return false;
     }
 
+    auto start = std::chrono::steady_clock::now();
+
+    // Keep track of how many tests passed and failed
+    unsigned int passed = 0;
+    unsigned int failed = 0;
+
     // Run each suite
     for (auto &suite : suites) {
         // Attempt to run the suite
         if (!suite->run(correct_results))
             return false;
 
+        // Count the results
+        for (const auto &result : suite->results()) {
+            if (result.passed)
+                passed++;
+            else
+                failed++;
+        }
     }
+
+    // Find the time it took this test to run
+    auto end  = std::chrono::steady_clock::now();
+    auto time = std::chrono::duration_cast<std::chrono::seconds>(end - start);
+
+    std::cout << "\n\033[1;92m[======]\033[0m Ran " << (passed+failed) << " tests (" << time.count() << " sec)" << std::endl;
+
+    if (failed == 0)
+        std::cout << "\033[1;91m[------]\033[0m ";
+    else
+        std::cout << "\033[1;91m[------]\033[0m ";
+
+    std::cout << passed << "/" << (passed+failed) << " passed (" << failed << " failures)" << std::endl;
 
     return true;
 }
 
 bool Tester::gen_results(const std::string &path) {
+    std::cout << "\r\033[1;92m[------]\033[0m Outputting Markdown results to " << path << std::endl;
+
     // Open the output file
     std::ofstream file(path);
     if (!file.is_open())
