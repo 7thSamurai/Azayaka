@@ -4,7 +4,6 @@ add_executable(
     Azayaka-tester
 	csv_file.cpp
 	main.cpp
-	results.cpp
 	suites/blargg.cpp
 	suites/mooneye.cpp
 	suites/suite.cpp

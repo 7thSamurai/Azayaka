@@ -19,6 +19,7 @@
 
 #include <chrono>
 #include <iostream>
+#include <fstream>
 
 void Tester::add_suite(std::unique_ptr<TestSuite> suite) {
     suites.push_back(std::move(suite));
@@ -39,6 +40,42 @@ bool Tester::run(const std::string &results_csv) {
             return false;
 
     }
+
+    return true;
+}
+
+bool Tester::gen_results(const std::string &path) {
+    // Open the output file
+    std::ofstream file(path);
+    if (!file.is_open())
+        return false;
+
+    file << "# Test Results" << std::endl;
+
+    // Go through each suite
+    for (auto &suite : suites) {
+        // Skip any empty results
+        auto results = suite->results();
+        if (results.empty())
+            continue;
+
+        // Output the suite section header
+        file << "\n## " << suite->title() << "\n" << std::endl;
+
+        // Output the result table header
+        file << "| Test | Result |" << std::endl;
+        file << "| --- | --- |" << std::endl;
+
+        // Print out each result row in the table
+        for (const auto &result : results) {
+            if (result.passed)
+                std::cout << "| " + result.name + " | :+1: |" << std::endl;
+            else
+                std::cout << "| " + result.name + " | :x: |" << std::endl;
+        }
+    }
+
+    file.close();
 
     return true;
 }

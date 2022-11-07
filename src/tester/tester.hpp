@@ -33,6 +33,9 @@ public:
     // Runs all the different test suites
     bool run(const std::string &results_csv);
 
+    // Generate a markdown file of the test results at the given path
+    bool gen_results(const std::string &path);
+
 private:
     std::vector<std::unique_ptr<TestSuite>> suites;
 };
