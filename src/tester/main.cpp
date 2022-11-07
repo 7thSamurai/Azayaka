@@ -14,7 +14,7 @@
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
 #include "tester/tester.hpp"
-#include "tester/suites/suite.hpp"
+#include "tester/suite.hpp"
 #include "common/logger.hpp"
 #include <iostream>
 #include <filesystem>

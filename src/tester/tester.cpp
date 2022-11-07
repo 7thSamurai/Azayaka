@@ -15,7 +15,7 @@
 
 #include "tester/tester.hpp"
 #include "tester/csv_file.hpp"
-#include "tester/suites/suite.hpp"
+#include "tester/suite.hpp"
 
 #include <chrono>
 #include <iostream>

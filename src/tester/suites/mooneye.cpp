@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Azayaka. If not, see <https://www.gnu.org/licenses/>.
 
-#include "tester/suites/suite.hpp"
+#include "tester/suite.hpp"
 #include "core/gameboy.hpp"
 #include "core/cpu/cpu.hpp"
 #include "core/memory/mmu.hpp"
