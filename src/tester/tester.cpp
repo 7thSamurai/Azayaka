@@ -29,7 +29,21 @@ bool Tester::run(const std::string &results_csv) {
     // Attempt to load the correct results CSV
     CsvFile correct_results;
     if (!correct_results.open(results_csv)) {
-        std::cerr << "Failed to load the Correct Results CSV" << std::endl;
+        std::cerr << "Failed to load the CSV file " << results_csv << std::endl;
+        return false;
+    }
+
+    // Make sure that all the needed columns are present in the CSV
+    if (!correct_results.col_exists("type")) {
+        std::cerr << "Missing column 'name' in CSV" << std::endl;
+        return false;
+    }
+    if (!correct_results.col_exists("name")) {
+        std::cerr << "Missing column 'name' in CSV" << std::endl;
+        return false;
+    }
+    if (!correct_results.col_exists("crc32")) {
+        std::cerr << "Missing column 'name' in CSV" << std::endl;
         return false;
     }
 
@@ -69,9 +83,9 @@ bool Tester::gen_results(const std::string &path) {
         // Print out each result row in the table
         for (const auto &result : results) {
             if (result.passed)
-                std::cout << "| " + result.name + " | :+1: |" << std::endl;
+                file << "| " + result.name + " | :+1: |" << std::endl;
             else
-                std::cout << "| " + result.name + " | :x: |" << std::endl;
+                file << "| " + result.name + " | :x: |" << std::endl;
         }
     }
 

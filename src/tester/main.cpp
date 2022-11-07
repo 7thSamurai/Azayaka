@@ -17,10 +17,18 @@
 #include "tester/suites/suite.hpp"
 #include "common/logger.hpp"
 #include <iostream>
+#include <filesystem>
 
 int main(int argc, char **argv) {
     if (argc != 2) {
         std::cerr << "Usage: " << argv[0] << " <Test ROMs Directory>" << std::endl;
+        return -1;
+    }
+
+    // Make sure that the given test directory is valid
+    std::string test_dir = argv[1];
+    if (!std::filesystem::is_directory(std::filesystem::path(test_dir))) {
+        std::cerr << "Invalid directory " << test_dir << std::endl;
         return -1;
     }
 
@@ -29,17 +37,17 @@ int main(int argc, char **argv) {
 
     // Create the tester and add the individual test suites
     Tester tester;
-    tester.add_suite(std::make_unique<BlarggSuite> (argv[1]));
-    tester.add_suite(std::make_unique<MooneyeSuite>(argv[1]));
+    tester.add_suite(std::make_unique<BlarggSuite> (test_dir));
+    tester.add_suite(std::make_unique<MooneyeSuite>(test_dir));
 
     // Run the tester
-    auto csv_path = std::string(argv[1]) + "/test_results.csv";
+    auto csv_path = test_dir + "/test_results.csv";
     if (!tester.run(csv_path)) {
         return -1;
     }
 
-    if (!tester.gen_results("TestResults.md")) {
-        std::cout << "Unable to save results!" << std::endl;
+    if (!tester.gen_results(test_dir + "/results/TestResults.md")) {
+        std::cerr << "Unable to save results!" << std::endl;
         return -1;
     }
 

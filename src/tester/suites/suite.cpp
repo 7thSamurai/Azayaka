@@ -50,7 +50,7 @@ bool TestSuite::run(const CsvFile &correct_results) {
     }
 
     // Create the results directory
-    if (!std::filesystem::create_directories(std::filesystem::path(results_path))) {
+    if (!std::filesystem::is_directory(std::filesystem::path(results_path)) && !std::filesystem::create_directories(std::filesystem::path(results_path))) {
         std::cerr << "Unable to create the results directory at " << results_path << std::endl;
         return false;
     }
@@ -81,7 +81,7 @@ bool TestSuite::run(const CsvFile &correct_results) {
     unsigned int pass_count = 0;
     for (const auto &rom_path : roms) {
         auto start = std::chrono::steady_clock::now();
-        auto name  = rom_path.substr(suite_path.string().size());
+        auto name  = rom_path.substr(suite_path.string().size()+1);
 
         std::string error;
         GameBoy gb;
@@ -105,6 +105,13 @@ bool TestSuite::run(const CsvFile &correct_results) {
         auto bmp_path = results_path + std::filesystem::path(rom_path.substr(suite_path.string().size())).replace_extension().string() + ".bmp";
         auto old_checksum = Common::crc32(bmp_path);
 
+        // Make sure that all the required directories exist
+        auto parent_path = std::filesystem::path(bmp_path).parent_path();
+        if (!std::filesystem::is_directory(parent_path) && !std::filesystem::create_directories(parent_path)) {
+            std::cerr << "Failed to create directories " << parent_path.string() << std::endl;
+            return false;
+        }
+
         // Save a screenshot of the test results
         if (Common::save_bmp(bmp_path, gb.get_screen_buffer(), 160, 144) < 0) {
             std::cerr << "Failed to save BMP " << bmp_path << std::endl;
@@ -120,7 +127,7 @@ bool TestSuite::run(const CsvFile &correct_results) {
 
         // Check if the test passed
         auto new_checksum = Common::crc32(bmp_path);
-        bool passed = new_checksum == std::stoul(it->find("crc32")->second);
+        bool passed = new_checksum == std::stoul(it->find("crc32")->second, 0, 16);
 
         // Generate the result
         Result result;
