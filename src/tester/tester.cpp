@@ -20,6 +20,7 @@
 #include <chrono>
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 
 void Tester::add_suite(std::unique_ptr<TestSuite> suite) {
     suites.push_back(std::move(suite));
@@ -76,6 +77,16 @@ bool Tester::gen_results(const std::string &path) {
         // Output the suite section header
         file << "\n## " << suite->title() << "\n" << std::endl;
 
+        // Count how many tests passed total
+        unsigned int total_passed = 0;
+        for (const auto &result : results) {
+            if (result.passed)
+                total_passed++;
+        }
+
+        // Output the ratio of the tests that passed
+        file << "**" << total_passed << "/" << results.size() << " passed**\n" << std::endl;
+
         // Output the result table header
         file << "| Test | Result |" << std::endl;
         file << "| --- | --- |" << std::endl;
@@ -88,6 +99,11 @@ bool Tester::gen_results(const std::string &path) {
                 file << "| " + result.name + " | :x: |" << std::endl;
         }
     }
+
+    // Output the time and date that this file was generated at
+    auto now = std::chrono::system_clock::now();
+    auto in_time_t = std::chrono::system_clock::to_time_t(now);
+    file << "\nAutomatically generated at **" << std::put_time(std::localtime(&in_time_t), "%Y-%m-%d %X") << "**" << std::endl;
 
     file.close();
 
