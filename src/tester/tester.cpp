@@ -92,15 +92,15 @@ bool Tester::run(const std::string &results_csv) {
             if (result.created)
                 std::cout << "?????? -> ";
             else if (result.old_passed)
-                std::cout << "passed -> ";
+                std::cout << "\033[1;92mpassed\033[0m -> ";
             else
-                std::cout << "failed -> ";
+                std::cout << "\033[1;91mfailed\033[0m -> ";
 
             // Current result
             if (result.passed)
-                std::cout << "passed) ";
+                std::cout << "\033[1;92mpassed\033[0m) ";
             else
-                std::cout << "failed) ";
+                std::cout << "\033[1;91mfailed\033[0m) ";
 
             std::cout << result.type << "/" << result.name << std::endl;
         }
