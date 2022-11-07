@@ -57,6 +57,7 @@ bool Tester::run(const std::string &results_csv) {
     // Keep track of how many tests passed and failed
     unsigned int passed = 0;
     unsigned int failed = 0;
+    bool all_created = true;
 
     // Run each suite
     for (auto &suite : suites) {
@@ -74,11 +75,16 @@ bool Tester::run(const std::string &results_csv) {
             // Check for change
             if (result.changed)
                 changed.push_back(result);
+
+            // Keep track if all the result files are newly created, that
+            // way we can shutup about any changes if this is a first run
+            if (!result.created)
+                all_created = false;
         }
     }
 
     // Print out any changed results
-    if (changed.size()) {
+    if (changed.size() && !all_created) {
         std::cout << "\n\033[1;93m[======]\033[0m " << changed.size() << " test results changed" << std::endl;;
 
         for (const auto &result : changed) {
