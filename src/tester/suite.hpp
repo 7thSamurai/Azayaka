@@ -26,8 +26,12 @@ public:
     // Test Results data structure
     struct Result {
         std::string name;
+        std::string type;
+
         bool changed;
+        bool created;
         bool passed;
+        bool old_passed;
     };
 
     TestSuite(const std::string &base_path);

@@ -52,6 +52,7 @@ bool Tester::run(const std::string &results_csv) {
     }
 
     auto start = std::chrono::steady_clock::now();
+    std::vector<TestSuite::Result> changed;
 
     // Keep track of how many tests passed and failed
     unsigned int passed = 0;
@@ -63,23 +64,56 @@ bool Tester::run(const std::string &results_csv) {
         if (!suite->run(correct_results))
             return false;
 
-        // Count the results
         for (const auto &result : suite->results()) {
+            // Count the results
             if (result.passed)
                 passed++;
             else
                 failed++;
+
+            // Check for change
+            if (result.changed)
+                changed.push_back(result);
         }
     }
 
-    // Find the time it took this test to run
+    // Print out any changed results
+    if (changed.size()) {
+        std::cout << "\n\033[1;93m[======]\033[0m " << changed.size() << " test results changed" << std::endl;;
+
+        for (const auto &result : changed) {
+            // Check if the file was newly created
+            if (result.created)
+                std::cout << "\033[1;93m[CREATE]\033[0m (";
+            else
+                std::cout << "\033[1;93m[CHANGE]\033[0m (";
+
+            // Last result
+            if (result.created)
+                std::cout << "?????? -> ";
+            else if (result.old_passed)
+                std::cout << "passed -> ";
+            else
+                std::cout << "failed -> ";
+
+            // Current result
+            if (result.passed)
+                std::cout << "passed) ";
+            else
+                std::cout << "failed) ";
+
+            std::cout << result.type << "/" << result.name << std::endl;
+        }
+    }
+
+    // Find the time it took the tester to run
     auto end  = std::chrono::steady_clock::now();
     auto time = std::chrono::duration_cast<std::chrono::seconds>(end - start);
 
     std::cout << "\n\033[1;92m[======]\033[0m Ran " << (passed+failed) << " tests (" << time.count() << " sec)" << std::endl;
 
     if (failed == 0)
-        std::cout << "\033[1;91m[------]\033[0m ";
+        std::cout << "\033[1;92m[------]\033[0m ";
     else
         std::cout << "\033[1;91m[------]\033[0m ";
 

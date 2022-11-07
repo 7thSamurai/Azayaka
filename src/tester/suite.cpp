@@ -109,6 +109,7 @@ bool TestSuite::run(const CsvFile &correct_results) {
 
         // Get the checksum of the old screenshot
         auto bmp_path = results_path + std::filesystem::path(rom_path.substr(suite_path.string().size())).replace_extension().string() + ".bmp";
+        bool old_exists = std::filesystem::is_regular_file(std::filesystem::path(bmp_path));
         auto old_checksum = Common::crc32(bmp_path);
 
         // Make sure that all the required directories exist
@@ -133,16 +134,19 @@ bool TestSuite::run(const CsvFile &correct_results) {
 
         // Check if the test passed
         auto new_checksum = Common::crc32(bmp_path);
-        bool passed = new_checksum == std::stoul(it->find("crc32")->second, 0, 16);
+        auto correct_checksum = std::stoul(it->find("crc32")->second, 0, 16);
 
         // Generate the result
         Result result;
-        result.name    = name;
-        result.changed = new_checksum != old_checksum;
-        result.passed  = passed;
+        result.name       = name;
+        result.type       = this->name();
+        result.changed    = old_exists ? new_checksum != old_checksum : true;
+        result.created    = !old_exists;
+        result.passed     = new_checksum == correct_checksum;
+        result.old_passed = old_exists ? old_checksum == correct_checksum : false;
 
         // Check if the test passed
-        if (passed) {
+        if (new_checksum == correct_checksum) {
             std::cout << "\r\033[1;92m[PASSED]\033[0m ";
             pass_count++;
         }
