@@ -90,7 +90,7 @@ std::string to_lower(const std::string &s) {
 }
 
 std::string to_upper(const std::string &s) {
-    // Convert to lowercase
+    // Convert to uppercase
     auto copy = s;
     std::transform(copy.begin(), copy.end(), copy.begin(), ::toupper);
 
