@@ -36,6 +36,7 @@ Gpu::Gpu(GameBoy *gb) : Component(gb) {
 
     window_y = 0;
     window_x = 0;
+    window_counter = 0;
 
     scroll_x   = 0;
     scroll_y   = 0;
@@ -331,6 +332,7 @@ void Gpu::tick() {
                 if (scan_line == 154) {
                     set_mode(Mode_Oam);
                     scan_line = 0;
+                    window_counter = 0;
 
                     check_lyc();
                     check_stat_intr();
@@ -490,7 +492,7 @@ void Gpu::render_window_scanline() {
     Color *buffer = &screen_buffer[scan_line * 160];
 
     // Get the Relative Window Position
-    byte win_y = scan_line - window_y;
+    byte win_y = window_counter++;
 
     // Find where the tile-map is
     word map_offset = lcdc.window_map();

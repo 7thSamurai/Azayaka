@@ -86,6 +86,7 @@ private:
     unsigned int timer, off_clock;
 
     byte window_y, window_x;
+    byte window_counter;
 
     // GPU registers
     byte scroll_x;
