@@ -626,7 +626,7 @@ void Gpu::render_sprite_scanline() {
 
             if (gb->gbc_mode) {
                 if (lcdc.background_on()) { // Master priority on CGB
-                    if (scan_line_row_priority[pixel_x])
+                    if (scan_line_row_priority[pixel_x] && scan_line_row[pixel_x])
                         continue;
 
                     else if (s->priority() && scan_line_row[pixel_x])
@@ -699,6 +699,7 @@ void Gpu::save_state(State &state) {
 
     state.write8(window_y);
     state.write8(window_x);
+    state.write8(window_counter);
 
     state.write8(scroll_x);
     state.write8(scroll_y);
@@ -738,8 +739,9 @@ void Gpu::load_state(State &state) {
     timer     = state.read32();
     off_clock = state.read32();
 
-    window_y   = state.read8();
-    window_x   = state.read8();
+    window_y       = state.read8();
+    window_x       = state.read8();
+    window_counter = state.read8();
 
     scroll_x   = state.read8();
     scroll_y   = state.read8();
